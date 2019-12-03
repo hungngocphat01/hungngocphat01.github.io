@@ -9,5 +9,5 @@ layout: default
 *    Best girl: Kousaka Honoka
 
 # Link to my products.
-* [How to play LLAS on PC with Android-x86.](./other_pages/llas-on-pc/readme.md)
+* [How to play LLAS on PC with Android-x86.](./llas-on-pc.html)
 * [Tính điểm tốt nghiệp THPT quốc gia.](./tinhdiem.html)
