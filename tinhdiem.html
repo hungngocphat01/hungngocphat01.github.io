@@ -1,8 +1,45 @@
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<title>Tính điểm tốt nghiệp</title>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css">
+		<link rel="stylesheet" type="text/css" href="css/css.css">
+		<style>
+			input[type=text], select {
+			  width: 100%;
+			  padding: 5px 20px;
+			  margin: 8px 0;
+			  display: inline-block;
+			  border: 1px solid #ccc;
+			  border-radius: 4px;
+			  box-sizing: border-box;
+			}
+
+			input[type=submit] {
+			  width: 100%;
+			  background-color: #4CAF50;
+			  color: white;
+			  padding: 14px 20px;
+			  margin: 8px 0;
+			  border: none;
+			  border-radius: 4px;
+			  cursor: pointer;
+			}
+
+			input[type=submit]:hover {
+			  background-color: #45a049;
+			}
+
+			table {
+			  margin: 0px auto;
+			}
+			
+			td {
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			  padding: 5px;
+			}
+		</style>
+		
 	</head>
 	<body class="markdown-body">
 		<center>
@@ -16,37 +53,36 @@
 				<table id="THMon" align="center">
 					<tr>
 						<td align="right"><div id="THMon1">Môn 1:</div>
-						<input type="text" id="THMon1_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="THMon1_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 						<td align="right"><div>Toán:</div>
-						<input type="text" id="Toan_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="Toan_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 					</tr>
 					<tr>
 						<td align="right"><div id="THMon2">Môn 2:</div>
-						<input type="text" id="THMon2_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="THMon2_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 						<td align="right"><div>Văn:</div>
-						<input type="text" id="Van_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="Van_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 					</tr>
 					<tr>
 						<td align="right"><div id="THMon3">Môn 3:</div>
-						<input type="text" id="THMon3_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="THMon3_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 						<td align="right"><div>Anh:</div>
-						<input type="text" id="Anh_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="Anh_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 					</tr>
 					<tr>
 						<td align="right"><div>TB Năm:</div>
-						<input type="text" id="TB_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="TB_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 						<td align="right"><div> K.khích*:</div>
-						<input type="text" id="KK_input" min=0 max=10 value=0 onclick="clearZero(event)"></td>
+						<input type="text" id="KK_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
 					</tr>
 				</table>
 				<i id = "Chu_thich" style="font-size:12px">(*) Tổng điểm khuyến khích được cộng (nghề, ...)</i> </br>
-				<button type="button" onclick="Submit()">Tính điểm</button>	
+				<button type="Submit" onclick="Submit()">Tính điểm</button>	
 				<button type="button" onclick="clearAll()">Nhập lại</button>
 			</form>
-			<i style="font-size:12px">Cập nhật ngày 20/08/2019</i>
+			<i style="font-size:12px">Cập nhật ngày 03/12/2019</i>
 		</center>
 	</body>
-	
 	<script type="text/javascript">
 		// Public source trong html để dễ kiểm tra và ai tò mò thì biết thêm đc vài easter eggs :> 
 
