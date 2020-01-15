@@ -27,9 +27,9 @@
                 color: orange;
             }
 
-                .link-selected:hover {
-                    color: orange;
-                }
+            .link-selected:hover {
+                color: orange;
+            }
 
             .link-not-selected{
                 color: #f1f1f1;
@@ -39,12 +39,19 @@
                 color: orange;
             }
 
+            .banner{
+                width: 250px;
+            }
+
             @media screen and (max-width: 767px){
                 *{
                     font-size: 15px;
                 }
                 h1, h2, h3, h4, h5{
                     font-size: 20px;
+                }
+                .banner{
+                    width: 210px;
                 }
             }
         </style>
@@ -64,7 +71,9 @@
                     </div>
                     <!--CONTENT-->
                     <div class="content" style="margin-top:20px;">
-                        <img src="banner.jpg" class="responsive-img" width="250" style="margin-bottom:15px; margin-left:5px;" />
+                        <!--BANNER-->
+                        <img src="banner.jpg" class="responsive-img banner" style="margin-bottom:15px; margin-left:5px;" />
+                        <!--CONTENT-->
                         <ul>
                             <li><b>Nationality:</b> Vietnamese.</li>
                             <li><b>Profession:</b> Student.</li>
