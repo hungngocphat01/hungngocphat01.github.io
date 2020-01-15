@@ -1,44 +1,80 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css">
-		<title>NgocPhat's Personal Blog</title>
-		<style>
-			@media all and (min-width: 1081px) {
-			  body {
-			   margin-left:20%;
-			   margin-right:20%;
-			  }
-			}
-		</style>
-	</head>
-	<body class="markdown-body">
-		<center>
-			<h1>NgocPhat's Personal Blog</h1>
-		</center>
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>hungngocphat01</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            @font-face{
+                font-family: 'Iosevka';
+                src : url("font/iosevka-ss01-regular.ttf");
+            }
+            .row.content {height: 1400px}
+            *{
+                font-family: 'Iosevka';
+                color: #f1f1f1;
+                background-color:black;
+                font-size: 20px;
+            }
+            h1, h2, h3, h4, h5, h6{
+                font-size: 25px;
+            }
 
-			<h2>About me</h2>
-			<ul>
-				<li><b>Nationality:</b> Vietnamese</li>
-				<li><b>Profession:</b> Student</li>
-				<li><b>University:</b> HCM City, University of Science</li>
-				<li><b>Languages:</b> Vietnamese, English, Japanese</li>
-				<li><b>Interests:</b> coding, anime.</li>
-				<li><b>Languages*:</b> C++, Python</li>
-				<li><b>Waifu:</b> Kousaka Honoka</li>
-			</ul>
-			</div>
+            .link-selected{
+                color: orange;
+            }
 
-			<h2>My posts</h2>
-			<ul>
-				<li><a href="otherposts/waifulist/waifulist.html">My waifu story</a></li>
-				<li><a href= "https://github.com/phathung2001/sifas-on-pc/blob/master/readme.md">How to play LLAS on PC (currently writing)</a></li>
-			</ul>
-			
-			<h2>My products</h2>
-			<ul>
-				<li><a href= "tinhdiem.html">Tính điểm tốt nghiệp THPTQG</a></li>
-			</ul>
-	</body>
+                .link-selected:hover {
+                    color: orange;
+                }
+
+            .link-not-selected{
+                color: #f1f1f1;
+            }
+
+            .link-not-selected:hover{
+                color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-8">
+                    <h3>hungngocphat01</h3>
+                    <p style="margin-bottom:20px;">hcmus::19120615</p>
+                    <!--NAVIGATION BAR-->
+                    <div>
+                        <a class="link-selected" href="#">About me</a>
+                        <a class="link-not-selected" href="#">My posts</a>
+                        <a class="link-not-selected" href="#">My products</a>
+                    </div>
+                    <!--CONTENT-->
+                    <div class="content" style="margin-top:20px;">
+                        <img src="banner.jpg" class="responsive-img" width="250" style="margin-bottom:15px; margin-left:5px;" />
+                        <ul>
+                            <li><b>Nationality:</b> Vietnamese.</li>
+                            <li><b>Profession:</b> Student.</li>
+                            <li><b>University:</b> HCM City, University of Science.</li>
+                            <li><b>Languages:</b> Vietnamese <small>(Native)</small>, English <small>(IELTS 7.0)</small>, Japanese <small>(JLPT N4)</small>.</li>
+                            <li><b>Languages*:</b> C++, Python.</li>
+                            <li><b>Interests:</b> coding, anime.</li>
+                            <li><b>Waifu:</b> Kousaka Honoka <small>(until now: <span id="honk-year"><small>0</small></span> years)</small>.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>            
+        </div>
+        <script>
+            var d = new Date;
+            var year = d.getFullYear();
+            var honk_year = year - 2017;
+            document.getElementById("honk-year").innerHTML = "<small>" + honk_year + "</small>";
+        </script>
+    </body>
 </html>
