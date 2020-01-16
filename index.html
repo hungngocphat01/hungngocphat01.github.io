@@ -92,9 +92,11 @@
         </div>
         <script>
             $(document).ready(function(){
-                $(".container-fluid").addClass("w3-animate-top");
-                $(".container-fluid").attr("style", "display:block;");
-          
+                $(window).load(function(){
+                    $(".container-fluid").addClass("w3-animate-top");
+                    $(".container-fluid").attr("style", "display:block;");
+                });
+                
                 var d = new Date;
                 var year = d.getFullYear();
                 var honk_year = year - 2017;
