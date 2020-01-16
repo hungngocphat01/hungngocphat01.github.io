@@ -10,6 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="slider.css">
     <style>
         input {
             max-width: 200px;
@@ -161,11 +162,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h4 class="modal-title">
-                                                Lưu ý!
+                                                Cảnh báo!
                                             </h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Cảnh báo! Công cụ này được viết ra vào năm 2020 nên có thể tỉ trọng điểm 
+                                            <p>Công cụ này được viết ra vào năm 2020 nên có thể tỉ trọng điểm 
                                                 bài thi/điểm trong năm không còn đúng nữa. Mặc định công cụ này sử dụng 
                                                 tỉ lệ 50:50 của năm 2020. Nhấn OK để điều chỉnh lại cho phù hợp.
                                             </p>
@@ -188,11 +189,12 @@
                                         <div class="modal-body">
                                             <p>Công cụ này được viết vào năm 2020 nên mặc định sử dụng tỉ lệ điểm 50:50 của năm này</p>
                                             <p>Nếu có thay đổi, hãy điều chỉnh thanh trượt bên dưới cho phù hợp.</p>
+                                            <hr>
                                             <form>
-                                                <label for="ratioSelectSlider">Tỉ lệ</label>
-                                                <input type="range" id="ratioSelectSlider" class="custom-range" step="5" min="0" max="100" value="50"></br>
                                                 <b>Tỉ lệ điểm bài thi:</b> <span id="ratioBaiThi">50</span>%<br/>
-                                                <b>Tỉ lệ điểm trong năm</b>: <span id="ratioTrongNam">50</span>%
+                                                <b>Tỉ lệ điểm trong năm</b>: <span id="ratioTrongNam">50</span>%<br/>
+                                                <label for="ratioSelectSlider">Điều chỉnh</label>
+                                                <input type="range" id="ratioSelectSlider" class="slider" step="5" min="0" max="100" value="50"></br>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
