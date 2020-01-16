@@ -91,11 +91,9 @@
             </div>            
         </div>
         <script>
-            $(document).ready(function(){
-                $(window).load(function(){
-                    $(".container-fluid").addClass("w3-animate-top");
-                    $(".container-fluid").attr("style", "display:block;");
-                });
+            $(window).on("load", function(){
+                $(".container-fluid").addClass("w3-animate-top");
+                $(".container-fluid").attr("style", "display:block;");
             });
         </script>
     </body>
