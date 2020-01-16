@@ -1,209 +1,190 @@
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Tính điểm tốt nghiệp</title>
-		<link rel="stylesheet" type="text/css" href="css/css.css">
-		<style>
-			input[type=text], select {
-			  width: 100%;
-			  padding: 5px 20px;
-			  margin: 8px 0;
-			  display: inline-block;
-			  border: 1px solid #ccc;
-			  border-radius: 4px;
-			  box-sizing: border-box;
-			}
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>hungngocphat01</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            @font-face{
+                font-family: 'Iosevka';
+                src : url("font/iosevka-ss01-regular.ttf");
+            }
 
-			input[type=submit] {
-			  width: 100%;
-			  background-color: #4CAF50;
-			  color: white;
-			  padding: 14px 20px;
-			  margin: 8px 0;
-			  border: none;
-			  border-radius: 4px;
-			  cursor: pointer;
-			}
+            *{
+                font-family: 'Iosevka';
+                color: #f1f1f1;
+                background-color:black;
+                font-size: 20px;
+            }
+            h1, h2, h3, h4, h5, h6{
+                font-family: 'Iosevka';
+                font-size: 25px;
+            }
 
-			input[type=submit]:hover {
-			  background-color: #45a049;
-			}
+            .link-selected{
+                color: orange;
+                font-weight: bold;
+            }
 
-			table {
-			  margin: 0px auto;
-			}
-			
-			td {
-			  border-radius: 5px;
-			  background-color: #f2f2f2;
-			  padding: 5px;
-			}
-			
-			button {
-			  padding: 5px 5px;
-			}
+            .link-selected:hover {
+                color: orange;
+            }
 
-		</style>
-		
-	</head>
-	<body class="markdown-body">
-		<center>
-			<h1>Tính điểm tốt nghiệp</h1>
-			(Theo công thức tính điểm chính thức của Bộ GD&ĐT năm 2019)<br>
-			<form>
-				Tổ hợp xét tuyển:	
-				<input type="radio" name="ToHop" value="KHTN" onclick="showKHTN()"> KHTN
-				<input type="radio" name="ToHop" value="KHXH" onclick="showKHXH()">	KHXH<br>
-				<table id="THMon" align="center">
-					<tr>
-						<td align="right"><div id="THMon1">Môn 1:</div>
-						<input type="text" id="THMon1_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-						<td align="right"><div>Toán:</div>
-						<input type="text" id="Toan_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-					</tr>
-					<tr>
-						<td align="right"><div id="THMon2">Môn 2:</div>
-						<input type="text" id="THMon2_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-						<td align="right"><div>Văn:</div>
-						<input type="text" id="Van_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-					</tr>
-					<tr>
-						<td align="right"><div id="THMon3">Môn 3:</div>
-						<input type="text" id="THMon3_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-						<td align="right"><div>Anh:</div>
-						<input type="text" id="Anh_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-					</tr>
-					<tr>
-						<td align="right"><div>TB Năm:</div>
-						<input type="text" id="TB_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-						<td align="right"><div> K.khích*:</div>
-						<input type="text" id="KK_input" size=6 min=0 max=10 value=0 onclick="clearZero(event)"></td>
-					</tr>
-				</table>
-				<i id = "Chu_thich" style="font-size:12px">(*) Tổng điểm khuyến khích được cộng (nghề, ...)</i> </br>
-				<button type="Submit" onclick="Submit()">Tính điểm</button>	
-				<button type="button" onclick="clearAll()">Nhập lại</button>
-			</form>
-			<i style="font-size:12px">Cập nhật ngày 03/12/2019</i></br>
-			<div style="font-size:13px">By Ngọc Phát, A6-K96 Quốc Học Quy Nhơn, K19 ĐHKHTN-ĐHQGHCM<br></div>
-		</center>
-	</body>
-	<script type="text/javascript">
-		// Public source trong html để dễ kiểm tra và ai tò mò thì biết thêm đc vài easter eggs :> 
+            .link-not-selected{
+                color: #f1f1f1;
+            }
 
-		var THMon_table = document.getElementById("THMon");
-		THMon_table.style.visibility = "collapse";
-		Chu_thich.style.visibility = "collapse";
-		var input_ids = ["THMon1_input", "THMon2_input", "THMon3_input", "Toan_input", 
-							"Van_input", "Anh_input", "TB_input", "KK_input"];
-		function parseLcle(num){
-			return parseFloat(num.replace(",", "."));
-		}
-		function clearAll(){		
-			for(i=0;i<input_ids.length;i++){
-				document.getElementById(input_ids[i]).value = 0;
-			}
-		}
-		function clearZero(e){
-			if (parseFloat(e.target.value) == 0){
-				e.target.value = ""
-			}
-		}
-		function showKHTN(){
-			document.getElementById("THMon1").innerHTML = "Lý: ";
-			document.getElementById("THMon2").innerHTML = "Hoá: ";
-			document.getElementById("THMon3").innerHTML = "Sinh: ";
-			for(i=0;i<3;i++){
-				document.getElementById(input_ids[i]).value = 0;
-			}
-			THMon_table.style.visibility = "visible";
-			Chu_thich.style.visibility = "visible";
-		}
-		function showKHXH(){
-			document.getElementById("THMon1").innerHTML = "Sử: ";
-			document.getElementById("THMon2").innerHTML = "Địa: ";
-			document.getElementById("THMon3").innerHTML = "GDCD: ";
-			for(i=0;i<3;i++){
-				document.getElementById(input_ids[i]).value = 0;
-			}
-			THMon_table.style.visibility = "visible";
-			Chu_thich.style.visibility = "visible";
+            .link-not-selected:hover{
+                color: orange;
+            }
 
-		}
-		function Submit(){
-			for(i=0;i<input_ids.length;i++){
-				if (isNaN(parseFloat(document.getElementById(input_ids[i]).value))){
-					alert("Giá trị bạn đã nhập không hợp lệ.\nVui lòng kiểm tra lại. ");
-					return;
-				}
-			}
-			ifzero = 0;
-			for(i=0;i<input_ids.length;i++){
-				ifzero += parseFloat(document.getElementById(input_ids[i]).value);
-			}
-			if(ifzero==0){
-				alert("Bạn phải nhập cái gì vào mới tính được chứ :>");
-				return;
-			}
-			var THMon1 = parseLcle(document.getElementById("THMon1_input").value);
-			var THMon2 = parseLcle(document.getElementById("THMon2_input").value);
-			var THMon3 = parseLcle(document.getElementById("THMon3_input").value);
-			var Toan = parseLcle(document.getElementById("Toan_input").value);
-			var Van = parseLcle(document.getElementById("Van_input").value);
-			var Anh = parseLcle(document.getElementById("Anh_input").value);
-			var TB = parseLcle(document.getElementById("TB_input").value);
-			var KK = parseLcle(document.getElementById("KK_input").value);
-			var arr = [THMon1, THMon2, THMon3, Toan, Van, Anh, TB];
-			var DiemTN = (((THMon1 + THMon2 + THMon3)/3 + Toan + Van + Anh +KK)/4)*0.7 + TB*0.3;
-			var KQ = "";
-			for (i=0; i<=arr.length; i++){			
-				if (arr[i] > 10){
-					alert("Ây da, chơi ăn gian là ko đc nha :>");
-					return;
-				}
-			}
-			for (i=0; i<=arr.length; i++){			
-				if (arr[i] == 10){
-					alert("10 điểm hả? Có tự tin quá vậy không bạn tôi ơi :>");
-					break;
-				}
-			}
-			biquan = 0;
-			lacquan = 0;
-			for (i=0; i<=arr.length; i++){			
-				if (arr[i] < 6){
-					biquan++;
-				}
-				if (arr[i] >= 8){
-					lacquan++;
-				}
-			}
-			if (biquan >= 4){
-				alert("Chời ơi sao bi quan quá vậy :>");
-			} 	
-			if (lacquan >= 4){
-				alert("Lạc quan quá đó :>");	
-			} 
-			if (biquan >= 3 && lacquan >= 3){
-				alert("Sao học lệch vậy :>");
-			} 
-			for (i=0; i<=arr.length; i++){			
-				if (arr[i] <= 1){
-					alert("Bạn có ít nhất một môn dưới hoặc bằng 1 điểm nên bạn đã bị liệt.\nĐiểm tốt nghiệp: " + DiemTN + " (Rớt)");
-					return;
-				}
-			}
-			if (isNaN(DiemTN)){
-				alert("Đã xảy ra lỗi trong quá trình xử lí.\nVui lòng kiểm tra lại các giá trị đã nhập.");
-				return;
-			}
-			if(DiemTN>=5){
-				KQ = "Đậu";
-			}
-			else{
-				KQ = "Rớt";
-			}
-			alert("Điểm tốt nghiệp: " + DiemTN + " (" + KQ +")");
-		}
-	</script>
+            .banner{
+                width: 250px;
+                margin-right:10px;
+            }
+
+            input{
+                max-width: 200px;
+            }
+            
+            .col-input{
+                max-width: 200px;
+                width: 200px;
+            }
+
+            .col-button{
+                max-width: 400px;
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            .btnSubmit{
+                width: 95px;
+            }
+            @media screen and (max-width: 767px){
+                * {
+                    font-size: 15px;
+                }
+                h1, h2, h3, h4, h5{
+                    font-size: 20px;
+                }
+                .banner{
+                    width: 150px;
+                }
+            }
+        </style>
+    </head>
+    <body style="background-color:black;">
+        <div class="container-fluid" style="display:none;">
+            <div class="row content">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <h3>hungngocphat01</h3>
+                    <p style="margin-bottom:20px;">hcmus::19120615</p>
+                    <!--NAVIGATION BAR-->
+                    <div>
+                        <a class="link-not-selected" href="index.html">About me</a>
+                        <a class="link-not-selected" href="notAvailable.html">My posts</a>
+                        <a class="link-selected" href="notAvailable.html">My products</a>
+                    </div>
+                    <!--CONTENT-->
+                    <div class="content" style="margin-top:20px;">
+                        <h1>Công cụ tính điểm tốt nghiệp THPT</h1>
+                        <!--DROPDOWN CHỌN TỔ HỢP MÔN-->
+                        <div class="dropdown" style="margin-bottom:10px;">
+                            <button id="btnToHop" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                            Chọn tổ hợp 
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" style="background-color:black;">
+                                <li><button type="button" class="btn" id="btnKHTN">KHTN</button></li>
+                                <li><button type="button" class="btn" id="btnKHXH">KHXH</button></li>
+                            </ul>
+                        </div>
+                        <!--FORM NHẬP ĐIỂM-->
+                        <form style="display:none;">
+                            <div class="form-row" style="margin-bottom:5px;">
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Toán" id="toan" />
+                                </div>
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="TH1" id="th1" />
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom:5px;">
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Văn" id="van" />
+                                </div>
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="TH2" id="th2" />
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom:5px;">
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Anh" id="anh" />
+                                </div>
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="TH3" id="th3" />
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom:5px;">
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Khuyến khích" id="kkhich" />
+                                </div>
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Ưu tiên" id="uutien" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Tổng kết L12" id="tongket" />
+                                </div>
+                                <div class="col col-input">
+                                    <input type="number" class="form-control" placeholder="Invisible" style="display:none;" />
+                                </div>
+                            </div>
+                            <p><em><small>Điểm khuyến khích thường là điểm nghề.</small></em></p>
+                            <!--2 BTN SUBMIT VÀ RESET-->
+                            <div class="col col-input col-button">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success btnSubmit" id="btnSubmit">
+                                        Tính điểm
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btnSubmit">
+                                        Xoá số
+                                    </button>
+                                    <button type="button" class="btn btn-warning btnSubmit" id="btnSettings">
+                                        Cài đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!--MODAL THÔNG BÁO ĐIỂM-->
+                        <div class="modal fade" id="alertModal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Kết quả
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn đã <span id="txtKQ"></span>!<br/>
+                                    Điểm tốt nghiệp của bạn là <span id="diemKQ">0</span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" id="btnModalClose">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>            
+        </div>
+        <script src="tinhDiem.js"></script>
+    </body>
 </html>
