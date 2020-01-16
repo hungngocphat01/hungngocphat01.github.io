@@ -22,20 +22,35 @@
 
         .col-button {
             max-width: 400px;
-            margin-top: 10px;
-            text-align: center;
+            margin-left: 40px;
         }
 
         .btnSubmit {
-            width: 95px;
+            width: 90px;
+        }
+
+        @media screen and (max-width: 420px){
+            .col-button{
+                margin-left: 10vw;
+            }
+        }
+        @media screen and (max-width: 372px){
+            .col-button{
+                margin-left: 5vw;
+            }
+        }
+        @media screen and (max-width: 341px){
+            .col-button{
+                margin-left: -10px!important;
+            }
         }
     </style>
 </head>
     <body style="background-color:black;">
         <div class="container-fluid" style="display:none;">
             <div class="row">
-                <div class="col-xs-3 col-sm-2 col-md-3 col-lg-4"></div>
-                <div class="col-xs-6 col-sm-8 col-md 6 col-lg-4">
+                <div class="col-sm-2 col-md-3 col-lg-4"></div>
+                <div class="col-sm-8 col-md 6 col-lg-4">
                     <div id="mid-column">
                         <h3>hungngocphat01</h3>
                         <p style="margin-bottom:20px;">hcmus::19120615</p>
@@ -103,19 +118,22 @@
                                 </div>
                                 <p><em><small>Điểm khuyến khích thường là điểm nghề.</small></em></p>
                                 <!--3 BTN SUBMIT, RESET VÀ SETTINGS-->
-                                <div class="col col-input col-button">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success btnSubmit" id="btnSubmit">
-                                            Tính điểm
-                                        </button>
-                                        <button type="reset" class="btn btn-danger btnSubmit">
-                                            Xoá số
-                                        </button>
-                                        <button type="button" class="btn btn-primary btnSubmit" id="btnSettings">
-                                            Cài đặt
-                                        </button>
+                                <div class="form-row">
+                                    <div class="col col-input col-button">
+                                        <div class="btn btn-group">
+                                            <button type="button" class="btn btn-success btnSubmit" id="btnSubmit">
+                                                Tính điểm
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btnSubmit">
+                                                Xoá số
+                                            </button>
+                                            <button type="button" class="btn btn-primary btnSubmit" id="btnSettings">
+                                                Cài đặt
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
+
                             </form>
                             <!--MODAL THÔNG BÁO ĐIỂM-->
                             <div class="modal fade" id="alertModal">
@@ -137,10 +155,56 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--MODAL CẢNH BÁO 2021-->
+                            <div class="modal fade" id="alert2021">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Lưu ý!
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Cảnh báo! Công cụ này được viết ra vào năm 2020 nên có thể tỉ trọng điểm 
+                                                bài thi/điểm trong năm không còn đúng nữa. Mặc định công cụ này sử dụng 
+                                                tỉ lệ 50:50 của năm 2020. Nhấn OK để điều chỉnh lại cho phù hợp.
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="btn2021" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--MODAL SỬA TỈ TRỌNG-->
+                            <div class="modal fade" id="settingsModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Cài đặt
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Công cụ này được viết vào năm 2020 nên mặc định sử dụng tỉ lệ điểm 50:50 của năm này</p>
+                                            <p>Nếu có thay đổi, hãy điều chỉnh thanh trượt bên dưới cho phù hợp.</p>
+                                            <form>
+                                                <label for="ratioSelectSlider">Tỉ lệ</label>
+                                                <input type="range" id="ratioSelectSlider" class="custom-range" step="5" min="0" max="100" value="50"></br>
+                                                <b>Tỉ lệ điểm bài thi:</b> <span id="ratioBaiThi">50</span>%<br/>
+                                                <b>Tỉ lệ điểm trong năm</b>: <span id="ratioTrongNam">50</span>%
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3 col-sm-2 col-md-3 col-lg-4"></div>
+                <div class="col-sm-2 col-md-3 col-lg-4"></div>
             </div>            
         </div>
         <script src="tinhDiem.js"></script>

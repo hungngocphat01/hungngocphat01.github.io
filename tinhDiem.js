@@ -1,17 +1,25 @@
 ﻿var toHop = "";
 var toan, van, anh, th1, th2, th3, tongket, kkhich, uutien, diem, diemToHop;
 var hsBaiThi = 0.5, hsTrongNam = 0.5;
-
+var d = new Date;
+var year = d.getFullYear();
 $(window).on("load", function(){
     $(".container-fluid").addClass("w3-animate-top");
     $(".container-fluid").attr("style", "display:block;");
+    if (year >= 2020){
+        $("#alert2021").modal("show");
+        $("#btn2021").click(function(){
+            $("#settingsModal").modal("show");
+            settingsModalIint();
+        });
+    }
 });
 
 $("#btnKHTN").click(function(){
     // Đổi placeholder
-    $("#th1").attr("placeholder", "Lý");
-    $("#th2").attr("placeholder", "Hoá");
-    $("#th3").attr("placeholder", "Sinh");
+    $("#th1").attr("placeholder", "Lý").val("");
+    $("#th2").attr("placeholder", "Hoá").val("");
+    $("#th3").attr("placeholder", "Sinh").val("");
     // Đổi label của dropdown
     $("#btnToHop").text("KHTN");
     //Hiện table
@@ -20,19 +28,37 @@ $("#btnKHTN").click(function(){
 
 $("#btnKHXH").click(function(){
     // Đổi placeholder
-    $("#th1").attr("placeholder", "Sử");
-    $("#th2").attr("placeholder", "Địa");
-    $("#th3").attr("placeholder", "GDCD");
+    $("#th1").attr("placeholder", "Sử").val("");
+    $("#th2").attr("placeholder", "Địa").val("");
+    $("#th3").attr("placeholder", "GDCD").val("");
     // Đổi label của dropdown
     $("#btnToHop").text("KHXH");
     //Hiện table
     showTable();
 });
 
-$("#btnModalClose").click(function(){
-    $("#alertModal").modal("hide");
+var slider = $("#ratioSelectSlider");
+
+$("#btnSettings").click(function(){
+    $("#settingsModal").modal("show");
+    settingsModalIint();
 });
 
+function settingsModalIint(){
+    var slider = document.getElementById("ratioSelectSlider");
+    var ratioBaiThi = document.getElementById("ratioBaiThi");
+    var ratioTrongNam = document.getElementById("ratioTrongNam");
+    slider.value = hsBaiThi * 100;
+    ratioBaiThi.innerHTML = slider.value;
+    ratioTrongNam.innerHTML = 100 - slider.value;
+
+    slider.oninput = function() {
+        hsBaiThi = this.value/100;
+        hsTrongNam = this.value/100;
+        ratioBaiThi.innerHTML = this.value;
+        ratioTrongNam.innerHTML = 100 - this.value;
+    }
+}
 $("#btnSubmit").click(function(){
 	$("#duoi1").attr("style", "display:none;");
     toan = getValue("#toan");
@@ -82,11 +108,11 @@ function showTable(){
 function thongBaoKQ(dau, diem){
     if (dau){
         txt = "đậu";
-        $("txtKQ").attr("style", "color: green;")
+        $("#txtKQ").attr("class", "text-success");
     }
     else{
         txt = "rớt";
-        $("txtKQ").attr("style", "color: red;")
+        $("#txtKQ").attr("class", "text-danger");
     }
     $("#txtKQ").html(txt);
     $("#diemKQ").text(diem);
