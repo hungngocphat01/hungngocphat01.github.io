@@ -50,16 +50,16 @@ $("#btnSubmit").click(function(){
     var arr = [toan, van, anh, th1, th2, th3];
     for (var i = 0; i < 6; i++){
     	if (arr[i]<=1){
-    	    thongBaoKQ("Rớt", diem);
+    	    thongBaoKQ(false, diem);
             $("#duoi1").attr("style", "display:block;");
             return;
          }
      } 
     if (diem >= 5){
-        thongBaoKQ("Đậu", diem);
+        thongBaoKQ(true, diem);
 	}
     else{
-        thongBaoKQ("Rớt", diem);
+        thongBaoKQ(false, diem);
 	}
 });
 
@@ -79,8 +79,16 @@ function showTable(){
     $("form").attr("style", "dislay:block;");
 }
 
-function thongBaoKQ(txt, diem){
-    $("#txtKQ").text(txt);
+function thongBaoKQ(dau, diem){
+    if (dau){
+        txt = "đậu";
+        $("txtKQ").attr("style", "color: green;")
+    }
+    else{
+        txt = "rớt";
+        $("txtKQ").attr("style", "color: red;")
+    }
+    $("#txtKQ").html(txt);
     $("#diemKQ").text(diem);
     $("#alertModal").modal("show");
 }
