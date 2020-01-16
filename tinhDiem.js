@@ -26,7 +26,7 @@ $("#btnKHXH").click(function(){
     // Đổi label của dropdown
     $("#btnToHop").text("KHXH");
     //Hiện table
-    $showTable();
+    showTable();
 });
 
 $("#btnModalClose").click(function(){
