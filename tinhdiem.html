@@ -1,188 +1,145 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, intial-scale=1.0" />
-        <meta charset="utf-8" />
-        <title>hungngocphat01</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <style>
-            @font-face{
-                font-family: 'Iosevka';
-                src : url("font/iosevka-ss01-regular.ttf");
-            }
+<head>
+    <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>hungngocphat01</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        input {
+            max-width: 200px;
+        }
 
-            *{
-                font-family: 'Iosevka';
-                color: #f1f1f1;
-                background-color:black;
-                font-size: 20px;
-            }
-            h1, h2, h3, h4, h5, h6{
-                font-family: 'Iosevka';
-                font-size: 25px;
-            }
+        .col-input {
+            max-width: 200px;
+            width: 200px;
+        }
 
-            .link-selected{
-                color: orange;
-                font-weight: bold;
-            }
+        .col-button {
+            max-width: 400px;
+            margin-top: 10px;
+            text-align: center;
+        }
 
-            .link-selected:hover {
-                color: orange;
-            }
-
-            .link-not-selected{
-                color: #f1f1f1;
-            }
-
-            .link-not-selected:hover{
-                color: orange;
-            }
-
-            .banner{
-                width: 250px;
-                margin-right:10px;
-            }
-
-            input{
-                max-width: 200px;
-            }
-            
-            .col-input{
-                max-width: 200px;
-                width: 200px;
-            }
-
-            .col-button{
-                max-width: 400px;
-                margin-top: 10px;
-                text-align: center;
-            }
-
-            .btnSubmit{
-                width: 95px;
-            }
-            @media screen and (max-width: 767px){
-                * {
-                    font-size: 15px;
-                }
-                h1, h2, h3, h4, h5{
-                    font-size: 20px;
-                }
-                .banner{
-                    width: 150px;
-                }
-            }
-        </style>
-    </head>
+        .btnSubmit {
+            width: 95px;
+        }
+    </style>
+</head>
     <body style="background-color:black;">
         <div class="container-fluid" style="display:none;">
-            <div class="row content">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                    <h3>hungngocphat01</h3>
-                    <p style="margin-bottom:20px;">hcmus::19120615</p>
-                    <!--NAVIGATION BAR-->
-                    <div>
-                        <a class="link-not-selected" href="index.html">About me</a>
-                        <a class="link-not-selected" href="notAvailable.html">My posts</a>
-                        <a class="link-selected" href="notAvailable.html">My products</a>
-                    </div>
-                    <!--CONTENT-->
-                    <div class="content" style="margin-top:20px;">
-                        <h1>Công cụ tính điểm tốt nghiệp THPT</h1>
-                        <!--DROPDOWN CHỌN TỔ HỢP MÔN-->
-                        <div class="dropdown" style="margin-bottom:10px;">
-                            <button id="btnToHop" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                            Chọn tổ hợp 
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu" style="background-color:black;">
-                                <li><button type="button" class="btn" id="btnKHTN">KHTN</button></li>
-                                <li><button type="button" class="btn" id="btnKHXH">KHXH</button></li>
-                            </ul>
+            <div class="row">
+                <div class="col-xs-3 col-sm-2 col-md-3 col-lg-4"></div>
+                <div class="col-xs-6 col-sm-8 col-md 6 col-lg-4">
+                    <div id="mid-column">
+                        <h3>hungngocphat01</h3>
+                        <p style="margin-bottom:20px;">hcmus::19120615</p>
+                        <!--NAVIGATION BAR-->
+                        <div>
+                            <a class="link-not-selected" href="index.html">About me</a>
+                            <a class="link-not-selected" href="notAvailable.html">My posts</a>
+                            <a class="link-selected" href="notAvailable.html">My products</a>
                         </div>
-                        <!--FORM NHẬP ĐIỂM-->
-                        <form style="display:none;">
-                            <div class="form-row" style="margin-bottom:5px;">
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Toán" id="toan" />
-                                </div>
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="TH1" id="th1" />
-                                </div>
+                        <!--CONTENT-->
+                        <div class="content" style="margin-top:20px;">
+                            <h1>Công cụ tính điểm tốt nghiệp THPT</h1>
+                            <!--DROPDOWN CHỌN TỔ HỢP MÔN-->
+                            <div class="dropdown" style="margin-bottom:10px;">
+                                <button id="btnToHop" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                                    Chọn tổ hợp
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" style="background-color:black;">
+                                    <li><button type="button" class="btn" id="btnKHTN">KHTN</button></li>
+                                    <li><button type="button" class="btn" id="btnKHXH">KHXH</button></li>
+                                </ul>
                             </div>
-                            <div class="form-row" style="margin-bottom:5px;">
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Văn" id="van" />
+                            <!--FORM NHẬP ĐIỂM-->
+                            <form style="display:none;">
+                                <div class="form-row" style="margin-bottom:5px;">
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Toán" id="toan" />
+                                    </div>
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="TH1" id="th1" />
+                                    </div>
                                 </div>
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="TH2" id="th2" />
+                                <div class="form-row" style="margin-bottom:5px;">
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Văn" id="van" />
+                                    </div>
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="TH2" id="th2" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom:5px;">
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Anh" id="anh" />
+                                <div class="form-row" style="margin-bottom:5px;">
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Anh" id="anh" />
+                                    </div>
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="TH3" id="th3" />
+                                    </div>
                                 </div>
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="TH3" id="th3" />
+                                <div class="form-row" style="margin-bottom:5px;">
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Khuyến khích" id="kkhich" />
+                                    </div>
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Ưu tiên" id="uutien" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom:5px;">
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Khuyến khích" id="kkhich" />
+                                <div class="form-row">
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Tổng kết L12" id="tongket" />
+                                    </div>
+                                    <div class="col col-input">
+                                        <input type="number" class="form-control" placeholder="Invisible" style="display:none;" />
+                                    </div>
                                 </div>
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Ưu tiên" id="uutien" />
+                                <p><em><small>Điểm khuyến khích thường là điểm nghề.</small></em></p>
+                                <!--3 BTN SUBMIT, RESET VÀ SETTINGS-->
+                                <div class="col col-input col-button">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success btnSubmit" id="btnSubmit">
+                                            Tính điểm
+                                        </button>
+                                        <button type="reset" class="btn btn-danger btnSubmit">
+                                            Xoá số
+                                        </button>
+                                        <button type="button" class="btn btn-primary btnSubmit" id="btnSettings">
+                                            Cài đặt
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Tổng kết L12" id="tongket" />
-                                </div>
-                                <div class="col col-input">
-                                    <input type="number" class="form-control" placeholder="Invisible" style="display:none;" />
-                                </div>
-                            </div>
-                            <p><em><small>Điểm khuyến khích thường là điểm nghề.</small></em></p>
-                            <!--2 BTN SUBMIT VÀ RESET-->
-                            <div class="col col-input col-button">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success btnSubmit" id="btnSubmit">
-                                        Tính điểm
-                                    </button>
-                                    <button type="reset" class="btn btn-danger btnSubmit">
-                                        Xoá số
-                                    </button>
-                                    <button type="button" class="btn btn-warning btnSubmit" id="btnSettings">
-                                        Cài đặt
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <!--MODAL THÔNG BÁO ĐIỂM-->
-                        <div class="modal fade" id="alertModal">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">
-                                        Kết quả
-                                    </h4>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn đã <span id="txtKQ"></span>!<br/>
-                                    Điểm tốt nghiệp của bạn là <span id="diemKQ">0</span>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" id="btnModalClose">Đóng</button>
+                            </form>
+                            <!--MODAL THÔNG BÁO ĐIỂM-->
+                            <div class="modal fade" id="alertModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Kết quả
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn đã <span id="txtKQ"></span>!<br />
+                                            Điểm tốt nghiệp của bạn là <span id="diemKQ">0</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" id="btnModalClose" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4"></div>
+                <div class="col-xs-3 col-sm-2 col-md-3 col-lg-4"></div>
             </div>            
         </div>
         <script src="tinhDiem.js"></script>

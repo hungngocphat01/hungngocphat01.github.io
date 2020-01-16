@@ -1,0 +1,54 @@
+@font-face{
+    font-family: 'Iosevka';
+    src : url("font/iosevka-ss01-regular.ttf");
+}
+
+*{
+    font-family: 'Iosevka';
+    color: #f1f1f1;
+    background-color:black;
+    font-size: 20px;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Iosevka';
+    font-size: 25px;
+}
+
+row{
+    margin: 0 auto;
+}
+
+.link-selected{
+    color: orange;
+    font-weight: bold;
+}
+
+.link-selected:hover {
+    color: orange;
+}
+
+.link-not-selected {
+    color: #f1f1f1;
+}
+
+.link-not-selected:hover {
+    color: orange;
+}
+
+.banner {
+    width: 250px;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 767px){
+    * {
+        font-size: 15px;
+    }
+    h1, h2, h3, h4, h5{
+        font-size: 20px;
+    }
+    .banner{
+        width: 150px;
+    }
+}
