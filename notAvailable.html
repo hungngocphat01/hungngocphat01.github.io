@@ -82,7 +82,7 @@
                                 </td>
                                 <td>
                                     This feature is under construction.<br/> Please come back later.<br/>
-                                    Follow <a href="index.html" class="link-selected">Honoka</a> to go back to homepage.
+                                    Follow <span class="link-selected" id="honk-text">Honoka</span> to go back to homepage.
                                 </td>
                             </tr>
                         </table>
@@ -95,6 +95,10 @@
             $(window).on("load", function(){
                 $(".container-fluid").addClass("w3-animate-top");
                 $(".container-fluid").attr("style", "display:block;");
+            });
+
+            $("#honk-text").click(function(){
+                alert("This is not a link. Follow Honoka to go back to homepage.");
             });
         </script>
     </body>
