@@ -57,7 +57,7 @@
         </style>
     </head>
     <body style="background-color:black;">
-        <div class="container-fluid w3-animate-top">
+        <div class="container-fluid w3-animate-top" style="display:none;">
             <div class="row content">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-8">
@@ -91,6 +91,10 @@
             </div>            
         </div>
         <script>
+            $(document).ready(function(){
+                $(".container-fluid").addClass("w3-animate-top");
+                $(".container-fluid").attr("style", "display:block;");
+          
                 var d = new Date;
                 var year = d.getFullYear();
                 var honk_year = year - 2017;
