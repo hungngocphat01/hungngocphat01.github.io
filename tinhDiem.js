@@ -34,6 +34,7 @@ $("#btnModalClose").click(function(){
 });
 
 $("#btnSubmit").click(function(){
+	$("#duoi1").attr("style", "display:none;");
     toan = getValue("#toan");
     van = getValue("#van");
     anh = getValue("#anh");
@@ -43,10 +44,17 @@ $("#btnSubmit").click(function(){
     tongket = getValue("#tongket");
     kkhich = getValue("#kkhich");
     uutien = getValue("#uutien");
-
     diemToHop = (th1 + th2 + th3) / 3;
     diem = ((toan + van + anh + diemToHop + kkhich)/4)*hsBaiThi + tongket*hsTrongNam + uutien;
     diem = diem.toFixed(2);
+    var arr = [toan, van, anh, th1, th2, th3];
+    for (var i = 0; i < 6; i++){
+    	if (arr[i]<=1){
+    	    thongBaoKQ("Rớt", diem);
+            $("#duoi1").attr("style", "display:block;");
+            return;
+         }
+     } 
     if (diem >= 5){
         thongBaoKQ("Đậu", diem);
 	}
