@@ -7,12 +7,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <style>
             @font-face{
                 font-family: 'Iosevka';
                 src : url("font/iosevka-ss01-regular.ttf");
             }
-            .row.content {height: 1400px}
             *{
                 font-family: 'Iosevka';
                 color: #f1f1f1;
@@ -56,8 +56,8 @@
             }
         </style>
     </head>
-    <body>
-        <div class="container-fluid">
+    <body style="background-color:black;">
+        <div class="container-fluid w3-animate-top">
             <div class="row content">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-8">
@@ -91,14 +91,11 @@
             </div>            
         </div>
         <script>
-            var d = new Date;
-            var year = d.getFullYear();
-            var honk_year = year - 2017;
-            document.getElementById("honk-year").innerHTML = "<small>" + honk_year + "</small>";
-
-            function notFinished(){
-                alert("This feature is under construction. Please come back later.");
-            }
+                var d = new Date;
+                var year = d.getFullYear();
+                var honk_year = year - 2017;
+                $("#honk-year").html("<small>" + honk_year + "</small>");
+            });
         </script>
     </body>
 </html>
