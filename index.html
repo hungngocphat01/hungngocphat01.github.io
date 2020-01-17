@@ -32,7 +32,15 @@
                         <img src="./image/banner.jpg" class="responsive-img banner" style="margin-bottom:15px; margin-left:5px;" />
                         <!--CONTENT-->
                         <ul>
-                            <li><b>Nationality:</b> Vietnamese.</li>
+                            <li><b>Nationality:</b> Vietnamese <small><a href="#" class="btnPlayer" id="btnPlayQuocCa">[▶]</a></small>.<br/>
+                                <div id="quocCaPlayer" showing="0" style="display:none;">
+                                    <img src="./image/vietnamflag.gif" height="100" class="responsive-img"><br>
+                                    <audio controls id="quocCaAudio" style="display:none;">
+                                        <source src="./audio/quocca.mp3" type="audio/mpeg">
+                                        Audio not supported.
+                                    </audio>
+                                </div>                              
+                            </li>
                             <li><b>Profession:</b> Student.</li>
                             <li><b>University:</b> HCM City, University of Science.</li>
                             <li><b>Languages:</b> Vietnamese <small>(Native)</small>, English <small>(IELTS 7.0)</small>, Japanese <small>(JLPT N4)</small>.</li>
@@ -58,6 +66,24 @@
                 var year = d.getFullYear();
                 var honk_year = year - 2017;
                 $("#honk-year").html("<small>" + honk_year + "</small>");
+            });
+
+            $("#btnPlayQuocCa").click(function(){
+                var show = parseInt($("#quocCaPlayer").attr("showing"));
+                var audio = document.getElementById("quocCaAudio");
+                audio.loop = true;
+                if (show){
+                    $("#quocCaPlayer").attr("style", "display:none;");
+                    $("#quocCaPlayer").attr("showing", "0");
+                    audio.pause();
+                    $("#btnPlayQuocCa").html("[▶]");
+                }
+                else{
+                    $("#quocCaPlayer").attr("style", "display:block;");
+                    $("#quocCaPlayer").attr("showing", "1");
+                    audio.play();
+                    $("#btnPlayQuocCa").html("[❚❚]");                   
+                }               
             });
         </script>
     </body>
