@@ -62,6 +62,7 @@ hr{
         width: 150px;
     }
     .credit{
-        font-size: 11px;
+        font-size: 12px;
+        font-style: normal;
     }
 }
