@@ -3,6 +3,7 @@ var toan, van, anh, th1, th2, th3, tongket, kkhich, uutien, diem, diemToHop;
 var hsBaiThi = 0.5, hsTrongNam = 0.5;
 var d = new Date;
 var year = d.getFullYear();
+
 $(window).on("load", function(){
     $(".container-fluid").addClass("w3-animate-top");
     $(".container-fluid").attr("style", "display:block;");
@@ -54,7 +55,7 @@ function settingsModalIint(){
 
     slider.oninput = function() {
         hsBaiThi = this.value/100;
-        hsTrongNam = this.value/100;
+        hsTrongNam = 1 - this.value/100;
         ratioBaiThi.innerHTML = this.value;
         ratioTrongNam.innerHTML = 100 - this.value;
     }
@@ -71,7 +72,7 @@ $("#btnSubmit").click(function(){
     kkhich = getValue("#kkhich");
     uutien = getValue("#uutien");
     diemToHop = (th1 + th2 + th3) / 3;
-    diem = ((toan + van + anh + diemToHop + kkhich)/4)*hsBaiThi + tongket*hsTrongNam + uutien;
+    diem = (toan + van + anh + diemToHop + kkhich)/4*hsBaiThi + tongket*hsTrongNam + uutien;
     diem = diem.toFixed(2);
     var arr = [toan, van, anh, th1, th2, th3];
     for (var i = 0; i < 6; i++){
@@ -90,14 +91,16 @@ $("#btnSubmit").click(function(){
 });
 
 function test(){
-    $("#toan").val(8);
-    $("#van").val(2);
-    $("#anh").val(8.5);
-    $("#th1").val(8);
-    $("#th2").val(2);
-    $("#th3").val(2);
-    $("#tongket").val(8.5);
+    // Hàm nhập dữ liệu mẫu
     showTable();
+    $("#toan").val(8.2);
+    $("#van").val(5.5);
+    $("#anh").val(9.2);
+    $("#th1").val(7.75);
+    $("#th2").val(5.5);
+    $("#th3").val(4.75);
+    $("#tongket").val(7.8);
+    $("#kkhich").val(2);
 }
 
 function showTable(){
@@ -120,7 +123,7 @@ function thongBaoKQ(dau, diem){
 }
 
 function getValue(id){
-    var value = parseInt($(id).val());
+    var value = parseFloat($(id).val());
     if (isNaN(value)) return 0;
     return value;
 }
