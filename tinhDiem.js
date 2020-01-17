@@ -1,11 +1,16 @@
-﻿var toan, van, anh, th1, th2, th3, tongket, kkhich, uutien, diem, diemToHop;
+﻿// Điểm các môn
+var toan, van, anh, th1, th2, th3, tongket, kkhich, uutien, diem, diemToHop;
+// Hệ số các bài thi
 var hsBaiThi = 0.5, hsTrongNam = 0.5;
+// Lấy năm hiện tại
 var d = new Date;
 var year = d.getFullYear();
 
 $(window).on("load", function(){
+    // Fade-in animation
     $(".container-fluid").addClass("w3-animate-top");
     $(".container-fluid").attr("style", "display:block;");
+    // Cảnh báo nếu không còn là năm 2020
     if (year >= 2020){
         $("#alert2021").modal("show");
         $("#btn2021").click(function(){
@@ -15,6 +20,7 @@ $(window).on("load", function(){
     }
 });
 
+// Click button KHTN
 $("#btnKHTN").click(function(){
     // Đổi placeholder
     $("#th1").attr("placeholder", "Lý").val("");
@@ -26,6 +32,7 @@ $("#btnKHTN").click(function(){
     showTable();
 });
 
+// Click button KHXH
 $("#btnKHXH").click(function(){
     // Đổi placeholder
     $("#th1").attr("placeholder", "Sử").val("");
@@ -37,30 +44,44 @@ $("#btnKHXH").click(function(){
     showTable();
 });
 
-var slider = $("#ratioSelectSlider");
-
+// Click button Cài đặt
 $("#btnSettings").click(function(){
     $("#settingsModal").modal("show");
     settingsModalInit();
 });
 
+// Khởi tạo modal Cài đặt
 function settingsModalInit(){
     var slider = document.getElementById("ratioSelectSlider");
-    var ratioBaiThi = document.getElementById("ratioBaiThi");
-    var ratioTrongNam = document.getElementById("ratioTrongNam");
+    // Lấy hệ số hiện tại
     slider.value = hsBaiThi * 100;
-    ratioBaiThi.innerHTML = slider.value;
-    ratioTrongNam.innerHTML = 100 - slider.value;
-
+    // Gán giá trị slider cho span ratioBaiThi và ratioTrongNam
+    $("ratioBaiThi").value(slider.value);
+    $("ratioTrongNam").value(100 - slider.value);
+    // Sự kiện trượt thanh slider
     slider.oninput = function() {
+        // Cập nhật dữ liệu trong js
         hsBaiThi = this.value/100;
         hsTrongNam = 1 - this.value/100;
-        ratioBaiThi.innerHTML = this.value;
-        ratioTrongNam.innerHTML = 100 - this.value;
+        // Cập nhật dữ liệu trong HTML
+        $("ratioBaiThi").value(this.value);
+        $("ratioTrongNam").value(100 - this.value);
     }
 }
+
+
+// Hàm lấy giá trị của ô input
+function getValue(id){
+    var value = parseFloat($(id).val());
+    // Nếu ô input rỗng, trả về 0
+    if (isNaN(value)) return 0;
+    return value;
+}
+
+// Nhấn button Tính điểm
 $("#btnSubmit").click(function(){
-	$("#duoi1").attr("style", "display:none;");
+    $("#duoi1").attr("style", "display:none;");
+    // Lấy điểm đã nhập
     toan = getValue("#toan");
     van = getValue("#van");
     anh = getValue("#anh");
@@ -70,9 +91,11 @@ $("#btnSubmit").click(function(){
     tongket = getValue("#tongket");
     kkhich = getValue("#kkhich");
     uutien = getValue("#uutien");
+    // Tính điểm
     diemToHop = (th1 + th2 + th3) / 3;
     diem = (toan + van + anh + diemToHop + kkhich)/4*hsBaiThi + tongket*hsTrongNam + uutien;
     diem = diem.toFixed(2);
+    // Nếu có môn nào <= 1 coi như rớt
     var arr = [toan, van, anh, th1, th2, th3];
     for (var i = 0; i < 6; i++){
     	if (arr[i]<=1){
@@ -89,8 +112,8 @@ $("#btnSubmit").click(function(){
 	}
 });
 
+// Hàm điền dữ liệu mẫu để test
 function test(){
-    // Hàm nhập dữ liệu mẫu
     showTable();
     $("#btnToHop").text("KHTN");
     $("#toan").val(8.2);
@@ -103,11 +126,19 @@ function test(){
     $("#kkhich").val(2);
 }
 
+// Khi nhấn nút Reset trong modal Cài đặt
+$("#btnResetSettings").click(function(){
+    hsBaiThi = 0.5;
+    settingsModalInit();
+});
+
+// Hiện form nhập liệu
 function showTable(){
     $("form").addClass("w3-animate-top");
     $("form").attr("style", "dislay:block;");
 }
 
+// Hàm thông báo kết quả
 function thongBaoKQ(dau, diem){
     if (dau){
         txt = "đậu";
@@ -120,10 +151,4 @@ function thongBaoKQ(dau, diem){
     $("#txtKQ").html(txt);
     $("#diemKQ").text(diem);
     $("#alertModal").modal("show");
-}
-
-function getValue(id){
-    var value = parseFloat($(id).val());
-    if (isNaN(value)) return 0;
-    return value;
 }
