@@ -47,7 +47,7 @@ hr{
 
 .credit{
     opacity: 0.5;
-    font-size: medium;
+    font-size: 15px;
     font-style: italic;
 }
 
@@ -60,5 +60,8 @@ hr{
     }
     .banner{
         width: 150px;
+    }
+    .credit{
+        font-size: 11px;
     }
 }
