@@ -1,5 +1,4 @@
-﻿var toHop = "";
-var toan, van, anh, th1, th2, th3, tongket, kkhich, uutien, diem, diemToHop;
+﻿var toan, van, anh, th1, th2, th3, tongket, kkhich, uutien, diem, diemToHop;
 var hsBaiThi = 0.5, hsTrongNam = 0.5;
 var d = new Date;
 var year = d.getFullYear();
@@ -11,7 +10,7 @@ $(window).on("load", function(){
         $("#alert2021").modal("show");
         $("#btn2021").click(function(){
             $("#settingsModal").modal("show");
-            settingsModalIint();
+            settingsModalInit();
         });
     }
 });
@@ -42,10 +41,10 @@ var slider = $("#ratioSelectSlider");
 
 $("#btnSettings").click(function(){
     $("#settingsModal").modal("show");
-    settingsModalIint();
+    settingsModalInit();
 });
 
-function settingsModalIint(){
+function settingsModalInit(){
     var slider = document.getElementById("ratioSelectSlider");
     var ratioBaiThi = document.getElementById("ratioBaiThi");
     var ratioTrongNam = document.getElementById("ratioTrongNam");
@@ -93,6 +92,7 @@ $("#btnSubmit").click(function(){
 function test(){
     // Hàm nhập dữ liệu mẫu
     showTable();
+    $("#btnToHop").text("KHTN");
     $("#toan").val(8.2);
     $("#van").val(5.5);
     $("#anh").val(9.2);
