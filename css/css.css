@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'Iosevka';
-    src : url("font/iosevka-ss01-regular.ttf");
+    src : url("/font/iosevka-ss01-regular.ttf");
 }
 
 *{
@@ -44,6 +44,13 @@ row{
 hr{
     opacity: 0.5;
 }
+
+.credit{
+    opacity: 0.5;
+    font-size: medium;
+    font-style: italic;
+}
+
 @media screen and (max-width: 767px){
     * {
         font-size: 15px;

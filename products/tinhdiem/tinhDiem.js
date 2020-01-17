@@ -56,16 +56,16 @@ function settingsModalInit(){
     // Lấy hệ số hiện tại
     slider.value = hsBaiThi * 100;
     // Gán giá trị slider cho span ratioBaiThi và ratioTrongNam
-    $("ratioBaiThi").value(slider.value);
-    $("ratioTrongNam").value(100 - slider.value);
+    $("#ratioBaiThi").html(slider.value);
+    $("#ratioTrongNam").html(100 - slider.value);
     // Sự kiện trượt thanh slider
     slider.oninput = function() {
         // Cập nhật dữ liệu trong js
         hsBaiThi = this.value/100;
         hsTrongNam = 1 - this.value/100;
         // Cập nhật dữ liệu trong HTML
-        $("ratioBaiThi").value(this.value);
-        $("ratioTrongNam").value(100 - this.value);
+        $("#ratioBaiThi").html(this.value);
+        $("#ratioTrongNam").html(100 - this.value);
     }
 }
 
