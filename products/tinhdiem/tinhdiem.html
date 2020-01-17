@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/css/css.css">
     <link rel="stylesheet" href="/css/slider.css">
+    <script src="/common/navibar_credit.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#naviProducts").attr("class", "link-selected");
+        });       
+    </script>
     <style>
         input {
             max-width: 200px;
@@ -56,12 +62,7 @@
                         <h3>hungngocphat01</h3>
                         <p style="margin-bottom:20px;">hcmus::19120615</p>
                         <!--NAVIGATION BAR-->
-                        <div>
-                            <a class="link-not-selected" href="index.html">About me</a>
-                            <a class="link-not-selected" href="notAvailable.html">My posts</a>
-                            <a class="link-not-selected" href="notAvailable.html">My products</a>
-                            <hr>
-                        </div>
+                        <div id="navibar"></div>
                         <!--CONTENT-->
                         <div class="content" style="margin-top:20px;">
                             <h5>Công cụ tính điểm tốt nghiệp THPT</h5>
@@ -208,10 +209,7 @@
                         </div>
                     </div>
                     <hr>
-                    <p class="credit">
-                        Copyright (c) 2020 hungngocphat01.<br/>
-                        Powered by Bootstrap 4.
-                    </p>
+                    <p id="credit" class="credit"></p>
                 </div>
                 <div class="col-sm-2 col-md-3 col-lg-4"></div>
             </div>            

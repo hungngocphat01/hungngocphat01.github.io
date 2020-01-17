@@ -10,6 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/css/css.css">
+    <script src="/common/navibar_credit.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#naviUnavailable").attr("class", "link-selected");
+            $("#naviUnavailable").attr("style", "display:block;");
+        });
+    </script>
 </head>
     <body style="background-color:black;">
         <div class="container-fluid" style="display:none;">
@@ -53,10 +60,7 @@
                         </div>
                     </div>
                     <hr>
-                    <p class="credit">
-                        Copyright (c) 2020 hungngocphat01.<br/>
-                        Powered by Bootstrap 4.
-                    </p>
+                    <p id="credit" class="credit"></p>
                 </div>
                 <div class="col-sm-3"></div>
             </div>            
