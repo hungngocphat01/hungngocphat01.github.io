@@ -32,12 +32,14 @@
                         <img src="./image/banner.jpg" class="responsive-img banner" style="margin-bottom:15px; margin-left:5px;" />
                         <!--CONTENT-->
                         <ul>
-                            <li><b>Nationality:</b> Vietnamese <small><a href="#" class="btnPlayer" id="btnPlayQuocCa">[▶]</a></small>.<br/>
+                            <li><b>Nationality:</b> Vietnamese <small><span id="btnPlayQuocCa">[▶]</span></small>.<br/>
                                 <div id="quocCaPlayer" showing="0" style="display:none;">
                                     <img src="./image/vietnamflag.gif" height="100" class="responsive-img"><br>
                                     <audio controls id="quocCaAudio" style="display:none;">
                                         <source src="./audio/quocca.mp3" type="audio/mpeg">
-                                        Audio not supported.
+                                        This button plays the Vietnamese National Anthem "Tien quan ca", 
+                                        but audio is not supported on your browser. 
+                                        This feature requires HTML5 and Javascript.
                                     </audio>
                                 </div>                              
                             </li>
@@ -58,7 +60,7 @@
             </div>            
         </div>
         <script>
-            $(window).on("load", function(){
+            $(document).ready(function(){
                 $(".container-fluid").addClass("w3-animate-top");
                 $(".container-fluid").attr("style", "display:block;");
                 
