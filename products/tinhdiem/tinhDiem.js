@@ -11,6 +11,7 @@ $(window).on("load", function(){
     $(".container-fluid").addClass("w3-animate-top");
     $(".container-fluid").attr("style", "display:block;");
     // Cảnh báo nếu không còn là năm 2020
+    // Để >= để test dialog
     if (year >= 2020){
         $("#alert2021").modal("show");
         $("#btn2021").click(function(){
