@@ -12,7 +12,7 @@ $(window).on("load", function(){
     $(".container-fluid").attr("style", "display:block;");
     // Cảnh báo nếu không còn là năm 2020
     // Để >= để test dialog
-    if (year >= 2020){
+    if (year > 2020){
         $("#alert2021").modal("show");
         $("#btn2021").click(function(){
             $("#settingsModal").modal("show");
@@ -81,6 +81,12 @@ function getValue(id){
 
 // Nhấn button Tính điểm
 $("#btnSubmit").click(function(){
+    // Thông báo linh tinh, vài easter egg
+    var tbao = $("#linhtinh");
+    tbao.attr("style", "display: hidden;");
+    tbao.html("");
+    var lacquan = 0, biquan = 0, diem10 = false;
+
     $("#duoi1").attr("style", "display:none;");
     // Lấy điểm đã nhập
     toan = getValue("#toan");
@@ -103,8 +109,37 @@ $("#btnSubmit").click(function(){
     	    thongBaoKQ(false, diem);
             $("#duoi1").attr("style", "display:block;");
             return;
-         }
-     } 
+        }
+        // Vài easter egg
+        // Cà khịa nếu có môn 10 điểm
+        if (arr[i] == 10 && diem10 == false){
+            // Flag tránh append điểm 10 2 lần
+            tbao.append("Cơ mà 10 điểm hả? Có tự tin quá hông vậy :v <br>");
+            tbao.attr("style", "display: block;");
+            diem10 = true;
+        }
+        // Dưới 5: bi quan. Nếu nhiều hơn 3 môn dưới 5 sẽ thông báo
+        if (arr[i] < 5) biquan++;
+        // Trên 8: lạc quan. Nếu nhiều hơn 3 môn trên 8 sẽ cà khịa
+        if (arr[i] >= 8) lacquan++;
+    } 
+
+    if(lacquan >=3){
+        tbao.append("Có 3 môn trên 8 luôn :v <br/>");
+        tbao.attr("style", "display: block;");
+        if (diem10){
+            tbao.append("Mà điểm có vẻ cao phết đấy :v");
+        }
+    }
+
+    if(biquan >=3){
+        tbao.append("Có bi quan quá hông vậy :v <br/>");
+        tbao.attr("style", "display: block;");
+        if (diem10){
+            tbao.append("Cơ mà sao có môn 10đ mà còn lại bi quan vậy :v");
+        }
+    }
+
     if (diem >= 5){
         thongBaoKQ(true, diem);
 	}
