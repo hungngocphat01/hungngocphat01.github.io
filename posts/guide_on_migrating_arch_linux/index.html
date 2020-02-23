@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Guide on migrating Arch Linux from one partition to another.</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/css.css">
+    <script src="/common/navibar_credit.js"></script>
+    <script>
+        $(window).on("load", function(){
+            navibarSelect("#naviPosts");
+        });
+    </script>
+</head>
+    <body style="background-color:black;">
+        <div class="container-fluid" style="display:none;">
+            <div class="row content">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <h3>hungngocphat01</h3>
+                    <p style="margin-bottom:20px;">hcmus::19120615</p>
+                    <!--NAVIGATION BAR-->
+                    <div id="navibar"></div>
+                    <!--CONTENT-->
+                    <div class="content" style="margin-top:20px;">
+                        <h1>Guide on migrating Arch Linux from one partition to another.</h1>
+                        <h2>1. Prepare</h2>
+                        <ul>
+                            <li>A (newly created and) large enough partition to hold your Arch installation has to be created prior to following below steps. </li>
+                            <li>A new EFI partition also has to be existed/created in the destination disk if you want to remove your old disk (e.g. replacing your HDD with a SSD), or in case you want wipe your old disk for other purposes. If not, you can still reuse your current EFI partition.</li>
+                            <li>Arch Installation Media.</li>
+                            <li>Make sure the disk(s) containing both of the partitions as well as the EFI partition have to be accessible from the Arch Installer.</li>
+                            <li>Backup your important data to another partition.
+                            Actually this step is not really neccessary since we will be only reading from our &quot;old&quot; partition without writing anything to it, but... who knows what will accidentally happen :).</li>
+                            <li>This guide is for EFI systems only.</li>
+                        </ul>
+                        <h2>2. Steps</h2>
+                        <h3>i. Note down the partitions that you will be working on.</h3>
+                            <ul>
+                                <li>Boot your Arch Installation Media.</li>
+                                <li>Connect to the internet and edit the <code>mirrorlist</code> file:<pre><code>  <span class="hljs-meta"># ip link</span>
+                                <span class="hljs-meta"># nano /etc/pacman.d/mirrorlist</span>
+                                </code></pre></li>
+                                <li>If you want to connect to a wireless network:<pre><code>  <span class="hljs-meta"># wifi-menu</span>
+                                </code></pre></li>
+                                <li><p>Run <code>lsblk</code> to view your partition list.</p>
+                                <p>  Sample output: </p>
+                                <pre><code>  NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+                                sda      8:0   <span class="hljs-number"> 0 </span>223.6G <span class="hljs-number"> 0 </span>disk 
+                                ├─sda2   8:2   <span class="hljs-number"> 0 </span> 40.6G <span class="hljs-number"> 0 </span>part
+                                ├─sda3   8:3   <span class="hljs-number"> 0 </span>  575M <span class="hljs-number"> 0 </span>part 
+                                └─sda4   8:4   <span class="hljs-number"> 0 </span>  512M <span class="hljs-number"> 0 </span>part
+                                sdb      8:16  <span class="hljs-number"> 0 </span>465.8G <span class="hljs-number"> 0 </span>disk 
+                                ├─sdb2   8:18  <span class="hljs-number"> 0 </span>   63G <span class="hljs-number"> 0 </span>part 
+                                └─sdb4   8:20  <span class="hljs-number"> 0 </span>    3G <span class="hljs-number"> 0 </span>part 
+                                sdc      8:32  <span class="hljs-number"> 1 </span> 28.9G <span class="hljs-number"> 0 </span>disk 
+                                └─sdc1   8:33  <span class="hljs-number"> 1 </span> 28.9G <span class="hljs-number"> 0 </span>part
+                                </code></pre></li>
+                                <li><p>Note down the name of </p>
+                                <ul>
+                                    <li>Your source partition (the partition having Arch installed on at the momment).</li>
+                                    <li>Your destination partition (the new partition to where you desire to transfer your Arch installation) .</li>
+                                    <li>Your destination EFI partition (to where you will transfer the bootloader to, <em>it can either be your new or current EFI partition</em>). </li>
+                                </ul>
+                                </li>
+                                <li>To avoid confusion, in this guide I will refer them as <code>/dev/sdX_source</code>, <code>/dev/sdX_dest</code> and <code>/dev/sdX_efi</code>. In the commands below, replace them with your corresponding partition names.</li>
+                            </ul>
+                        <h3>ii. Transfering your Arch installation.</h3>
+                            <ul>
+                                <li>Format your destination partition by running <code>mkfs.ext4 /dev/sdX_source</code>.</li>
+                            </ul>
+                            <h4>a. If the capacity of your new partition is larger than that of your old partition.</h4> 
+                                <ul>
+                                    <li>In this case, we can easily use <code>dd</code> to transfer your data.</li>
+                                    <li>Remember to <strong><em>double check</em></strong> the names of your partitions before we start.</li>
+                                    <li>Execute <code>fdisk -l /dev/sdX_source</code>.
+                                    Sample output:<pre><code>  Disk /dev/sda1: 181.98 GiB,<span class="hljs-number"> 195375923200 </span>bytes,<span class="hljs-number"> 381593600 </span>sectors
+                                    Units: sectors of<span class="hljs-number"> 1 </span>*<span class="hljs-number"> 512 </span>=<span class="hljs-number"> 512 </span>bytes
+                                    Sector size (logical/physical):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+                                    I/O size (minimum/optimal):<span class="hljs-number"> 512 </span>bytes /<span class="hljs-number"> 512 </span>bytes
+                                    </code></pre></li>
+                                    <li>Note down your block size. In my case it is 512 bytes.</li>
+                                    <li>Execute this command to transfer all data from <code>/dev/sdX_source</code> to <code>/dev/sdX_dest</code>. Replace <code>sdX_source</code> and <code>sdX_dest</code> with your corresponding partition names and <code>bs=512</code> with your block size.<pre><code>  # dd <span class="hljs-keyword">if</span>=/dev/sdX_source <span class="hljs-keyword">of</span>=/dev/sdX_dest bs=<span class="hljs-number">512</span> conv=notrunc,noerror,sync status=progress
+                                    </code></pre></li>
+                                    <li>Wait until the progress completes.</li>
+                                    <li>Check the new filesystem with <code>fsck -y /dev/sdX_dest</code>. The <code>-y</code> argument denotes that if there are any errors in the filesystem, they will be fixed automatically without asking.</li>
+                                    <li>If you have not created a mount point for the new partition yet, create one by executing <code>mkdir /mnt</code>.</li>
+                                    <li>Mount <code>/dev/sdX_source</code> to <code>/mnt</code> to see if it works.<pre>
+                                        <code>
+                                            <span class="hljs-meta"># mount /dev/sdX_source /mnt</span>
+                                        </code></pre></li>
+                                    <li>If the volume mounted successfully then congratulations! If not, you might receive something like this:<pre><code>  moun<span class="hljs-variable">t:</span> wrong fs <span class="hljs-built_in">type</span>, <span class="hljs-keyword">bad</span> option, <span class="hljs-keyword">bad</span> superblock <span class="hljs-keyword">on</span> /dev/sdb1, missing codepage <span class="hljs-built_in">or</span> helper program, <span class="hljs-built_in">or</span> other error.
+                                    </code></pre>  Reformat the destination partition with <code>mkfs.ext4 /dev/sdX_dest</code> and follow the next steps in section <strong>b</strong> to overcome this issue. <h4 id="b-if-the-capacity-of-your-new-partition-is-smaller-than-that-of-your-old-partition-">b. If the capacity of your new partition is smaller than that of your old partition.</h4>
+                                    </li>
+                                    <li>In this case, it is likely that <code>dd</code> will fail and you will not be able to mount the new partition after having <code>dd</code>-ed it. We will perform file-level transfers to migrate the data, or in other words, copy the files one by one.</li>
+                                    <li>Remember to <strong><em>double check</em></strong> the names of your partitions before we start.</li>
+                                    <li>Create mount points for both <code>/dev/sdX_source</code> and <code>/dev/sdX_dest</code> if you have not done so.<pre><code>  <span class="hljs-meta"># mkdir /mnt</span>
+                                    <span class="hljs-meta"># mkdir /mnt_old</span>
+                                    </code></pre>  <code>/mnt</code>will be the mount point of your new partition, while the old one will be mounted to <code>/mnt_old</code>.</li>
+                                    <li>Mount the partitions<pre><code>  <span class="hljs-meta"># mount /dev/sdX_source /mnt_old</span>
+                                    <span class="hljs-meta"># mount /dev/sdX_dest /mnt</span>
+                                    </code></pre></li>
+                                    <li>Run the following command to copy all data from <code>/mnt_old</code> to <code>/mnt</code><pre><code>  <span class="hljs-meta"># rsync -AXa --info=progress2 /mnt_old/ /mnt</span>
+                                    </code></pre>  <strong>Be careful!</strong> Remember to type one more <code>/</code> after <code>/mnt_old</code> or else a new folder named <code>mnt_old</code> will be created inside <code>/mnt</code>!</li>
+                                    <li>Wait until the progress completes.</li>
+                                    <li>Check the new filesystem with <code>fsck -y /dev/sdX_dest</code>. The <code>-y</code> argument denotes that if there are any errors in the filesystem, they will be fixed automatically without asking.</li>
+                                </ul>
+                        <h3>iii. Reinstalling the bootloader.</h3>
+                        <ul>
+                        <li>If you have created a new EFI partition in your new disk and there is not any bootloader installed on it yet, remember to format it.<pre><code>  <span class="hljs-meta"># mkfs.fat /dev/sdX_efi</span>
+                        </code></pre></li>
+                        <li>If there is already a bootloader installed in the destination EFI partition (e.g. Windows Bootloader), then do not format it, or else your Windows installation won&#39;t be able to boot.</li>
+                        <li>Mount the EFI partition:<pre><code>  # mkdir <span class="hljs-regexp">/mnt/</span>efi
+                        # mount <span class="hljs-regexp">/dev/</span>sdX_efi <span class="hljs-regexp">/mnt/</span>efi
+                        </code></pre></li>
+                        <li>Run <code>mkswap /dev/sdX_swap</code> and <code>swapon /dev/sdX_swap</code> if you would like to make use of the swap partition.</li>
+                        <li>Make sure that your new root <code>/</code> has been mounted to <code>/mnt</code> and the ESP has been mounted to <code>/mnt/efi</code> by executing <code>ls /mnt</code> and <code>ls /mnt/efi</code> respectively.</li>
+                        <li>Run this command to generate a new <code>fstab</code> file:<pre><code>  # genfstab -U <span class="hljs-regexp">/mnt &gt; /m</span>nt<span class="hljs-regexp">/etc/</span>fstab
+                        </code></pre>  This will create a new fstab file. All of your modifications on the old one will be lost (if there is any).</li>
+                        <li>Check the new fstab file to see whether it has been correctly created or not. Make changes if you wish to.<pre><code>  <span class="hljs-meta"># nano /mnt/etc/fstab</span>
+                        </code></pre></li>
+                        <li>Chroot into your Arch installation.<pre><code>  <span class="hljs-meta"># arch-chroot /mnt</span>
+                        </code></pre></li>
+                        <li>Reinstall the bootloader.<pre><code>  <span class="hljs-meta"># pacman -Sy efibootmgr grub os-prober</span>
+                        <span class="hljs-meta"># grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB</span>
+                        <span class="hljs-meta"># grub-mkconfig -o /boot/grub/grub.cfg</span>
+                        </code></pre></li>
+                        <li>Reboot<pre><code>  <span class="hljs-comment"># exit</span>
+                        <span class="hljs-comment"># umount -a</span>
+                        <span class="hljs-comment"># reboot</span>
+                        </code></pre></li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <p id="credit" class="credit"></p>
+                </div></div>
+                <div class="col-sm-3"></div>
+            </div>            
+        </div>
+    </body>
+</html>
