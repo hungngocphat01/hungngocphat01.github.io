@@ -9,6 +9,11 @@
     font-weight: bold;
 }
 
+@font-face{
+    font-family: 'Iosevka';
+    src: '../font/iosevka-ss01-regular.ttf';
+}
+
 *{
     font-family: 'FiraSans';
     color: #faf5e4;

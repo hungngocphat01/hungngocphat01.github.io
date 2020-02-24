@@ -48,7 +48,7 @@
                             <li>This guide is for EFI systems only.</li>
                         </ul>
                         <h2>2. Steps</h2>
-                        <h3>i. Note down the partitions that you will be working on.</h3>
+                        <h3>i. Take note of the partitions that you will be working on.</h3>
                             <ul>
                                 <li>Boot your Arch Installation Media.</li>
                                 <li>Connect to the internet and edit the <code class="language-bash">mirrorlist</code> file:
@@ -88,14 +88,14 @@ sdc      8:32   1  28.9G  0 disk
                             </ul>
                         <h3>ii. Transfering your Arch installation.</h3>
                             <ul>
-                                <li>Format your destination partition by running <code class="language-bash">mkfs.ext4 /dev/sdX_source</code>.</li>
+                                <li>Format your destination partition by running <code class="language-bash">mkfs.ext4 /dev/sdX_dest</code>.</li>
                             </ul>
                             <h4>a. If the capacity of your new partition is larger than that of your old partition.</h4> 
                                 <ul>
                                     <li>In this case, we can easily use <code class="language-bash">dd</code> to transfer your data.</li>
                                     <li>Remember to <strong><em>double check</em></strong> the names of your partitions before we start.</li>
                                     <li>
-                                        Execute <code class="language-bash">fdisk -l /dev/sdX_source</code>.
+                                        Execute <code class="language-bash">fdisk -l /dev/sdX_source</code> to get the partition block size.<br>
                                         Sample output:
 <pre>
 <code class="language-bash">Disk /dev/sda1: 181.98 GiB, 195375923200 bytes, 381593600 sectors
@@ -131,7 +131,7 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 <code class="language-bash">$ mkdir /mnt
 $ mkdir /mnt_old 
 </code></pre>
-                                        <code class="language-bash">/mnt</code>will be the mount point of your new partition, while the old one will be mounted to <code class="language-bash">/mnt_old</code>.
+                                        <code class="language-bash">/mnt</code> will be the mount point of your new partition, while the old one will be mounted to <code class="language-bash">/mnt_old</code>.
                                     </li>
                                     <li>Mount the partitions
 <pre>
@@ -149,7 +149,7 @@ $ mount /dev/sdX_dest /mnt
                                 </ul>
                         <h3>iii. Reinstalling the bootloader.</h3>
                             <ul>
-                                <li>If you have created a new EFI partition in your new disk and there is not any bootloader installed on it yet, remember to format it.
+                                <li>If you have created a new EFI partition in your destination disk and no bootloader has been installed yet, remember to format it first.
 <pre>
 <code class="language-bash">$ mkfs.fat /dev/sdX_efi
 </code></pre>
@@ -174,7 +174,7 @@ $ mount /dev/sdX_efi /mnt/efi
 <code class="language-bash">$ nano /mnt/etc/fstab
 </code></pre>
                                 </li>
-                                <li>Chroot into your Arch installation.
+                                <li>Chroot into /mnt:
 <pre>
 <code class="language-bash">$ arch-chroot /mnt
 </code></pre>
