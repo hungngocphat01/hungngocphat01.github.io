@@ -92,7 +92,7 @@ sdc      8:32   1  28.9G  0 disk
                             </ul>
                             <h4>a. If the capacity of your new partition is larger than that of your old partition.</h4> 
                                 <ul>
-                                    <li>In this case, we can easily use <code class="language-bash">dd</code> to transfer your data.</li>
+                                    <li>In this case, we can easily use <code class="language-bash">dd</code> to transfer our data.</li>
                                     <li>Remember to <strong><em>double check</em></strong> the names of your partitions before we start.</li>
                                     <li>
                                         Execute <code class="language-bash">fdisk -l /dev/sdX_source</code> to get the partition block size.<br>
@@ -120,7 +120,8 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
                                     </li>
                                     <li>If the volume mounted successfully then congratulations! If not, you might receive something like this:
 <pre>
-<code class="language-bash">mount: wrong fs type, bad option, bad superblock on /dev/sdb1, missing codepage or helper program, or other error.
+<code class="language-bash">mount: wrong fs type, bad option, bad superblock on /dev/sdb1, 
+missing codepage or helper program, or other error.
 </code></pre>
                                         Reformat the destination partition with <code class="language-bash">mkfs.ext4 /dev/sdX_dest</code> and follow the next steps in section <strong>b</strong> to overcome this issue. <h4 id="b-if-the-capacity-of-your-new-partition-is-smaller-than-that-of-your-old-partition-">b. If the capacity of your new partition is smaller than that of your old partition.</h4>
                                     </li>
