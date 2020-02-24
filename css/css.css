@@ -14,7 +14,7 @@
     src: url('../font/iosevka-ss01-regular.ttf');
 }
 
-*{
+*:not(.token){
     font-family: 'FiraSans';
     color: #faf5e4;
     font-size: 20px;
@@ -73,7 +73,7 @@ hr{
 }
 
 @media screen and (max-width: 767px){
-    * {
+    *:not(.token) {
         font-size: 15px;
     }
     .btnPlayer{
