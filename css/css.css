@@ -14,10 +14,15 @@
     src: url('../font/iosevka-ss01-regular.ttf');
 }
 
-*:not(.token){
+*:not(.token):not(.heading):not(.btn):not(.form-control):not(small):not(.credit){
     font-family: 'FiraSans';
     color: #faf5e4;
     font-size: 20px;
+}
+
+.btn, .form-control{
+    font-size: 15px;
+    color: #faf5e4;
 }
 
 body{
@@ -38,6 +43,10 @@ row{
 .link-selected{
     color: #f8b400;
     font-weight: bold;
+}
+
+.title{
+    font-size: 25px;
 }
 
 .link-selected:hover {
@@ -73,7 +82,7 @@ hr{
 }
 
 @media screen and (max-width: 767px){
-    *:not(.token) {
+    *:not(.token):not(.token):not(.heading):not(.btn):not(.form-control):not(small):not(.credit) {
         font-size: 15px;
     }
     .btnPlayer{
