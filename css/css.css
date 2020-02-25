@@ -14,7 +14,8 @@
     src: url('../font/iosevka-ss01-regular.ttf');
 }
 
-*:not(.token):not(.heading):not(.btn):not(.form-control):not(small):not(.credit){
+*:not(.token):not(.heading):not(.btn):not(.form-control):not(small)
+:not(.credit):not(h1):not(h2):not(h3):not(.link-selected){
     font-family: 'FiraSans';
     color: #faf5e4;
     font-size: 20px;
@@ -82,7 +83,8 @@ hr{
 }
 
 @media screen and (max-width: 767px){
-    *:not(.token):not(.token):not(.heading):not(.btn):not(.form-control):not(small):not(.credit) {
+    *:not(.token):not(.token):not(.heading):not(.btn):not(.form-control)
+    :not(small):not(.credit):not(h1):not(h2):not(h3):not(#navibar) {
         font-size: 15px;
     }
     .btnPlayer{

@@ -185,6 +185,10 @@ $ mount /dev/sdX_efi /mnt/efi
 <code class="language-bash">$ arch-chroot /mnt
 </code></pre>
                                 </li>
+                                <li>
+                                    Generate a new initial ramdisk:
+<pre><code>mkinitcpio -p linux</code></pre>
+                                </li>
                                 <li>Reinstall the bootloader.
 <pre><code class="language-bash">$ pacman -Sy efibootmgr grub os-prober
 $ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
