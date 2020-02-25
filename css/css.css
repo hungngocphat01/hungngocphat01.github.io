@@ -14,52 +14,72 @@
     src: url('../font/iosevka-ss01-regular.ttf');
 }
 
-*:not(section[class^="token-"]:not(.heading):not(.btn):not(.form-control):not(small)
-:not(.credit):not(section[class^="h"]):not(.link-selected):not(#navibar){
-    font-family: 'FiraSans';
-    color: #faf5e4;
-    font-size: 20px;
-}
-
-.btn, .form-control{
-    font-size: 15px;
-    color: #faf5e4;
-}
-
+/* Body */
 body{
     background-color: rgb(29, 29, 29);
+    font-size: 20px;
+    color: #f1f1f1;
 }
 
-h1, h2, h3, h4, h5, h6{
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
     font-family: 'FiraSans';
     font-size: 25px;
     font-weight: bold;
     color: #f8b400;
 }
 
-row{
+/*Paragraphs and bullets*/
+p, ul {
+    font-family: 'FiraSans';
+    font-size: inherit;
+    color: inherit
+}
+
+/*Links */
+.link-icon {
+    max-height: 20px;
+    margin-right: 10px;
+}
+
+a:hover {
+    color: #f8b400;
+    text-decoration: none;
+}
+
+/*Form*/
+.btn, .form-control {
+    font-family: 'FiraSans';
+    font-size: 17px;
+    color: #faf5e4;
+}
+
+
+row {
     margin: 0 auto;
 }
 
-.link-selected{
-    color: #f8b400;
-    font-weight: bold;
-}
 
-.title{
-    font-size: 25px;
+.link-selected {
+    font-family: 'FiraSans';
+    color: #f8b400;
+    font-size: inherit;
+    font-weight: bold;
 }
 
 .link-selected:hover {
     color: #f8b400;
+    text-decoration: none;
 }
 
 .link-not-selected {
-    color: #f1f1f1;
+    font-family: 'FiraSans';
+    font-size: inherit;
 }
 
 .link-not-selected:hover {
     color: #f8b400;
+    text-decoration: none;
 }
 
 .banner {
@@ -74,7 +94,6 @@ hr{
 .credit{
     opacity: 0.5;
     font-size: 15px;
-    font-style: italic;
 }
 
 .btnPlayer{
@@ -83,21 +102,36 @@ hr{
 }
 
 @media screen and (max-width: 767px){
-    *:not(section[class^="token-"]:not(.heading):not(.btn):not(.form-control):not(small)
-    :not(.credit):not(section[class^="h"]):not(.link-selected):not(#navibar){
-        font-size: 15px;
+    .btn, .form-control{
+        font-size: 3vw;
+        color: #faf5e4;
     }
+
+    body{
+        font-size: 4vw;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 4.5vw;
+    }
+
+    .link-icon {
+        max-height: 4vw;
+    }
+
+    li{
+        margin-left: -1em;
+    }    
+
     .btnPlayer{
         font-size: 10px;
     }
-    h1, h2, h3, h4, h5{
-        font-size: 20px;
-    }
+
     .banner{
         width: 150px;
     }
     .credit{
-        font-size: 12px;
+        font-size: 13px;
         font-style: normal;
     }
 }
