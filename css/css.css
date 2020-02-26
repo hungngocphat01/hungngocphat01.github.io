@@ -60,7 +60,7 @@ row {
 }
 
 
-.link-selected {
+.link-selected :not(h2) {
     font-family: 'FiraSans';
     color: #f8b400;
     font-size: inherit;
