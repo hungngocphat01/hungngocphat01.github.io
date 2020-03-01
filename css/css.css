@@ -54,6 +54,10 @@ a:hover {
     color: #faf5e4;
 }
 
+.modal-content {
+    background-color: rgb(29, 29, 29);
+    border-color: rgb(70, 70, 70);
+}
 
 row {
     margin: 0 auto;
