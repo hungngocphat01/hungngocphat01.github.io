@@ -30,6 +30,20 @@
             background-color: inherit;
         }
 
+        .link:hover {
+            color: #f8b400;
+            text-decoration: underline;
+        }
+
+        li {
+            margin-left: 0;
+        }
+
+        .dropdown-menu {
+            border-color: rgb(70, 70, 70);
+            border-width: 2px;
+        }
+
         input {
             max-width: 200px;
         }
@@ -137,7 +151,7 @@
                                         <input type="number" class="form-control" placeholder="Invisible" style="display:none;" />
                                     </div>
                                 </div>
-                                <p style="opacity: 50%;"><em><small>Điểm khuyến khích thường là điểm nghề.</small></em></p>
+                                <a id="utkkLaGi" style="opacity: 50%;" class="link" href="#"><em><small>Điểm khuyến ưu tiên, khuyến khích là gì?</small></em></a>
                                 <!--3 BTN SUBMIT, RESET VÀ SETTINGS-->
                                 <div class="form-row text-center">
                                     <div class="col">
@@ -154,7 +168,6 @@
                                         </div>
                                     </div> 
                                 </div>
-
                             </form>
                         </div>
                         <!--MODAL THÔNG BÁO ĐIỂM-->
@@ -163,14 +176,37 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title">
-                                            Kết quả
+                                            <p>Kết quả</p>
                                         </h4>
                                     </div>
                                     <div class="modal-body">
-                                        Bạn đã <b><span id="txtKQ"></span>!</b><br />
+                                        <p>Bạn đã <b><span id="txtKQ"></span>!</b><br/>
                                         <span id="duoi1" style="display:none;">Bạn có môn dưới 1 điểm.</span>
                                         Điểm tốt nghiệp của bạn là <span id="diemKQ">0</span><br/>
-                                        <span id="linhtinh" style="display:none;"></span>
+                                        <span id="linhtinh" style="display:none;"></span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" id="btnModalClose" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--MODAL CHÚ THÍCH KHUYẾN KHÍCH-->
+                        <div class="modal fade" id="chuThichModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            <p>Khuyến khích, ưu tiên là gì?</p>
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Tại thời điểm năm 2020:</p>
+                                        <ul>
+                                            <li><b>Điểm khuyến khích:</b> điểm cộng cho các thí sinh có giải trong các kì thi học sinh giỏi, và/hoặc các thí sinh có giấy chứng nhận nghề do các trường dạy nghề cấp.</li>
+                                            <li><b>Điểm ưu tiên:</b> điểm vùng, điểm cộng cho các đối tượng đặc biệt như con bệnh binh, thương binh, người dân tộc thiểu số, ...</li>
+                                        </ul>
+                                        <p>Để biết rõ hơn, vui lòng <a class="link" style="color: #f8b400;" href="https://www.google.com/search?q=%C4%91i%E1%BB%83m+%C6%B0u+ti%C3%AAn+%C4%91i%E1%BB%83m+khuy%E1%BA%BFn+kh%C3%ADch+l%C3%A0+g%C3%AC" target="_blank">tra Google về thông tin này</a>.
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" id="btnModalClose" data-dismiss="modal">Đóng</button>
