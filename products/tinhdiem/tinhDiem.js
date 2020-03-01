@@ -21,6 +21,10 @@ $(window).on("load", function(){
     }
 });
 
+$("#utkkLaGi").click(function(){
+    $("#chuThichModal").modal("show");
+});
+
 // Click button KHTN
 $("#btnKHTN").click(function(){
     // Đổi placeholder
