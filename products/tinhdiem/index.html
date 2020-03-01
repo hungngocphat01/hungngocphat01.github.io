@@ -26,9 +26,14 @@
     </script>
     <style>
         
-        *{
+        #btnKHTN, #btnKHXH {
+            background-color: inherit;
+        }
+
+        .modal-content {
             background-color: rgb(29, 29, 29);
-        } 
+            border-color: rgb(70, 70, 70);
+        }
 
         input {
             max-width: 200px;
@@ -39,13 +44,19 @@
             width: 200px;
         }
 
+        .col-left {
+            margin: 0 auto;
+            margin-right: 0;
+        }
+
+        .col-right {
+            margin: 0 auto;
+            margin-left: 0;
+        }
+
         .col-button {
             max-width: 400px;
             margin-left: 40px;
-        }
-
-        .btnSubmit {
-            width: 90px;
         }
 
         @media screen and (max-width: 420px){
@@ -76,7 +87,7 @@
                         <!--NAVIGATION BAR-->
                         <div id="navibar"></div>
                         <!--CONTENT-->
-                        <div class="content" style="margin-top:20px;">
+                        <div class="content text-center" style="margin-top:20px;">
                             <h5>Công cụ tính điểm tốt nghiệp THPT</h5>
                             <!--DROPDOWN CHỌN TỔ HỢP MÔN-->
                             <div class="dropdown" style="margin-bottom:10px;">
@@ -92,130 +103,130 @@
                             <!--FORM NHẬP ĐIỂM-->
                             <form style="display:none;">
                                 <div class="form-row" style="margin-bottom:5px;">
-                                    <div class="col col-input">
+                                    <div class="col col-input col-left">
                                         <input type="number" class="form-control" placeholder="Toán" id="toan" />
                                     </div>
-                                    <div class="col col-input">
+                                    <div class="col col-input col-right">
                                         <input type="number" class="form-control" placeholder="TH1" id="th1" />
                                     </div>
                                 </div>
                                 <div class="form-row" style="margin-bottom:5px;">
-                                    <div class="col col-input">
+                                    <div class="col col-input col-left">
                                         <input type="number" class="form-control" placeholder="Văn" id="van" />
                                     </div>
-                                    <div class="col col-input">
+                                    <div class="col col-input col-right">
                                         <input type="number" class="form-control" placeholder="TH2" id="th2" />
                                     </div>
                                 </div>
                                 <div class="form-row" style="margin-bottom:5px;">
-                                    <div class="col col-input">
+                                    <div class="col col-input col-left">
                                         <input type="number" class="form-control" placeholder="Anh" id="anh" />
                                     </div>
-                                    <div class="col col-input">
+                                    <div class="col col-input col-right">
                                         <input type="number" class="form-control" placeholder="TH3" id="th3" />
                                     </div>
                                 </div>
                                 <div class="form-row" style="margin-bottom:5px;">
-                                    <div class="col col-input">
+                                    <div class="col col-input col-left">
                                         <input type="number" class="form-control" placeholder="Khuyến khích" id="kkhich" />
                                     </div>
-                                    <div class="col col-input">
+                                    <div class="col col-input col-right">
                                         <input type="number" class="form-control" placeholder="Ưu tiên" id="uutien" />
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="col col-input">
+                                    <div class="col col-input col-left">
                                         <input type="number" class="form-control" placeholder="Tổng kết L12" id="tongket" />
                                     </div>
-                                    <div class="col col-input">
+                                    <div class="col col-input col-right">
                                         <input type="number" class="form-control" placeholder="Invisible" style="display:none;" />
                                     </div>
                                 </div>
                                 <p style="opacity: 50%;"><em><small>Điểm khuyến khích thường là điểm nghề.</small></em></p>
                                 <!--3 BTN SUBMIT, RESET VÀ SETTINGS-->
-                                <div class="form-row">
-                                    <div class="col col-input col-button">
+                                <div class="form-row text-center">
+                                    <div class="col">
                                         <div class="btn btn-group">
-                                            <button type="button" class="btn btn-success btnSubmit" id="btnSubmit">
+                                            <button type="button" class="btn btn-success" id="btnSubmit">
                                                 Tính điểm
                                             </button>
-                                            <button type="reset" class="btn btn-danger btnSubmit">
+                                            <button type="reset" class="btn btn-danger">
                                                 Xoá số
                                             </button>
-                                            <button type="button" class="btn btn-primary btnSubmit" id="btnSettings">
+                                            <button type="button" class="btn btn-primary" id="btnSettings">
                                                 Cài đặt
                                             </button>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
 
                             </form>
-                            <!--MODAL THÔNG BÁO ĐIỂM-->
-                            <div class="modal fade" id="alertModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">
-                                                Kết quả
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            Bạn đã <b><span id="txtKQ"></span>!</b><br />
-                                            <span id="duoi1" style="display:none;">Bạn có môn dưới 1 điểm.</span>
-                                            Điểm tốt nghiệp của bạn là <span id="diemKQ">0</span><br/>
-                                            <span id="linhtinh" style="display:none;"></span>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" id="btnModalClose" data-dismiss="modal">Đóng</button>
-                                        </div>
+                        </div>
+                        <!--MODAL THÔNG BÁO ĐIỂM-->
+                        <div class="modal fade" id="alertModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Kết quả
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn đã <b><span id="txtKQ"></span>!</b><br />
+                                        <span id="duoi1" style="display:none;">Bạn có môn dưới 1 điểm.</span>
+                                        Điểm tốt nghiệp của bạn là <span id="diemKQ">0</span><br/>
+                                        <span id="linhtinh" style="display:none;"></span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" id="btnModalClose" data-dismiss="modal">Đóng</button>
                                     </div>
                                 </div>
                             </div>
-                            <!--MODAL CẢNH BÁO 2021-->
-                            <div class="modal fade" id="alert2021">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">
-                                                Cảnh báo!
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Công cụ này được viết ra vào năm 2020 nên có thể tỉ trọng điểm 
-                                                bài thi/điểm trong năm không còn đúng nữa. Mặc định công cụ này sử dụng 
-                                                tỉ lệ 50:50 của năm 2020. Nhấn OK để điều chỉnh lại cho phù hợp.
-                                            </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" id="btn2021" data-dismiss="modal">OK</button>
-                                        </div>
+                        </div>
+                        <!--MODAL CẢNH BÁO 2021-->
+                        <div class="modal fade" id="alert2021">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Cảnh báo!
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Công cụ này được viết ra vào năm 2020 nên có thể tỉ trọng điểm 
+                                            bài thi/điểm trong năm không còn đúng nữa. Mặc định công cụ này sử dụng 
+                                            tỉ lệ 50:50 của năm 2020. Nhấn OK để điều chỉnh lại cho phù hợp.
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="btn2021" data-dismiss="modal">OK</button>
                                     </div>
                                 </div>
                             </div>
-                            <!--MODAL SỬA TỈ TRỌNG-->
-                            <div class="modal fade" id="settingsModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">
-                                                Cài đặt
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Công cụ này được viết vào năm 2020 nên mặc định sử dụng tỉ lệ điểm 50:50 của năm này</p>
-                                            <p>Nếu có thay đổi, hãy điều chỉnh thanh trượt bên dưới cho phù hợp.</p>
-                                            <hr>
-                                            <form>
-                                                <b>Tỉ lệ điểm bài thi:</b> <span id="ratioBaiThi">50</span>%<br/>
-                                                <b>Tỉ lệ điểm trong năm</b>: <span id="ratioTrongNam">50</span>%<br/>
-                                                <label for="ratioSelectSlider">Điều chỉnh</label>
-                                                <input type="range" id="ratioSelectSlider" class="slider" step="5" min="0" max="100" value="50"></br>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-dismiss="modal">Lưu</button>
-                                            <button type="button" class="btn btn-warning" id="btnResetSettings">Reset</button>
-                                        </div>
+                        </div>
+                        <!--MODAL SỬA TỈ TRỌNG-->
+                        <div class="modal fade" id="settingsModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Cài đặt
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Công cụ này được viết vào năm 2020 nên mặc định sử dụng tỉ lệ điểm 50:50 của năm này</p>
+                                        <p>Nếu có thay đổi, hãy điều chỉnh thanh trượt bên dưới cho phù hợp.</p>
+                                        <hr>
+                                        <form>
+                                            <b>Tỉ lệ điểm bài thi:</b> <span id="ratioBaiThi">50</span>%<br/>
+                                            <b>Tỉ lệ điểm trong năm</b>: <span id="ratioTrongNam">50</span>%<br/>
+                                            <label for="ratioSelectSlider">Điều chỉnh</label>
+                                            <input type="range" id="ratioSelectSlider" class="slider" step="5" min="0" max="100" value="50"></br>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Lưu</button>
+                                        <button type="button" class="btn btn-warning" id="btnResetSettings">Reset</button>
                                     </div>
                                 </div>
                             </div>
