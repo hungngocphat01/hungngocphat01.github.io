@@ -48,7 +48,7 @@ a:hover {
 }
 
 /*Form*/
-.btn, .form-control {
+.btn, .form-control :not(input){
     font-family: 'FiraSans';
     font-size: 17px;
     color: #faf5e4;
