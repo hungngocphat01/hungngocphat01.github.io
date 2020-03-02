@@ -57,11 +57,11 @@
                         <h2>1. Prepare</h2>
                         <ul>
                             <li>A (newly created and) large enough partition to hold your Arch installation has to be created prior to following below steps. </li>
-                            <li>A new EFI partition also has to be existed/created in the destination disk if you want to remove your old disk (e.g. replacing your HDD with a SSD), or in case you want wipe your old disk for other purposes. If not, you can still reuse your current EFI partition.</li>
+                            <li>A new EFI partition also has to be existed/created in the destination disk if you want to remove your old disk (e.g. replacing your HDD with an SSD), or in case you want to wipe your old disk for other purposes. If not, you can still reuse your current EFI partition.</li>
                             <li>Arch Installation Media.</li>
                             <li>Make sure the disk(s) containing both of the partitions as well as the EFI partition have to be accessible from the Arch Installer.</li>
                             <li>Backup your important data to another partition.
-                            Actually this step is not really neccessary since we will be only reading from our &quot;old&quot; partition without writing anything to it, but... who knows what will accidentally happen :).</li>
+                            Actually, this step is not really necessary since we will be only reading from our &quot;old&quot; partition without writing anything to it, but... who knows what will accidentally happen :).</li>
                             <li>This guide is for EFI systems only.</li>
                         </ul>
                         <h2>2. Steps</h2>
@@ -172,7 +172,7 @@ $ mount /dev/sdX_dest /mnt
 <code class="language-bash">$ mkfs.fat /dev/sdX_efi
 </code></pre>
                                 </li>
-                                <li>If there is already a bootloader installed in the destination EFI partition (e.g. Windows Bootloader), then do not format it, or else your Windows installation won&$39;t be able to boot.</li>
+                                <li>If there is already a bootloader installed in the destination EFI partition (e.g. Windows Bootloader), then do not format it, or else your Windows installation won't be able to boot.</li>
                                 <li>Mount the EFI partition:
 <pre>
 <code class="language-bash">$ mkdir /mnt/efi
@@ -185,7 +185,7 @@ $ mount /dev/sdX_efi /mnt/efi
 <pre>
 <code class="language-bash">$ genfstab -U /mnt > /mnt/etc/fstab
 </code></pre>
-                                    This will create a new fstab file. All of your modifications on the old one will be lost (if there is any).
+                                    This will create a new fstab file. All of your modifications on the old one will be lost (if there are any).
                                 </li>
                                 <li>Check the new fstab file to see whether it has been correctly created or not. Make changes if you wish to.
 <pre>
