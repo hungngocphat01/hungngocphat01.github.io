@@ -106,6 +106,14 @@ $("#btnSubmit").click(function(){
     diemToHop = (th1 + th2 + th3) / 3;
     diem = (toan + van + anh + diemToHop + kkhich)/4*hsBaiThi + tongket*hsTrongNam + uutien;
     diem = diem.toFixed(2);
+    
+    if (diem > 10) {
+        thongBaoKQ(false, diem);
+        tbao.append("Điểm của bạn lớn hơn 10. Có ăn gian không đấy?");
+        tbao.attr("style", "display: block;");
+        return;
+    }
+
     // Nếu có môn nào <= 1 coi như rớt
     var arr = [toan, van, anh, th1, th2, th3];
     for (var i = 0; i < 6; i++){
