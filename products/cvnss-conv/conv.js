@@ -4,78 +4,177 @@ $(window).on("load", function(){
     $(".container-fluid").attr("style", "display:block;");
 });
 
+function strIns(str, i, char) {
+    return str.substring(0, i) + char + str.substring(i, str.length);
+}
+
+function strDel(str, i) {
+    return str.substring(0, i) + str.substring(i + 1, str.length);
+}
+
 // Hàm chuyển đổi được gọi khi nhấn nút "Chuyển đổi"
 $("#btnSubmit").click(function () {
-    var text = $("#txtCqn").val().normalize("NFD");
-    var words = text.split(" ");
-    var n = words.length;
-    var result = "";
-    for (var i = 0; i < words.length; i++) {
-        result += convWord(words[i]) + " ";
+    var text = $("#txtCqn").val();
+    var resultText = "";
+    var lines = text.split("\n");
+    for (var l = 0; l < lines.length; l++) {
+        var i = 0;
+        // Xử lí kí tự đặc biệt thành 1 từ bằng cách thêm vào khoảng trắng
+        while (i < lines[l].length) {
+            if (/[~!@#$%^&*()_+[\]{};'\\:"|,./<>?/]/.test(lines[l][i])) {
+                lines[l] = strIns(lines[l], i, " ");
+                lines[l] = strIns(lines[l], i + 2, " ");
+                i += 3;
+            }
+            else i++;
+        }
+        var words = lines[l].split(" ");
+        var n = words.length;
+        var resultLine = "";
+        for (var j = 0; j < words.length; j++) {
+            // Giữ nguyên các "từ" là kí tự đặc biệt
+            if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(words[j])) {
+                resultLine += words[j];
+            }
+            else resultLine += convWord(words[j]) + " ";
+        }
+        var i = 0;
+        // Xử lí kí tự đặc biệt thành như cũ bằng cách bỏ khoảng trắng đã thêm 
+        while (i < resultLine.length) {
+            if (/([!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/.test(resultLine[i])) {
+                resultLine = strDel(resultLine, i - 1);
+            }
+            else i++;
+        }
+        resultText += resultLine + "\n";
     }
-    $("#txtCvnss").html(result);
+    $("#txtCvnss").val(resultText);
 });
 
 function convWord(wordArg) {
+    wordArg = wordArg.normalize("NFD")
     var word = wordArg;
     // Độ dài từ
     var n = word.length;
     // Bỏ bớt dấu sắc ở mọi từ có chữ cái cuối là: c, p, t, ch
-    if (word.match(/c$|p$|t$|ch$/g)) {
+    var coSacTruocKhiBo = false;
+    if (/c$|p$|t$|ch$/g.test(word) && /\u0301/.test(word)) {
         word = word.replace(/\u0301/g, "");
+        coSacTruocKhiBo = true;
     }
 
     // I thay Y. Y thay UY. Chỉ hai vần AY, ÂY giữ nguyên AY, ÂY
-    if (!word.match(/ay|ây/i)) {
-        if (word.match(/uy/i)) {
+    if (!(/a(.?)y|a(.?)\u0302(.?)y/i).test(word)) {
+        if ((/uy(?!e)/i).test(word)) {
             word = word.replace("uy", "y");
             word = word.replace("Uy", "Y");
         }
-        else if (word.match(/(?<!u)y/i)) {
+        else if (/(?<!u)y/i.test(word)) {
             word = word.replace("y", "i");
             word = word.replace("Y", "I");
         }
     }
     // F thay PH, Q thay QU, C thay K, K thay KH, Z thay D, D thay Đ, J thay GI, G thay GH, W thay NG-NGH. 
-    if (word.match(/^ph/i)) {
+    if (/^ph/i.test(word)) {
         word = word.replace("ph", "f");
         word = word.replace("Ph", "F")
     }
-    else if (word.match(/^kh/i)) {
+    else if (/^kh/i.test(word)) {
         word = word.replace("kh", "k");
         word = word.replace("Kh", "k")
     }
-    else if (word.match(/^qu/i)) {
-        word = word.replace("qu", "q");
-        word = word.replace("Qu", "Q")
-    }
-    else if (word.match(/^ph/i)) {
+    else if (/^k/i.test(word)) {
         word = word.replace("k", "c");
         word = word.replace("K", "C")
     }
-    else if (word.match(/^d/i)) {
+    else if (/^qu/i.test(word)) {
+        word = word.replace("qu", "q");
+        word = word.replace("Qu", "Q")
+    }
+    else if (/^ph/i.test(word)) {
+        word = word.replace("k", "c");
+        word = word.replace("K", "C")
+    }
+    else if (/^d/i.test(word)) {
         word = word.replace("d", "z");
         word = word.replace("D", "Z")
     }
-    else if (word.match(/^đ/i)) {
+    else if (/^đ/i.test(word)) {
         word = word.replace("đ", "d");
         word = word.replace("Đ", "d")
     }
-    else if (word.match(/^gi/i)) {
+    else if (/^gi/i.test(word)) {
         word = word.replace("gi", "j");
         word = word.replace("Gi", "J");
     }
-    else if (word.match(/^ngh/i)) {
+    else if (/^ngh/i.test(word)) {
         word = word.replace("ngh", "w");
         word = word.replace("Ngh", "W")
     }
-    else if (word.match(/^ng/i)) {
+    else if (/^ng/i.test(word)) {
         word = word.replace("ng", "w");
         word = word.replace("Ng", "W");
     }
-    else if (word.match(/^gh/i)) {
+    else if (/^gh/i.test(word)) {
         word = word.replace("gh", "g");
         word = word.replace("Gh", "G")
+    }
+
+    // Tìm các dấu phụ
+    var coTrang = /\u0306/.test(word);
+    var coMoc = /\u031b/.test(word);
+    var coMu = /\u0302/.test(word);
+
+    // Tìm các dấu thanh
+    // Sắc = U+0301, huyền = U+0300, hỏi = U+0309, ngã = U+0303, nặng = U+0323
+    var coSac = /\u0301/.test(word) || coSacTruocKhiBo;
+    var coHuyen = /\u0300/.test(word);
+    var coHoi = /\u0309/.test(word);
+    var coNga = /\u0303/.test(word);
+    var coNang = /\u0323/.test(word);
+
+    /* Rút gọn các nguyên âm ghép UYÊ, IÊ-YÊ, UÔ, ƯƠ, UÂ, UƠ, OĂ, OE, OA 
+    còn một nguyên âm              Y,    I,    U, Ư,   Â, Ơ,   Ă, O,  A (ở vần “oay). 
+    */
+   if ((new RegExp("uye(.?)\u0302|ie(.?)\u0302|ye(.?)\u0302|uo(.?)\u0302|u(.?)\u031Bo(.?)\u031B|ua(.?)\u0302|uo(.?)\u031B|oa(.?)\u0306|oe|oa".normalize("NFD"), "i")).test(word)) {
+        word = word.replace(/uye(.?)\u0302/, "y$1");
+        word = word.replace(/Uye(.?)\u0302/, "Y$1");
+        word = word.replace(/ie(.?)\u0302/, "i$1");
+        word = word.replace(/ye(.?)\u0302/, "i$1");
+        word = word.replace(/Ie(.?)\u0302/, "I$1");
+        word = word.replace(/uo(.?)\u0302/, "u$1");
+        word = word.replace(/Uo(.?)\u0302/, "U$1");
+        word = word.replace(/u(.?)\u031Bo(.?)\u031B/, "ư$1");
+        word = word.replace(/U(.?)\u031Bo(.?)\u031B/, "Ư$1");
+        word = word.replace(/ua(.?)\u0302/, "â$1");
+        word = word.replace(/Ua(.?)\u0302/, "Â$1");
+        word = word.replace(/uo(.?)\u031B/, "ơ$1");
+        word = word.replace(/Uo(.?)\u031B/, "Ơ$1");
+        word = word.replace(/oa(.?)\u0306/, "ă$1");
+        word = word.replace(/Oa(.?)\u0306/, "Ă$1");
+        word = word.replace(/oe(.?)/, "e$1"); 
+        word = word.replace(/Oe(.?)/, "E$1");
+        word = word.replace(/oa(.?)y/, "a$1y");
+        word = word.replace(/Oa(.?)y/, "A$1y");
+        word = word.replace(/o(.?)a(.?)/,"o$1$2");
+        word = word.replace(/O(.?)a(.?)/, "O$1$2");
+        word = word.normalize("NFD");
+        /*Và cùng lúc, thay các chữ cái cuối T, P, C, N, M, NG, O-U, I-Y 
+        bằng chữ cái khác là                 D, F, S, L, V, Z,   W,   J. 
+        */
+        word = word.replace(new RegExp("t$"), "d");
+        word = word.replace(new RegExp("T$"), "D");
+        word = word.replace(new RegExp("p$"), "f");
+        word = word.replace(new RegExp("P$"), "F");
+        word = word.replace(new RegExp("c$"), "s");
+        word = word.replace(new RegExp("C$"), "S");
+        word = word.replace(new RegExp("n$"), "l");
+        word = word.replace(new RegExp("m$"), "v");
+        word = word.replace(new RegExp("ng$"), "z");
+        word = word.replace(new RegExp("o$"), "w");
+        word = word.replace(new RegExp("u$"), "w");
+        word = word.replace(new RegExp("i$"), "j");
+        word = word.replace(new RegExp("y$"), "j");
     }
 
     // Phụ âm cuối chữ: G thay NG, H thay NH, K thay CH
@@ -83,81 +182,173 @@ function convWord(wordArg) {
     word = word.replace(new RegExp("nh$"), "h");
     word = word.replace(new RegExp("ch$"), "k");
 
-    /* Rút gọn các nguyên âm ghép UYÊ, IÊ-YÊ, UÔ, ƯƠ, UÂ, UƠ, OĂ, OE, OA 
-    còn một nguyên âm              Y,    I,    U, Ư,   Â, Ơ,   Ă, O,  A (ở vần “oay). 
-    */
-    word = word.replace("uyê".normalize("NFD"), "y");
-    word = word.replace("Uyê".normalize("NFD"), "Y");
-    word = word.replace("iê".normalize("NFD"), "i");
-    word = word.replace("yê".normalize("NFD"), "i");
-    word = word.replace("Yê".normalize("NFD"), "I");
-    word = word.replace("uô".normalize("NFD"), "u");
-    word = word.replace("Uô".normalize("NFD"), "U");
-    word = word.replace("ươ".normalize("NFD"), "ư".normalize("NFD"));
-    word = word.replace("Ươ".normalize("NFD"), "Ư".normalize("NFD"));
-    word = word.replace("uâ".normalize("NFD"), "u");
-    word = word.replace("Uâ".normalize("NFD"), "Â".normalize("NFD"));
-    word = word.replace("uơ".normalize("NFD"), "ơ".normalize("NFD"));
-    word = word.replace("oă".normalize("NFD"), "ă".normalize("NFD"));
-    word = word.replace("Oă".normalize("NFD"), "Ă".normalize("NFD"));
-    word = word.replace("oe", "o");
-    word = word.replace("Oe", "O");
-    word = word.replace("oay", "ay");
-    word = word.replace("Oay", "Ay");
-
-     /*Và cùng lúc, thay các chữ cái cuối T, P, C, N, M, NG, O-U, I-Y 
-     bằng chữ cái khác là                 D, F, S, L, V, Z,   W,   J. 
-     */
-    word = word.replace(new RegExp("t$"), "d");
-    word = word.replace(new RegExp("T$"), "D");
-    word = word.replace(new RegExp("p$"), "f");
-    word = word.replace(new RegExp("P$"), "F");
-    word = word.replace(new RegExp("c$"), "s");
-    word = word.replace(new RegExp("C$"), "S");
-    word = word.replace(new RegExp("n$"), "l");
-    word = word.replace(new RegExp("m$"), "v");
-    word = word.replace(new RegExp("ng$"), "z");
-    word = word.replace(new RegExp("o$"), "w");
-    word = word.replace(new RegExp("u$"), "w");
-    word = word.replace(new RegExp("i$"), "j");
-    word = word.replace(new RegExp("y$"), "j");
-    
-    // Nhóm X, K, V, W, H. Thay thế 5 dấu: sắc, huyền, hỏi, ngã, nặng + dấu trăng  hay dấu móc cho chữ 
-    // ắ ằ ẳ ẵ ặ, ớ ờ ở ỡ ợ, ứ ừ ử ữ ự trong CQN và CVN. 
-    // Dấu trăng = U+0306, dấu móc = U+031B
     // Sắc = U+0301, huyền = U+0300, hỏi = U+0309, ngã = U+0303, nặng = U+0323
-    
-    if (word.match(new RegExp("\u0306||\u031b"))) {
-        // Bỏ dấu trăng, móc
-        word = word.replace(new RegExp("\u0306"), "");
-        word = word.replace(new RegExp("\u031b"), "");
+    // Nếu có dấu thanh 
+    if (coSac || coHuyen || coHoi || coNga || coNang){
+        // Nhóm X, K, V, W, H. Thay thế 5 dấu: sắc, huyền, hỏi, ngã, nặng + dấu trăng  hay dấu móc cho chữ 
+        // ắ ằ ẳ ẵ ặ, ớ ờ ở ỡ ợ, ứ ừ ử ữ ự trong CQN và CVN. 
+        // Dấu trăng = U+0306, dấu móc = U+031B
+        if (coTrang || coMoc) {
+            // Bỏ dấu trăng, móc
+            word = word.replace(new RegExp("\u0306"), "");
+            word = word.replace(new RegExp("\u031b"), "");
 
-        // Bỏ dấu thanh
-        // Sắc
-        if (word.match(new RegExp("\u0301"))) {
-            word = word.replace(new RegExp("\u0301"), "");
-            word += "x";
+            // Bỏ dấu thanh
+            // Sắc
+            if (coSac) {
+                word = word.replace(new RegExp("\u0301"), "");
+                word += "x";
+            }
+            // Huyền
+            else if (coHuyen) {
+                word = word.replace(new RegExp("\u0300"), "");
+                word += "k";
+            }
+            // Hỏi
+            else if (coHoi) {
+                word = word.replace(new RegExp("\u0309"), "");
+                word += "v";
+            }
+            // Ngã
+            else if (coNga) {
+                word = word.replace(new RegExp("\u0303"), "");
+                word += "w";
+            }
+            // Nặng
+            else if (coNang) {
+                word = word.replace(new RegExp("\u0323"), "");
+                word += "h";
+            }
         }
-        // Huyền
-        else if (word.match(new RegExp("\u0300"))) {
-            word = word.replace(new RegExp("\u0300"), "");
-            word += "k";
+
+        /*Nhóm B, D, Q, G, F. Thay thế 5 dấu: sắc, huyền, hỏi, ngã, nặng + dấu nón ^ cho chữ 
+        ấ ầ ẩ ẫ ậ, ế ề ể ễ ệ, ố ồ ổ ỗ ộ trong CQN và CVN.
+        Dấu mũ = u0302*/ 
+        if (coMu) {
+            // Bỏ dấu mũ
+            word = word.replace(new RegExp("\u0302"), "");
+
+            // Bỏ dấu thanh
+            // Sắc
+            if (coSac) {
+                word = word.replace(new RegExp("\u0301"), "");
+                word += "b";
+            }
+            // Huyền
+            else if (coHuyen) {
+                word = word.replace(new RegExp("\u0300"), "");
+                word += "d";
+            }
+            // Hỏi
+            else if (coHoi) {
+                word = word.replace(new RegExp("\u0309"), "");
+                word += "q";
+            }
+            // Ngã
+            else if (coNga) {
+                word = word.replace(new RegExp("\u0303"), "");
+                word += "g";
+            }
+            // Nặng
+            else if (coNang) {
+                word = word.replace(new RegExp("\u0323"), "");
+                word += "f";
+            }
         }
-        // Hỏi
-        else if (word.match(new RegExp("\u0309"))) {
-            word = word.replace(new RegExp("\u0309"), "");
-            word += "v";
-        }
-        // Ngã
-        else if (word.match(new RegExp("\u0303"))) {
-            word = word.replace(new RegExp("\u0303"), "");
-            word += "w";
-        }
-        // Nặng
-        else if (word.match(new RegExp("\u0323"))) {
-            word = word.replace(new RegExp("\u0323"), "");
-            word += "h";
+        /*Nhóm J, L, Z, S, R. Thay thế 5 dấu: sắc, huyền, hỏi, ngã, nặng 
+        cho chữ không có dấu phụ nào trong CQN và CVN*/
+        if (!(coTrang || coMoc || coMu)) {
+            // Bỏ dấu thanh
+            // Sắc
+            if (coSac && !coSacTruocKhiBo) {
+                word = word.replace(new RegExp("\u0301"), "");
+                word += "j";
+            }
+            // Huyền
+            else if (coHuyen) {
+                word = word.replace(new RegExp("\u0300"), "");
+                word += "l";
+            }
+            // Hỏi
+            else if (coHoi) {
+                word = word.replace(new RegExp("\u0309"), "");
+                word += "z";
+            }
+            // Ngã
+            else if (coNga) {
+                word = word.replace(new RegExp("\u0303"), "");
+                word += "s";
+            }
+            // Nặng
+            else if (coNang) {
+                word = word.replace(new RegExp("\u0323"), "");
+                word += "r";
+            }
         }
     }
-    return word;
+    else {
+        // Chữ O thay thế dấu trăng hoặc dấu móc cho chữ có thanh ngang như ă, ơ, ư trong CQN và CVN. 
+        if (/A/.test(wordArg) && coTrang) {
+            word = word.replace("Ă".normalize("NFD"), "A");
+            word += "o";
+        }
+        else if (/a/.test(wordArg) && coTrang) {
+            word = word.replace("ă".normalize("NFD"), "a");
+            word += "o";
+        }
+        else if (/O/.test(wordArg) && coMoc) {
+            word = word.replace("Ơ".normalize("NFD"), "O");
+            word += "o";
+        }
+        else if (/o/.test(wordArg) && coMoc) {
+            word = word.replace("ơ".normalize("NFD"), "o");
+            word += "o";
+        }
+        else if (/u/.test(wordArg) && coMoc) {
+            word = word.replace("ư".normalize("NFD"), "u");
+            word += "o";
+        }
+        else if (/U/.test(wordArg) && coMoc) {
+            word = word.replace("Ư".normalize("NFD"), "U");
+            word += "o";
+        }
+        
+        // Chữ Y thay thế dấu nón ^ cho chữ có thanh ngang như â, ê, ô trong CQN và CVN
+        if (/a/.test(wordArg) && coMu) {
+            word = word.replace("â".normalize("NFD"), "a");
+            word += "y";
+        }
+        else if (/A/.test(wordArg) && coMu) {
+            word = word.replace("Â".normalize("NFD"), "A");
+            word += "y";
+        }
+        else if (/e/.test(wordArg) && coMu) {
+            word = word.replace("ê".normalize("NFD"), "e");
+            word += "y";
+        }
+        else if (/E/.test(wordArg) && coMu) {
+            word = word.replace("Ê".normalize("NFD"), "E");
+            word += "y";
+        }
+        else if (/o/.test(wordArg) && coMu) {
+            word = word.replace("ô".normalize("NFD"), "o");
+            word += "y";
+        }
+        else if (/O/.test(wordArg) && coMu) {
+            word = word.replace("Ô".normalize("NFD"), "o");
+            word += "y";
+        }
+    }
+    // Strip các dấu phụ dư thừa
+    word = word.replace(/\u0306|\u031b|\u0302/g, "");
+
+    /* Chữ P là ký hiệu dấu câm/ký hiệu chữ bỏ dấu thanh & dấu phụ. 
+    Ta chỉ đặt P sau chữ không có dấu thanh và dấu phụ nào trong chữ có vần CVN 
+    để không bị hiểu lầm qua chữ khác. */
+
+    var phuamlamdau = ['x', 'k', 'v', 'w', 'h', 'b', 'd', 'q', 'g', 'f', 'j', 'l', 'z', 's', 'r'];
+    if (phuamlamdau.includes(word[word.length - 1]) && !(coTrang || coMoc || coMu)) {
+        word += "p";
+    }
+    return word.normalize("NFC");
 }
