@@ -47,6 +47,9 @@ a:hover {
     text-decoration: none;
 }
 
+textarea {
+    color: #495057;
+}
 /*Form*/
 .btn, .form-control :not(input){
     font-family: 'FiraSans';
@@ -106,7 +109,7 @@ hr{
 }
 
 @media screen and (max-width: 767px){
-    .btn, .form-control{
+    .btn, .form-control:not(textarea){
         font-size: 3vw;
         color: #faf5e4;
     }
