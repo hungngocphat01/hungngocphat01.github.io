@@ -1,4 +1,5 @@
 // CQN - CVNSS 4.0 Converter by Hùng Ngọc Phát
+// Mã nguồn có thể được tái sử dụng thoải mái, nhưng nếu dùng trong các project open-source khác phải ghi rõ nguồn.
 // 04 Aqril 2020
 
 $(window).on("load", function(){
