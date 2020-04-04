@@ -160,7 +160,7 @@ function convWord(wordArg) {
 
     // Tìm các dấu thanh
     // Sắc = U+0301, huyền = U+0300, hỏi = U+0309, ngã = U+0303, nặng = U+0323
-    var coSac = /\u0301/.test(word);
+    coSac = /\u0301/.test(word);
     var coHuyen = /\u0300/.test(word);
     var coHoi = /\u0309/.test(word);
     var coNga = /\u0303/.test(word);
