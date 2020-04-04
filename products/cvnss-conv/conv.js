@@ -12,11 +12,17 @@ function strDel(str, i) {
     return str.substring(0, i) + str.substring(i + 1, str.length);
 }
 
+$("#main-header").click(function() {
+    window.location.href = "/";
+});
 // Hàm chuyển đổi được gọi khi nhấn nút "Chuyển đổi"
 $("#btnSubmit").click(function () {
+    // Đọc dữ liệu từ textbox
     var text = $("#txtCqn").val();
     var resultText = "";
+    // Tách dòng
     var lines = text.split("\n");
+    // Xử lí từng dòng
     for (var l = 0; l < lines.length; l++) {
         var i = 0;
         // Xử lí kí tự đặc biệt thành 1 từ bằng cách thêm vào khoảng trắng
@@ -28,14 +34,17 @@ $("#btnSubmit").click(function () {
             }
             else i++;
         }
+        // Tách dòng thành nhiều từ
         var words = lines[l].split(" ");
         var n = words.length;
         var resultLine = "";
+        // Xử lí từng từ
         for (var j = 0; j < words.length; j++) {
             // Giữ nguyên các "từ" là kí tự đặc biệt
             if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(words[j])) {
                 resultLine += words[j];
             }
+            // Còn không, dịch sang CVNSS 4.0
             else resultLine += convWord(words[j]) + " ";
         }
         var i = 0;
@@ -46,8 +55,10 @@ $("#btnSubmit").click(function () {
             }
             else i++;
         }
+        // Ghép các dòng lại với nhau
         resultText += resultLine + "\n";
     }
+    // Xuất kết quả
     $("#txtCvnss").val(resultText);
 });
 
@@ -57,7 +68,7 @@ function convWord(wordArg) {
     // Độ dài từ
     var n = word.length;
     // Bỏ bớt dấu sắc ở mọi từ có chữ cái cuối là: c, p, t, ch
-    var coSacTruocKhiBo = false;
+    var coSac = false;
     if (/c$|p$|t$|ch$/g.test(word) && /\u0301/.test(word)) {
         word = word.replace(/\u0301/g, "");
         coSacTruocKhiBo = true;
@@ -101,7 +112,7 @@ function convWord(wordArg) {
     }
     else if (/^đ/i.test(word)) {
         word = word.replace("đ", "d");
-        word = word.replace("Đ", "d")
+        word = word.replace("Đ", "D")
     }
     else if (/^gi/i.test(word)) {
         word = word.replace("gi", "j");
@@ -127,7 +138,7 @@ function convWord(wordArg) {
 
     // Tìm các dấu thanh
     // Sắc = U+0301, huyền = U+0300, hỏi = U+0309, ngã = U+0303, nặng = U+0323
-    var coSac = /\u0301/.test(word) || coSacTruocKhiBo;
+    var coSacSauKhiBo = /\u0301/.test(word);
     var coHuyen = /\u0300/.test(word);
     var coHoi = /\u0309/.test(word);
     var coNga = /\u0303/.test(word);
@@ -136,6 +147,8 @@ function convWord(wordArg) {
     /* Rút gọn các nguyên âm ghép UYÊ, IÊ-YÊ, UÔ, ƯƠ, UÂ, UƠ, OĂ, OE, OA 
     còn một nguyên âm              Y,    I,    U, Ư,   Â, Ơ,   Ă, O,  A (ở vần “oay). 
     */
+   // Regex: do cách chuẩn hoá NFD đưa dấu thanh vào giữa kí tự chính và dấu phụ nên cần 0-1 kí tự ở giữa
+   // ể = e + ? + ^
    if ((new RegExp("uye(.?)\u0302|ie(.?)\u0302|ye(.?)\u0302|uo(.?)\u0302|u(.?)\u031Bo(.?)\u031B|ua(.?)\u0302|uo(.?)\u031B|oa(.?)\u0306|oe|oa".normalize("NFD"), "i")).test(word)) {
         word = word.replace(/uye(.?)\u0302/, "y$1");
         word = word.replace(/Uye(.?)\u0302/, "Y$1");
@@ -156,33 +169,32 @@ function convWord(wordArg) {
         word = word.replace(/Oe(.?)/, "E$1");
         word = word.replace(/oa(.?)y/, "a$1y");
         word = word.replace(/Oa(.?)y/, "A$1y");
-        word = word.replace(/o(.?)a(.?)/,"o$1$2");
-        word = word.replace(/O(.?)a(.?)/, "O$1$2");
+        word = word.replace(/oa(.+)/,"o$1");
+        word = word.replace(/Oa(.+)/, "O$1");
         word = word.normalize("NFD");
         /*Và cùng lúc, thay các chữ cái cuối T, P, C, N, M, NG, O-U, I-Y 
         bằng chữ cái khác là                 D, F, S, L, V, Z,   W,   J. 
         */
-        word = word.replace(new RegExp("t$"), "d");
-        word = word.replace(new RegExp("T$"), "D");
-        word = word.replace(new RegExp("p$"), "f");
-        word = word.replace(new RegExp("P$"), "F");
-        word = word.replace(new RegExp("c$"), "s");
-        word = word.replace(new RegExp("C$"), "S");
-        word = word.replace(new RegExp("n$"), "l");
-        word = word.replace(new RegExp("m$"), "v");
-        word = word.replace(new RegExp("ng$"), "z");
-        word = word.replace(new RegExp("o$"), "w");
-        word = word.replace(new RegExp("u$"), "w");
-        word = word.replace(new RegExp("i$"), "j");
-        word = word.replace(new RegExp("y$"), "j");
+        word = word.replace(/t$/g, "d");
+        word = word.replace(/T$/g, "D");
+        word = word.replace(/p$/g, "f");
+        word = word.replace(/P$/g, "F");
+        word = word.replace(/c$/g, "s");
+        word = word.replace(/C$/g, "S");
+        word = word.replace(/n$/g, "l");
+        word = word.replace(/m$/g, "v");
+        word = word.replace(/ng$/g, "z");
+        word = word.replace(/o$/g, "w");
+        word = word.replace(/u$/g, "w");
+        word = word.replace(/i$/g, "j");
+        word = word.replace(/y$/g, "j");
     }
 
     // Phụ âm cuối chữ: G thay NG, H thay NH, K thay CH
-    word = word.replace(new RegExp("ng$"), "g");
-    word = word.replace(new RegExp("nh$"), "h");
-    word = word.replace(new RegExp("ch$"), "k");
+    word = word.replace(/ng$/g, "g");
+    word = word.replace(/nh$/g, "h");
+    word = word.replace(/ch$/g, "k");
 
-    // Sắc = U+0301, huyền = U+0300, hỏi = U+0309, ngã = U+0303, nặng = U+0323
     // Nếu có dấu thanh 
     if (coSac || coHuyen || coHoi || coNga || coNang){
         // Nhóm X, K, V, W, H. Thay thế 5 dấu: sắc, huyền, hỏi, ngã, nặng + dấu trăng  hay dấu móc cho chữ 
@@ -190,33 +202,33 @@ function convWord(wordArg) {
         // Dấu trăng = U+0306, dấu móc = U+031B
         if (coTrang || coMoc) {
             // Bỏ dấu trăng, móc
-            word = word.replace(new RegExp("\u0306"), "");
-            word = word.replace(new RegExp("\u031b"), "");
+            word = word.replace(/\u0306/g, "");
+            word = word.replace(/\u031b/g, "");
 
             // Bỏ dấu thanh
             // Sắc
             if (coSac) {
-                word = word.replace(new RegExp("\u0301"), "");
+                word = word.replace(/\u0301/g, "");
                 word += "x";
             }
             // Huyền
             else if (coHuyen) {
-                word = word.replace(new RegExp("\u0300"), "");
+                word = word.replace(/\u0300/g, "");
                 word += "k";
             }
             // Hỏi
             else if (coHoi) {
-                word = word.replace(new RegExp("\u0309"), "");
+                word = word.replace(/\u0309/g, "");
                 word += "v";
             }
             // Ngã
             else if (coNga) {
-                word = word.replace(new RegExp("\u0303"), "");
+                word = word.replace(/\u0303/g, "");
                 word += "w";
             }
             // Nặng
             else if (coNang) {
-                word = word.replace(new RegExp("\u0323"), "");
+                word = word.replace(/\u0323/g, "");
                 word += "h";
             }
         }
@@ -226,32 +238,32 @@ function convWord(wordArg) {
         Dấu mũ = u0302*/ 
         if (coMu) {
             // Bỏ dấu mũ
-            word = word.replace(new RegExp("\u0302"), "");
+            word = word.replace(/\u0302/g, "");
 
             // Bỏ dấu thanh
             // Sắc
             if (coSac) {
-                word = word.replace(new RegExp("\u0301"), "");
+                word = word.replace(/\u0301/g, "");
                 word += "b";
             }
             // Huyền
             else if (coHuyen) {
-                word = word.replace(new RegExp("\u0300"), "");
+                word = word.replace(/\u0300/g, "");
                 word += "d";
             }
             // Hỏi
             else if (coHoi) {
-                word = word.replace(new RegExp("\u0309"), "");
+                word = word.replace(/\u0309/g, "");
                 word += "q";
             }
             // Ngã
             else if (coNga) {
-                word = word.replace(new RegExp("\u0303"), "");
+                word = word.replace(/\u0303/g, "");
                 word += "g";
             }
             // Nặng
             else if (coNang) {
-                word = word.replace(new RegExp("\u0323"), "");
+                word = word.replace(/\u0323/g, "");
                 word += "f";
             }
         }
@@ -261,27 +273,27 @@ function convWord(wordArg) {
             // Bỏ dấu thanh
             // Sắc
             if (coSac && !coSacTruocKhiBo) {
-                word = word.replace(new RegExp("\u0301"), "");
+                word = word.replace(/\u0301/g, "");
                 word += "j";
             }
             // Huyền
             else if (coHuyen) {
-                word = word.replace(new RegExp("\u0300"), "");
+                word = word.replace(/\u0300/g, "");
                 word += "l";
             }
             // Hỏi
             else if (coHoi) {
-                word = word.replace(new RegExp("\u0309"), "");
+                word = word.replace(/\u0309/g, "");
                 word += "z";
             }
             // Ngã
             else if (coNga) {
-                word = word.replace(new RegExp("\u0303"), "");
+                word = word.replace(/\u0303/g, "");
                 word += "s";
             }
             // Nặng
             else if (coNang) {
-                word = word.replace(new RegExp("\u0323"), "");
+                word = word.replace(/\u0323/g, "");
                 word += "r";
             }
         }
@@ -347,8 +359,10 @@ function convWord(wordArg) {
     để không bị hiểu lầm qua chữ khác. */
 
     var phuamlamdau = ['x', 'k', 'v', 'w', 'h', 'b', 'd', 'q', 'g', 'f', 'j', 'l', 'z', 's', 'r'];
-    if (phuamlamdau.includes(word[word.length - 1]) && !(coTrang || coMoc || coMu)) {
+    if (phuamlamdau.includes(word[word.length - 1]) && !(coTrang || coMoc || coMu) 
+        && !((coSac != coSacSauKhiBo) || coHuyen || coHoi || coNga || coNang)) {
         word += "p";
     }
+    // Chuẩn hoá lại theo chuẩn NFC
     return word.normalize("NFC");
 }
