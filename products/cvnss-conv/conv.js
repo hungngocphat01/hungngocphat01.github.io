@@ -15,9 +15,6 @@ function strDel(str, i) {
     return str.substring(0, i) + str.substring(i + 1, str.length);
 }
 
-$("#main-header").click(function() {
-    window.location.href = "/";
-});
 // Hàm chuyển đổi được gọi khi nhấn nút "Chuyển đổi"
 $("#btnSubmit").click(function () {
     // Đọc dữ liệu từ textbox
@@ -74,7 +71,7 @@ function convWord(wordArg) {
     var coSac = false;
     if (/c$|p$|t$|ch$/g.test(word) && /\u0301/.test(word)) {
         word = word.replace(/\u0301/g, "");
-        coSacTruocKhiBo = true;
+        coSac = true;
     }
 
     // I thay Y. Y thay UY. Chỉ hai vần AY, ÂY giữ nguyên AY, ÂY
@@ -362,6 +359,7 @@ function convWord(wordArg) {
     để không bị hiểu lầm qua chữ khác. */
 
     var phuamlamdau = ['x', 'k', 'v', 'w', 'h', 'b', 'd', 'q', 'g', 'f', 'j', 'l', 'z', 's', 'r'];
+    // (coSac != coSacSauKhiBo) để fix lỗi xung đột dấu sắc: sách -> sakp (thay vì sak)
     if (phuamlamdau.includes(word[word.length - 1]) && !(coTrang || coMoc || coMu) 
         && !((coSac != coSacSauKhiBo) || coHuyen || coHoi || coNga || coNang)) {
         word += "p";
