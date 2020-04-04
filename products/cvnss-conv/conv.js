@@ -160,7 +160,7 @@ function convWord(wordArg) {
 
     // Tìm các dấu thanh
     // Sắc = U+0301, huyền = U+0300, hỏi = U+0309, ngã = U+0303, nặng = U+0323
-    var coSacSauKhiBo = /\u0301/.test(word);
+    var coSac = /\u0301/.test(word);
     var coHuyen = /\u0300/.test(word);
     var coHoi = /\u0309/.test(word);
     var coNga = /\u0303/.test(word);
@@ -381,9 +381,9 @@ function convWord(wordArg) {
     để không bị hiểu lầm qua chữ khác. */
 
     var phuamlamdau = ['x', 'k', 'v', 'w', 'h', 'b', 'd', 'q', 'g', 'f', 'j', 'l', 'z', 's', 'r'];
-    // !(coSac && coSacSauKhiBo) để fix lỗi xung đột dấu sắc: sách -> sakp (thay vì sak)
+    
     if (phuamlamdau.includes(word[word.length - 1]) && !(coTrang || coMoc || coMu) 
-        && !(coSacSauKhiBo || coHuyen || coHoi || coNga || coNang)) {
+        && !(coSac || coHuyen || coHoi || coNga || coNang)) {
         word += "p";
     }
     // Chuẩn hoá lại theo chuẩn NFC
