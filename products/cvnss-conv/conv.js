@@ -294,7 +294,7 @@ function convWord(wordArg) {
         if (!(coTrang || coMoc || coMu)) {
             // Bỏ dấu thanh
             // Sắc
-            if (coSacSauKhiBo) {
+            if (coSac) {
                 word = word.replace(/\u0301/g, "");
                 word += "j";
             }
