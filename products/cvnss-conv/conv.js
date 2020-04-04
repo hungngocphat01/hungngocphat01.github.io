@@ -7,10 +7,25 @@ $(window).on("load", function(){
     $(".container-fluid").attr("style", "display:block;");
 });
 
+// Khi click button copy
+$("#btnCopy").click(function() {
+    var txtCvnss = document.getElementById("txtCvnss");
+    txtCvnss.select();
+    document.execCommand('copy');
+});
+
+// Khi click button reset
+$("#btnReset").click(function() {
+    $("#txtCqn").val("");
+    $("#txtCvnss").val("");
+});
+
+// Hàm chèn kí tự vào chuỗi
 function strIns(str, i, char) {
     return str.substring(0, i) + char + str.substring(i, str.length);
 }
 
+// Hàm xoá kí tự khỏi chuỗi
 function strDel(str, i) {
     return str.substring(0, i) + str.substring(i + 1, str.length);
 }
@@ -63,6 +78,7 @@ $("#btnSubmit").click(function () {
 });
 
 function convWord(wordArg) {
+    // Chuẩn hoá NFD: tách dấu phụ, dấu và chữ cái ra riêng để dễ find & replace
     wordArg = wordArg.normalize("NFD")
     var word = wordArg;
     // Độ dài từ
