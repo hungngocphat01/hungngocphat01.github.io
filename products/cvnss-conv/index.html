@@ -8,19 +8,19 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://phathung2001.github.io/products/cvnss-converter/">
+    <meta property="og:url" content="https://phathung2001.github.io/products/cvnss-conv/">
     <meta property="og:title" content="CVNSS 4.0 Converter">
     <meta property="og:description" content="Một công cụ nhỏ để chuyển chữ Quốc ngữ sang chữ Việt song song 4.0 của tác giả Kiều Trường Lâm và Trần Tư Bình.">
-    <meta property="og:image" content="https://phathung2001.github.io/products/cvnss-converter/background.jpg">
+    <meta property="og:image" content="https://phathung2001.github.io/products/cvnss-conv/background.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://phathung2001.github.io/products/cvnss-converter/">
+    <meta property="twitter:url" content="https://phathung2001.github.io/products/cvnss-conv/">
     <meta property="twitter:title" content="CVNSS 4.0 Converter">
     <meta property="twitter:description" content="Một công cụ nhỏ để chuyển chữ Quốc ngữ sang chữ Việt song song 4.0 của tác giả Kiều Trường Lâm và Trần Tư Bình.">
-    <meta property="twitter:image" content="https://phathung2001.github.io/products/cvnss-converter/background.jpg">
+    <meta property="twitter:image" content="https://phathung2001.github.io/products/cvnss-conv/background.png">
 
-    <link rel="canonical" href="https://phathung2001.github.io/products/cvnss-converter/" />
+    <link rel="canonical" href="https://phathung2001.github.io/products/cvnss-conv/" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -76,8 +76,8 @@
                 <div class="col-sm-2 col-md-3 col-lg-4"></div>
                 <div class="col-sm-8 col-md 6 col-lg-4">
                     <div id="mid-column">
-                        <h3 id="main-header">hungngocphat01</h3>
-                        <p style="margin-bottom:20px;">hcmus::191206xx</p>
+                        <h3 id="main-header"></h3>
+                        <p style="margin-bottom:20px;"></p>
                         <!--NAVIGATION BAR-->
                         <div id="navibar"></div>
                         <!--CONTENT-->
@@ -99,26 +99,24 @@
                                 <b>Lưu ý</b>: Công cụ này không đảm bảo hoạt động chính xác 100%.<br>
                                 Cần gõ đúng chữ hoa, chữ thường để công cụ hoạt động chính xác nhất.<br>
                                 Đúng: Việt Nam <br>
-                                Sai: viỆt nAm, ViệT naM, vIỆT NAm, ...
+                                Sai: viỆt nAm, ViệT naM, vIỆT NAm, ...<br>
+                                Mã nguồn trên Github <a style="color: #f8b400" href="https://github.com/phathung2001/phathung2001.github.io/blob/master/products/cvnss-conv/conv.js">ở đây</a>
                             </div>
+
                         </div>
                     </div>
                     <hr>
-                    <p id="credit" class="credit"></p>
+                    <p id="credit" class="credit">
+                        Copyright (c) 2020 hungngocphat01.<br/>
+                        Powered by Bootstrap 4.<br>
+                        <a href="/" style="color: #f8b400">Về trang chủ</a>
+                    </p>
                 </div>
                 <div class="col-sm-2 col-md-3 col-lg-4"></div>
             </div>            
         </div>
         <script src="conv.js"></script>
-        <script>
-            var credit=
-                `Copyright (c) 2020 hungngocphat01.<br/>
-                Powered by Bootstrap 4.`;
-
-                $(window).on("load", function(){
-                    $("#credit").append(credit);
-                });
-            
+        <script>           
             // Thay đổi header liên tục
             // Code copied from: https://www.sololearn.com/Discuss/1037799/jquery-change-text-after-time-loop-problem
             var toggle = 0;
