@@ -22,7 +22,7 @@
 
     <link rel="canonical" href="https://phathung2001.github.io/products/cvnss-converter/" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -46,29 +46,16 @@
             max-width: 200px;
         }
 
-        .col-input {
-            max-width: 200px;
-            width: 200px;
-        }
-
-        .col-left {
-            margin: 0 auto;
-            margin-right: 0;
-        }
-
-        .col-right {
-            margin: 0 auto;
-            margin-left: 0;
-        }
-
-        .col-button {
-            max-width: 400px;
-            margin-left: 40px;
+        .note-footer {
+            font-size: 15px !important;
         }
 
         @media screen and (max-width: 420px){
             .col-button{
                 margin-left: 10vw;
+            }
+            .note-footer {
+                font-size: 13px !important;
             }
         }
         @media screen and (max-width: 372px){
@@ -89,13 +76,13 @@
                 <div class="col-sm-2 col-md-3 col-lg-4"></div>
                 <div class="col-sm-8 col-md 6 col-lg-4">
                     <div id="mid-column">
-                        <h3>hungngocphat01</h3>
+                        <h3 id="main-header">hungngocphat01</h3>
                         <p style="margin-bottom:20px;">hcmus::19120615</p>
                         <!--NAVIGATION BAR-->
                         <div id="navibar"></div>
                         <!--CONTENT-->
                         <div class="content text-center" style="margin-top:20px;">
-                            <h5>Cogy curp chylq doiq CQN sagp CVNSS 4.0 </h5>
+                            <h5 id="header-name">Công cụ chuyển đổi <br>Chữ Quốc ngữ sang CVNSS 4.0</h5>
                             <!--FORM CHUYỂN ĐỔI-->
                             <form>
                                 <div class="form-row" style="margin-bottom:5px;">
@@ -108,6 +95,12 @@
                                     <button type="button" class="btn btn-success" id="btnSubmit">Chuyển đổi</button>
                                 </div>
                             </form>
+                            <div style="text-align:left; opacity: 0.5;" class="note-footer">
+                                <b>Lưu ý</b>: Công cụ này không đảm bảo hoạt động chính xác 100%.<br>
+                                Cần gõ đúng chữ hoa, chữ thường để công cụ hoạt động chính xác nhất.<br>
+                                Đúng: Việt Nam <br>
+                                Sai: viỆt nAm, ViệT naM, vIỆT NAm, ...
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -117,5 +110,36 @@
             </div>            
         </div>
         <script src="conv.js"></script>
+        <script>
+            var credit=
+                `Copyright (c) 2020 hungngocphat01.<br/>
+                Powered by Bootstrap 4.`;
+
+                $(window).on("load", function(){
+                    $("#credit").append(credit);
+                });
+            
+            // Thay đổi header liên tục
+            // Code copied from: https://www.sololearn.com/Discuss/1037799/jquery-change-text-after-time-loop-problem
+            var toggle = 0;
+            var header = ["Công cụ chuyển đổi <br>Chữ Quốc ngữ sang CVNSS 4.0",
+                            "Cogy cur chylq doiq <br> Chuw Qocy wuw sagp CVNSS 4.0 "];
+            var i = 0;
+            var interval = 4000;
+            $txt = $("#header-name");
+
+            $txt.html(header[i%header.length]);
+
+            function fadeLoop(){
+                $txt.fadeOut('200', function() {
+                $(this).html(header[i%header.length]).fadeIn('200');
+                });
+                i++;
+                setTimeout(function(){
+                fadeLoop();
+                }, interval);
+            };
+            setTimeout(fadeLoop, interval);
+        </script>
     </body>
 </html>
