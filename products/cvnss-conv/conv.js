@@ -1,3 +1,6 @@
+// CQN - CVNSS 4.0 Converter by Hùng Ngọc Phát
+// 04 Aqril 2020
+
 $(window).on("load", function(){
     // Fade-in animation
     $(".container-fluid").addClass("w3-animate-top");
