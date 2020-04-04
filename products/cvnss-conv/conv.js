@@ -68,10 +68,9 @@ function convWord(wordArg) {
     // Độ dài từ
     var n = word.length;
     // Bỏ bớt dấu sắc ở mọi từ có chữ cái cuối là: c, p, t, ch
-    var coSac = false;
-    if (/c$|p$|t$|ch$/g.test(word) && /\u0301/.test(word)) {
+    var coSac = /\u0301/.test(word);
+    if (/c$|p$|t$|ch$/g.test(word) && coSac) {
         word = word.replace(/\u0301/g, "");
-        coSac = true;
     }
 
     // I thay Y. Y thay UY. Chỉ hai vần AY, ÂY giữ nguyên AY, ÂY
@@ -114,9 +113,15 @@ function convWord(wordArg) {
         word = word.replace("đ", "d");
         word = word.replace("Đ", "D")
     }
-    else if (/^gi/i.test(word)) {
+    // Nếu không phải gí gì gỉ gĩ gị
+    else if (/^gi(?!\u0301|\u0300|\u0309|\u0303|\u0323)/i.test(word)) {
         word = word.replace("gi", "j");
         word = word.replace("Gi", "J");
+    }
+    // Nếu là gí gì gỉ gĩ gị
+    else if (/^gi(?=\u0301|\u0300|\u0309|\u0303|\u0323)/i.test(word)) {
+        word = word.replace("g", "j");
+        word = word.replace("G", "J");
     }
     else if (/^ngh/i.test(word)) {
         word = word.replace("ngh", "w");
@@ -272,7 +277,7 @@ function convWord(wordArg) {
         if (!(coTrang || coMoc || coMu)) {
             // Bỏ dấu thanh
             // Sắc
-            if (coSac && !coSacTruocKhiBo) {
+            if (coSacSauKhiBo) {
                 word = word.replace(/\u0301/g, "");
                 word += "j";
             }
@@ -359,9 +364,9 @@ function convWord(wordArg) {
     để không bị hiểu lầm qua chữ khác. */
 
     var phuamlamdau = ['x', 'k', 'v', 'w', 'h', 'b', 'd', 'q', 'g', 'f', 'j', 'l', 'z', 's', 'r'];
-    // (coSac != coSacSauKhiBo) để fix lỗi xung đột dấu sắc: sách -> sakp (thay vì sak)
+    // !(coSac && coSacSauKhiBo) để fix lỗi xung đột dấu sắc: sách -> sakp (thay vì sak)
     if (phuamlamdau.includes(word[word.length - 1]) && !(coTrang || coMoc || coMu) 
-        && !((coSac != coSacSauKhiBo) || coHuyen || coHoi || coNga || coNang)) {
+        && !(coSacSauKhiBo || coHuyen || coHoi || coNga || coNang)) {
         word += "p";
     }
     // Chuẩn hoá lại theo chuẩn NFC
