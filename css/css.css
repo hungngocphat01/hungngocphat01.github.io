@@ -111,7 +111,6 @@ hr{
 @media screen and (max-width: 767px){
     .btn, .form-control:not(textarea){
         font-size: 3vw;
-        color: #faf5e4;
     }
 
     body{
