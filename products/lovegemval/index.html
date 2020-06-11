@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>LLSIF Love Gem Value Calculator | hungngocphat01</title>
+        <meta name="description" content="Tính điểm tốt nghiệp THPTQG bằng công thức mới nhất của BGD&ĐT">
+    
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://phathung2001.github.io/products/lovegemval/">
+        <meta property="og:title" content="LLSIF Love Gem Value Calculator">
+        <meta property="og:description" content="Calculate the value (in real money) of LLSIF love gems.">
+        <meta property="og:image" content="https://phathung2001.github.io/products/lovegemval/background.jpg">
+    
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://phathung2001.github.io/products/lovegemval/">
+        <meta property="twitter:title" content="LLSIF Love Gem Value Calculator">
+        <meta property="twitter:description" content="Calculate the value (in real money) of LLSIF love gems.">
+        <meta property="twitter:image" content="https://phathung2001.github.io/products/lovegemval/background.jpg">
+    
+        <link rel="canonical" href="https://phathung2001.github.io/products/lovegemval/" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="../../css/css.css">
+        <link rel="stylesheet" href="../../css/slider.css">
+        <script src="/common/navibar_credit.js"></script>
+        <script src="./money.js"></script>
+        <script>
+            $(window).on("load", function(){
+                navibarSelect("#naviProducts");
+            });       
+        </script>
+        <style>
+        .link:hover {
+            color: #f8b400;
+            text-decoration: underline;
+        }
+
+        li {
+            margin-left: 0;
+        }
+
+        .dropdown-menu {
+            border-color: rgb(70, 70, 70);
+            border-width: 2px;
+        }
+
+        #result-div {
+            font-size: 18px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        input {
+            max-width: 200px;
+        }
+
+        button {
+            margin-right: 10px;
+        }
+
+        .note-footer {
+            font-family: 'FiraSans' !important;
+            font-size: 15px !important;
+        }
+
+        @media screen and (max-width: 420px){
+            .col-button{
+                margin-left: 10vw;
+            }
+            .note-footer {
+                font-size: 13px !important;
+            }
+        }
+        @media screen and (max-width: 372px){
+            .col-button{
+                margin-left: 5vw;
+            }
+        }
+        @media screen and (max-width: 341px){
+            .col-button{
+                margin-left: -10px!important;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid" style="display:none;">
+            <div class="row">
+                <div class="col-sm-2 col-md-3 col-lg-4"></div>
+                <div class="col-sm-8 col-md 6 col-lg-4">
+                    <div id="mid-column">
+                        <h3 id="main-header"></h3>
+                        <p style="margin-bottom:20px;"></p>
+                        <!--NAVIGATION BAR-->
+                        <div id="navibar"></div>
+                        <!--CONTENT-->
+                        <div class="content text-center" style="margin-top:20px;">
+                            <h5 id="header-name">LLSIF Love Gem Value Calculator</h5>
+                            <!--FORM CHUYỂN ĐỔI-->
+                            <form>
+                                <div class="form-row" style="margin-bottom:5px; text-align: center;">
+                                    <textarea class="form-control" rows="1" placeholder="Enter your loveca stones quantity here" id="inp-lovegem"></textarea>
+                                </div>
+                                <div id="result-div" style="display: none;">
+                                    In USD: <span id="result-span-usd"> </span></br>
+                                    In VND: <span id="result-span-vnd"> </span></br>
+                                </div>
+                                <div class="form-row" style="margin-bottom:5px;">
+                                    <button type="button" class="btn btn-success" id="btn-submit">Calculate</button>
+                                    <button type="button" class="btn btn-danger" id="btn-custom">Customize</button>
+                                </div>
+                            </form>
+                            <div style="text-align:left; opacity: 0.5;" class="note-footer">
+                                This tool is not for commercial use.<br>
+                                The result is not 100% guaranteed to be correct.<br>
+                                Love gem price updated on 11-Jun-2020 (JP).
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <p id="credit" class="credit"></p>
+                </div>
+                <div class="col-sm-2 col-md-3 col-lg-4"></div>
+            </div>            
+        </div>
+        <script src="lovegemval.js"></script>
+    </body>
+</html>
