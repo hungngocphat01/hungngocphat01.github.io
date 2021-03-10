@@ -93,8 +93,7 @@ $ mount /dev/sdX_source /mnt
 
 - If the volume mounted successfully then congratulations! If not, you might receive something like this:
 
-{% endhighlight %}
-
+{% highlight bash %}
 mount: wrong fs type, bad option, bad superblock on /dev/sdb1, 
 missing codepage or helper program, or other error.
 {% endhighlight %}
