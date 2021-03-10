@@ -1,10 +1,10 @@
 # SITE CONFIGURATION
-baseurl: ""
+baseurl: "/"
 url: "https://hungngocphat01.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
 title: hiraki's blog                                    # site's title
-description: "hiraki's blog"      # used by search engines
+description: "homepage"      # used by search engines
 avatar:                         # Empty for no avatar in navbar
 favicon: assets/favicon.ico                             # Icon displayed in the tab
 
