@@ -1,118 +1,46 @@
-# Base blog settings
-baseurl                      : "" # the subpath of your site,                         # e.g. /blog/
-                              # set to '' in case of hosting on GitHub
-url                          : "http://hungngocphat01.github.io" # the base hostname & protocol for your site
-                                  # `http://<username>.github.io` - for GitHub
+# SITE CONFIGURATION
+baseurl: ""
+url: "https://hungngocphat01.github.io"
 
-blog:
-  title                      : hiraki01
-  description                  : >
-                               the blog of hiraki01
+# THEME-SPECIFIC CONFIGURATION
+title: hiraki's blog                                    # site's title
+description: "hiraki's blog"      # used by search engines
+avatar:                         # Empty for no avatar in navbar
+favicon: assets/favicon.ico                             # Icon displayed in the tab
 
-# Layout configuration
-  logo_path                  : "" # path to logo file
-  search_path                : "hungngocphat01.github.io"
-                               # needed for searchbox in archive page
-  hero_layout                : true # turn on hero layout for blog and posts
-  hero_placeholder           : "assets/img/generic_hero.jpg" # placeholder for hero image
-  excerpts                   : true # show excerpts instead of full post content on blog page
-  inline_footnotes           : true # enable/disable barefoot inline footnotes
-  titles_only                : false # show post titles only on main blog page
+# Header and footer text
+header_text: hiraki's blog  # Change Blog header text
+header_feature_image: assets/img/pexels/computer.jpeg
+footer_text: >
+  Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
-# Fonts
-  font                       : '"Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif'
-  load_google_fonts          : 'Rubik:400,400italic,700,700italic'
+# Blog
+excerpt: true                                           # Or "truncate" (first 250 characters), "false" to disable
+post_navigation: true
+color_image: /assets/img/lineart.png                    # A bit transparent for color posts.
 
+# Features
+# More in the _data folder for social icons, share buttons, author and language
+# For layout customization, go to the "_sass > base" folder, and check "_variables.scss"
+katex: true                                             # Enable if using math markup
+mermaid: true                                           # Enable mermaid-js for sequence and diagrams
+google_analytics:                                       # Tracking ID, e.g. "UA-000000-01"
+cookie_consent: false                                   # To respect the usage of cookies
+disqus_shortname:                                       # Your discus shortname for comments
 
-# Author info
-author:
-  fullname                  : Ohtaka Hiraki
-  rss                       : true # generate RSS feed and show it's icon in header
-  mail                      : 
-  twitter                   : 
-  github                    : hungngocphat01
-  youtube                   : 
-  stackoverflow             : 
-  disqus                    : 
-  google_analytics          : # 'UA-XXXXXXXX-X'
-  photo                     : "uploads/me2.png"
-  photo2x                   : # "uploads/me.png"
+# PAGINATION
+paginate: 5
+paginate_path: "/blog/page:num"
 
-
-
-## !!
-## Advanced blog settings
-## You should not change anything here unless you know what you are doing
-
-# Gems
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-
-# Permalinks
-permalink                    : posts/:slug
-
-# Posts
-excerpt_separator            : <!–-break-–>
-
-# Pagination
-paginate                     : 5
-paginate_path                : '/page-:num/'
-
-# Tags
+# PORTFOLIO
 collections:
-  my_tags:
+  portfolio:
     output: true
-    permalink: /tag/:slug/
-defaults:
-  -
-    scope:
-      path: ""
-      type: my_tags
-    values:
-      layout: blog-by-tag
+    permalink: /:collection/:name
 
-# Handling Reading
-exclude                    : ["README.md", "README.html"]
+# BUILD SETTINGS
+plugins: [jekyll-paginate, jekyll-seo-tag, jekyll-feed]
+exclude: [".jekyll-cache", ".idea", "vendor/*", "assets/node_modules"]
 
-# https://github.com/jekyll/jekyll/issues/4619
-# Markdown and highlighter settings
-markdown: kramdown
-# !github-pages! mandatory › https://help.github.com/articles/using-jekyll-with-pages/#configuration-settings-you-cannot-change
-# Since Jekyll 3 the default highlighter is Rouge (replaced Pygments.rb in v44)
-highlighter: rouge
-
-# More › http://kramdown.gettalong.org/quickref.html
-# Options › http://kramdown.gettalong.org/options.html
-kramdown:
-  input:          GFM
-  # https://github.com/jekyll/jekyll/pull/4090
-  syntax_highlighter: rouge
-
-  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
-  # span, block element options fall back to global
-  syntax_highlighter_opts:
-    # Rouge Options › https://github.com/jneen/rouge#full-options
-    # css_class: 'highlight'
-    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
-
-# Sass settings
-sass:
-  sass_dir                : _sass
-  style                   : compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
-
-# HTML Compression
-# - http://jch.penibelst.de/
-compress_html:
-  clippings               : all
-  endings                 : all
-  comments                : ["<!-- ", " -->"]
-  blanklines              : true
-  profile                 : false
-  ignore:
-  envs                    : [local]
+# theme: type-on-strap                                  # if using the theme as a jekyll theme gem
+remote_theme: sylhare/Type-on-Strap                     # If using as a remote_theme in github

@@ -1,4 +1,0 @@
----
-slug: shitpost
-name: shitpost
----
