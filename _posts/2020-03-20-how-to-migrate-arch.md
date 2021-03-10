@@ -22,6 +22,7 @@ published: true
 ### i. Take note of the partitions that you will be working on.
 - Boot your Arch Installation Media.
 - Connect to the internet and edit the `mirrorlist` file:
+
 ```bash
 $ ip link
 $ nano /etc/pacman.d/mirrorlist
@@ -33,6 +34,7 @@ $ wifi-menu
 ```
 
 - Run lsblk to view your partition list.<br>Sample output:
+
 ```bash
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    0 223.6G  0 disk
@@ -59,6 +61,7 @@ sdc      8:32   1  28.9G  0 disk
 - In this case, we can easily use dd to transfer our data.
 - Remember to double check the names of your partitions before we start.
 - Execute `fdisk -l /dev/sdX_source` to get the partition block size.<br>Sample output:
+
 ```bash
 Disk /dev/sda1: 181.98 GiB, 195375923200 bytes, 381593600 sectors
 Units: sectors of 1 * 512 = 512 bytes
@@ -68,6 +71,7 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 
 - Note down your block size. In my case it is 512 bytes.
 - Execute this command to transfer all data from `/dev/sdX_source` to `/dev/sdX_dest`. Replace `sdX_source` - and `sdX_dest` with your corresponding partition names and `bs=512` with your block size.
+
 ```bash
 $ dd if=/dev/sdX_source of=/dev/sdX_dest bs=512 conv=notrunc,noerror,sync status=progress
 ```
@@ -76,11 +80,13 @@ $ dd if=/dev/sdX_source of=/dev/sdX_dest bs=512 conv=notrunc,noerror,sync status
 - Check the new filesystem with `fsck -y /dev/sdX_dest`. The `-y` argument denotes that if there are any errors in the filesystem, they will be fixed automatically without asking.
 - If you have not created a mount point for the new partition yet, create one by executing `mkdir /mnt`.
 - Mount `/dev/sdX_source` to `/mnt` to see if it works.
+
 ```bash
 $ mount /dev/sdX_source /mnt
 ```
 
 - If the volume mounted successfully then congratulations! If not, you might receive something like this:
+
 ```
 mount: wrong fs type, bad option, bad superblock on /dev/sdb1, 
 missing codepage or helper program, or other error.
@@ -92,6 +98,7 @@ missing codepage or helper program, or other error.
 - In this case, it is likely that dd will fail and you will not be able to mount the new partition after having dd-ed it. We will perform file-level transfers to migrate the data, or in other words, copy the files one by one.
 - Remember to double check the names of your partitions before we start.
 - Create mount points for both `/dev/sdX_source` and `/dev/sdX_dest` if you have not done so.
+
 ```bash
 $ mkdir /mnt
 $ mkdir /mnt_old 
@@ -99,12 +106,14 @@ $ mkdir /mnt_old
 
 - `/mnt` will be the mount point of your new partition, while the old one will be mounted to `/mnt_old`.
 - Mount the partitions.
+
 ```bash
 $ mount /dev/sdX_source /mnt_old
 $ mount /dev/sdX_dest /mnt
 ```
 
 - Run the following command to copy all data from /mnt_old to /mnt
+
 ```bash
 $ rsync -AXa --info=progress2 /mnt_old/ /mnt
 ```
@@ -115,11 +124,13 @@ $ rsync -AXa --info=progress2 /mnt_old/ /mnt
 
 ### iii. Reinstalling the bootloader.
 - If you have created a new EFI partition in your destination disk and no bootloader has been installed yet, remember to format it first.
+
 ```bash
 $ mkfs.fat /dev/sdX_efi
 ```
 - If there is already a bootloader installed in the destination EFI partition (e.g. Windows Bootloader), then do not format it, or else your Windows installation won't be able to boot.
 - Mount the EFI partition:
+
 ```bash
 $ mkdir /mnt/efi
 $ mount /dev/sdX_efi /mnt/efi
@@ -127,6 +138,7 @@ $ mount /dev/sdX_efi /mnt/efi
 - Run `mkswap /dev/sdX_swap` and `swapon /dev/sdX_swap` if you would like to make use of the swap partition.
 - Make sure that your new root `/` has been mounted to `/mnt` and the ESP has been mounted to `/mnt/efi` by executing `ls /mnt` and `ls /mnt/efi` respectively.
 - Run this command to generate a new fstab file:
+
 ```bash
 $ genfstab -U /mnt > /mnt/etc/fstab
 ```
