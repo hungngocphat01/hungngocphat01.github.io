@@ -1,0 +1,4 @@
+---
+slug: shitpost
+name: shitpost
+---

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Error 404 | hungngocphat01</title>
+
+    <meta name="description" content="hungngocphat01's github page.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hungngocphat01.github.io/oldpage/404.html">
+    <meta property="og:title" content="Error 404 | hungngocphat01">
+    <meta property="og:description" content="hungngocphat01's github page.">
+    <meta property="og:image" content="https://hungngocphat01.github.io/oldpage/image/preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hungngocphat01.github.io/oldpage/404.html">
+    <meta property="twitter:title" content="Error 404 | hungngocphat01">
+    <meta property="twitter:description" content="hungngocphat01's github page.">
+    <meta property="twitter:image" content="https://hungngocphat01.github.io/oldpage/image/preview.jpg">
+
+    <link rel="canonical" href="https://hungngocphat01.github.io/oldpage/404.html" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/oldpage/css/css.css">
+    <script src="/oldpage/common/navibar_credit.js"></script>
+    <script>
+        $(window).on("load", function(){
+            navibarSelect("#naviUnavailable");
+            $("#naviUnavailable").attr("style", "display:inline-block;");
+        });
+    </script>
+</head>
+    <body>
+        <div class="container-fluid" style="display:none;">
+            <div class="row content">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <h3>hungngocphat01</h3>
+                    <p style="margin-bottom:20px;">hcmus::191206xx</p>
+                    <!--NAVIGATION BAR-->
+                    <div id="navibar"></div>
+                    <!--CONTENT-->
+                    <div class="content" style="margin-top:20px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="/"><img src="/oldpage/image/honk.png" class="responsive-img banner" /></a>
+                                </td>
+                                <td>
+                                    <p>Page not found or under development.<br/> Make sure you entered the correct URL.<br/>
+                                    Follow <span class="link-selected" id="honk-text">Honoka</span> to go back to homepage.</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--MODAL-->
+                        <div class="modal fade" id="alertModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Alert!
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This is not a link. Follow Honoka to go back to homepage.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <p id="credit" class="credit"></p>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>            
+        </div>
+        <script>
+            $(window).on("load", function(){
+                $(".container-fluid").addClass("w3-animate-top");
+                $(".container-fluid").attr("style", "display:block;");
+            });
+
+            $("#honk-text").click(function(){
+                $("#alertModal").modal();
+            });
+        </script>
+    </body>
+</html>
