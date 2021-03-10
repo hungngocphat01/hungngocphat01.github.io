@@ -23,19 +23,21 @@ published: true
 - Boot your Arch Installation Media.
 - Connect to the internet and edit the `mirrorlist` file:
 
-```bash
+{% highlight bash %}
 $ ip link
 $ nano /etc/pacman.d/mirrorlist
-```
+{% endhighlight %}
+
 
 - If you want to connect to a wireless network:
-```bash
+{% highlight bash %}
 $ wifi-menu
-```
+{% endhighlight %}
+
 
 - Run lsblk to view your partition list.<br>Sample output:
 
-```bash
+{% highlight bash %}
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    0 223.6G  0 disk
 ├─sda2   8:2    0  40.6G  0 part 
@@ -46,7 +48,8 @@ sdb      8:16   0 465.8G  0 disk
 └─sdb4   8:20   0     3G  0 part 
 sdc      8:32   1  28.9G  0 disk 
 └─sdc1   8:33   1  28.9G  0 part
-```
+{% endhighlight %}
+
 
 - Note down the name of
   - Your source partition (the partition having Arch installed on at the momment).
@@ -62,35 +65,40 @@ sdc      8:32   1  28.9G  0 disk
 - Remember to double check the names of your partitions before we start.
 - Execute `fdisk -l /dev/sdX_source` to get the partition block size.<br>Sample output:
 
-```bash
+{% highlight bash %}
 Disk /dev/sda1: 181.98 GiB, 195375923200 bytes, 381593600 sectors
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
-```
+{% endhighlight %}
+
 
 - Note down your block size. In my case it is 512 bytes.
 - Execute this command to transfer all data from `/dev/sdX_source` to `/dev/sdX_dest`. Replace `sdX_source` - and `sdX_dest` with your corresponding partition names and `bs=512` with your block size.
 
-```bash
+{% highlight bash %}
 $ dd if=/dev/sdX_source of=/dev/sdX_dest bs=512 conv=notrunc,noerror,sync status=progress
-```
+{% endhighlight %}
+
 
 - Wait until the progress completes.
 - Check the new filesystem with `fsck -y /dev/sdX_dest`. The `-y` argument denotes that if there are any errors in the filesystem, they will be fixed automatically without asking.
 - If you have not created a mount point for the new partition yet, create one by executing `mkdir /mnt`.
 - Mount `/dev/sdX_source` to `/mnt` to see if it works.
 
-```bash
+{% highlight bash %}
 $ mount /dev/sdX_source /mnt
-```
+{% endhighlight %}
+
 
 - If the volume mounted successfully then congratulations! If not, you might receive something like this:
 
-```
+{% endhighlight %}
+
 mount: wrong fs type, bad option, bad superblock on /dev/sdb1, 
 missing codepage or helper program, or other error.
-```
+{% endhighlight %}
+
 
 - Reformat the destination partition with `mkfs.ext4 /dev/sdX_dest` and follow the next steps in section **b** to overcome this issue.
 
@@ -99,24 +107,27 @@ missing codepage or helper program, or other error.
 - Remember to double check the names of your partitions before we start.
 - Create mount points for both `/dev/sdX_source` and `/dev/sdX_dest` if you have not done so.
 
-```bash
+{% highlight bash %}
 $ mkdir /mnt
 $ mkdir /mnt_old 
-```
+{% endhighlight %}
+
 
 - `/mnt` will be the mount point of your new partition, while the old one will be mounted to `/mnt_old`.
 - Mount the partitions.
 
-```bash
+{% highlight bash %}
 $ mount /dev/sdX_source /mnt_old
 $ mount /dev/sdX_dest /mnt
-```
+{% endhighlight %}
+
 
 - Run the following command to copy all data from /mnt_old to /mnt
 
-```bash
+{% highlight bash %}
 $ rsync -AXa --info=progress2 /mnt_old/ /mnt
-```
+{% endhighlight %}
+
 **Be careful!** Remember to type one more / after /mnt_old or else a new folder named mnt_old will be created inside /mnt!
 
 - Wait until the progress completes.
@@ -125,45 +136,52 @@ $ rsync -AXa --info=progress2 /mnt_old/ /mnt
 ### iii. Reinstalling the bootloader.
 - If you have created a new EFI partition in your destination disk and no bootloader has been installed yet, remember to format it first.
 
-```bash
+{% highlight bash %}
 $ mkfs.fat /dev/sdX_efi
-```
+{% endhighlight %}
+
 - If there is already a bootloader installed in the destination EFI partition (e.g. Windows Bootloader), then do not format it, or else your Windows installation won't be able to boot.
 - Mount the EFI partition:
 
-```bash
+{% highlight bash %}
 $ mkdir /mnt/efi
 $ mount /dev/sdX_efi /mnt/efi
-```
+{% endhighlight %}
+
 - Run `mkswap /dev/sdX_swap` and `swapon /dev/sdX_swap` if you would like to make use of the swap partition.
 - Make sure that your new root `/` has been mounted to `/mnt` and the ESP has been mounted to `/mnt/efi` by executing `ls /mnt` and `ls /mnt/efi` respectively.
 - Run this command to generate a new fstab file:
 
-```bash
+{% highlight bash %}
 $ genfstab -U /mnt > /mnt/etc/fstab
-```
+{% endhighlight %}
+
 This will create a new fstab file. All of your modifications on the old one will be lost (if there are any).
 - Check the new fstab file to see whether it has been correctly created or not. Make changes if you wish to.
-```bash
+{% highlight bash %}
 $ nano /mnt/etc/fstab
-```
+{% endhighlight %}
+
 - Chroot into /mnt:
-```bash
+{% highlight bash %}
 $ arch-chroot /mnt
-```
+{% endhighlight %}
+
 - Generate a new initial ramdisk:
-```bash
+{% highlight bash %}
 $ mkinitcpio -p linux
-```
+{% endhighlight %}
+
 - Reinstall the bootloader.
-```bash
+{% highlight bash %}
 $ pacman -Sy efibootmgr grub os-prober
 $ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 $ grub-mkconfig -o /boot/grub/grub.cfg
-```
+{% endhighlight %}
+
 - Reboot the system
-```bash
+{% highlight bash %}
 $ exit
 $ umount -a
 $ reboot
-```
+{% endhighlight %}
