@@ -53,7 +53,7 @@
 
     .post-img {
       vertical-align: middle;
-      border-radius: 10px;
+      border-radius: 5px;
       overflow: hidden;
 
       @media (min-width: $break) {
@@ -69,8 +69,10 @@
         width: 100%;
         padding: 0;
         vertical-align: middle;
+        opacity: 0.8;
       }
 
+      background-color: $image-background-color;
     }
 
     .post-img img {
