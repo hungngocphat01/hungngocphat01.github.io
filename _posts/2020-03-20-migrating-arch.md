@@ -1,14 +1,15 @@
 ---
 layout: post
 title: Migrating Arch Linux
-feature-img: "assets/img/feature-img/37037105-hard-disk-with-moving-head-.jpg"
 thumbnail: "assets/img/feature-img/37037105-hard-disk-with-moving-head-.jpg"
+color: 222831
 tags: [linux, howto]
-excerpt_separator: =======
+excerpt_separator: <!--more-->
 ---
 
-A post on how to migrate your Arch Linux installation.
-=======
+Have you ever faced some situations in which you have to transfer your Linux installation from one partition to another?<br>
+\[This post contains bad English grammar. Will be fixed later\]
+<!--more-->
 
 ## 1. Prepare
 - A (newly created and) large enough partition to hold your Arch installation has to be created prior to following below steps.
@@ -52,10 +53,10 @@ A post on how to migrate your Arch Linux installation.
   - Your source partition (the partition having Arch installed on at the momment).
   - Your destination partition (the new partition to where you desire to transfer your Arch installation) .
   - Your destination EFI partition (to where you will transfer the bootloader to, it can either be your new or current EFI partition).
-- To avoid confusion, in this guide I will refer them as /dev/sdX_source, /dev/sdX_dest and /dev/sdX_efi. In the commands below, replace them with your corresponding partition names.
+- To avoid confusion, in this guide I will refer them as `/dev/sdX_source`, `/dev/sdX_dest` and `/dev/sdX_efi`. In the commands below, replace them with your corresponding partition names.
 
 ## ii. Transfering your Arch installation.
-- Format your destination partition by running mkfs.ext4 /dev/sdX_dest.
+- Format your destination partition by running `mkfs.ext4 /dev/sdX_dest`.
 
 #### a. If the capacity of your new partition is larger than that of your old partition.
 - In this case, we can easily use dd to transfer our data.
