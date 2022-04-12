@@ -17,12 +17,12 @@ In my free time, I often play the guitar, browsing social networking sites and w
 
 Honestly, I still do not know what I want to become in the future. Back-end engineer? DevOps? AI Engineer? Data Scientist? Data Engineer? I have no idea. But my most significant strength at the moment (2022) is data science and machine learning.
 
-I used to be extremely against Math in middle school (I thought $\sqrt{1}+\sqrt{2}=\sqrt{3}$), but now I have to study it in order to be a machine learning engineer. They're all just a ripped-off version of Stats/LinAlg/Calculus to some extent.
+I used to be extremely against Math in middle school (I thought $$\sqrt{1}+\sqrt{2}=\sqrt{3}$$), but now I have to study it in order to be a machine learning engineer. They're all just a ripped-off version of Stats/LinAlg/Calculus to some extent.
 
 I have used all 3 main OSes including Windows (ME to 11), Linux (the distro is arch btw), and macOS (10.12 - 10.15), among which my most favourite one is OSX. It's like a fusion of both Windows, with its software abundance, and Linux, with its developer-friendly Unix environment, plus its blurry glassy fancy user interface.
 
-A more technical-specific introduction with academic achievements can be seen on my [GitHub profile](https://github.com/hungngocphat).
+A more technical-specific introduction with academic achievements can be seen on my [GitHub profile](https://github.com/hungngocphat01).
 
 ## About my alias
 I'm Vietnamese, and my real name is in the subdomain of where I am hosting this blog ;)
-Vietnam [used to use a Han-inspired writing system](https://simple.wikipedia.org/wiki/Sino-Vietnamese_characters) in almost 2000 years, so basically almost everything in modern Vietnamese can be rewritten in the old system. The language haven't change itself, only the script did. When written in the old system, my name is 雄鈺発. Since they are Han characters, they can also be pronounced in Japanese as well. 雄鈺発 can be read as `oh`, `takara` and `hiraki` respectively. Combining all of them and omitting the 'ra', we get Otaka Hiraki. But actually I prefer to be called Hiraki Hung with my surname being pronounced in Vietnamese.
+Vietnam [used to use a Han-inspired writing system](https://simple.wikipedia.org/wiki/Sino-Vietnamese_characters) in almost 2000 years, so basically almost everything in modern Vietnamese can be rewritten in the old system. The language haven't changed itself, only the script did (_thanks_ to the French colonists). When written in the old system, my name is 雄鈺発. Since they are Han characters, they can also be pronounced in Japanese as well. 雄鈺発 can be read as `oh`, `takara` and `hiraki` respectively. Combining all of them and omitting the 'ra', we get Otaka Hiraki. But actually I prefer to be called Hiraki Hung with my surname being pronounced in Vietnamese.
