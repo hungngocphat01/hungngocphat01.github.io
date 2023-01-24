@@ -1,0 +1,19 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Watch Sass",
+            "type": "shell",
+            "command": "sass --watch assets/scss/main.scss:assets/css/main.css assets/scss/portfolio.scss:assets/css/portfolio.css",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }]
+    }

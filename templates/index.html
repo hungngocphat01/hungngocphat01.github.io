@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link href="assets/css/main.css" rel="stylesheet" />
+        <title>hungngocphat | about</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <div class="page-header-name">
+                    <a href="/">hung ngoc-phat</a>
+                </div>
+
+                <div class="page-header-contact-list">
+                    <span>
+                        <a href="mailto:{{ contact["email"] }}">email</a>
+                    </span>
+                    <span>
+                        <a href="{{ contact["github"] }}">github</a>
+                    </span>
+                    <span>
+                        <a href="{{ contact["linkedin"] }}">linkedin</a>
+                    </span>
+                </div>
+            </header>
+
+            <div id="main-body">
+                <div id="section-navigation">
+                    <ol>
+                        <li>whoami</li>
+                        <li class="port">portfolio</li>
+                        <li>experiences</li>
+                        <li>education</li>
+                        <li>technologies</li>
+                        <li>publications</li>
+                    </ol>
+                </div>
+
+                <div id="section-content">
+                    <article section-name="whoami" class="selected">
+                        {% for p in whoami %}
+                        <p>{{ p }}</p>
+                        {% endfor %}
+                    </article>
+
+                    <article section-name="experiences">
+                        <div class="exp-list">
+                            {% for exp_item in experiences %}
+                            <div class="exp-item">
+                                <div class="exp-header">
+                                    <div class="exp-header-title">
+                                        {{ exp_item["title"] }}
+                                    </div>
+        
+                                    <div class="exp-header-time">
+                                        {{ exp_item["time"] }}
+                                    </div>
+                                </div>
+    
+                                <div class="exp-description">
+                                    <ul>
+                                        {% for exp_desc in exp_item["desc"] %}
+                                        <li>{{ exp_desc }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </article>
+
+                    <article section-name="education">
+                        <div class="exp-list">
+                            {% for edu_item in education %}
+                            <div class="exp-item">
+                                <div class="exp-header">
+                                    <div class="exp-header-title">
+                                        {{ edu_item["title"] }}
+                                    </div>
+        
+                                    <div class="exp-header-time">
+                                        {{ edu_item["time"] }}
+                                    </div>
+                                </div>
+    
+                                <div class="exp-description">
+                                    {% if "honors" in edu_item %}
+                                    <div class="exp-subsection">
+                                        <div class="subheader">Honors & Awards</div>
+                                            <ul>
+                                                {% for honor in edu_item["honors"] %}
+                                                    <li>{{ honor }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if "courses" in edu_item %}
+                                    <div class="exp-subsection">
+                                        <div class="subheader">Related courses</div>
+                                        <ul>
+                                            {% for courses in edu_item["courses"] %}
+                                                <li>{{ courses }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </article>
+
+                    <article section-name="technologies">
+                        {% for tech, content in technologies.items() %}
+                        <div class="tech-section">
+                            <div class="subheader">{{ tech }}</div>
+                            <div>{{ content }}</div>
+                        </div>
+                        {% endfor %}
+                    </article>
+
+                    <article section-name="publications">
+                        <ul>
+                            {% for pub in publications %}
+                                <li>{{ pub }}</li>
+                            {% endfor %}
+                        </ul>
+                    </article>
+
+                    <article section-name="portfolio">
+                        <p>
+                            Please click <a href="portfolio.html">here</a> if you were not redirected
+                        </p>
+                    </article>
+                </div>
+            </div>
+
+        <script src="assets/js/index.js"></script>
+</body>
+</html>

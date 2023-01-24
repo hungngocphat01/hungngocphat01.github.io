@@ -1,0 +1,108 @@
+contact:
+  email: hungngocphat01@gmail.com
+  github: https://github.com/hungngocphat01
+  linkedin: https://www.linkedin.com/in/hungngocphat-hcmus/
+whoami: 
+  - I am a senior CS student at <span class="b c-purple">University of Science, Vietnam National University HCM</span>,enthusiastically pursuing the career as an <span class="b c-orange">MLOps Engineer</span>
+  - My main workstation is a ThinkPad T14 (Ryzen) running <span class="b c-orange">Fedora 37</span>. In the past i used arch btw, as suggested by my friend <a class="" href="http://ashpex.eu.org/">Ashpex</a>, who dragged me into this Linux lore.
+  - Watching <span class="b c-orange">anime</span> and playing the guitar are what I often do when I'm not busy with tons of deadlines from my uni. I'm quite into 2.5D musical franchises, such as Love Live!, iDOLM@STER, BanG Dream!, etc. They are something very unique to the Japanese pop culture, in which my favourite character/seiyuu pair is Shibuya Kanon/Date Sayuri from <span class="b c-orange">Love Live!</span>.
+experiences:
+  - title: FPT Telecom, Data Scientist Intern
+    time: October 2022 - now
+    desc:
+      - Participate in data enrichment from social networking sources for the corporation's user data platform.
+      - Build pipelines to collect, clean, and ingest social networking data from various sources to the data lake.
+      - Build and maintain internal tools (chatbots, dashboards, etc.) to assist colleagues in managing their daily work more effectively.
+
+  - title: NES Academic Club - VNU.HCMUS, Member
+    time: October 2019 - September 2022
+    desc:
+      - Develop Arduino firmware in C++
+      - Help first year club members get familiar with C/C++ concepts
+      - Prepare documents and/or make presentation for the "Introduction to Programming I & II" final exam preparation seminars (for CS and E/TEL students).
+education:
+  - title: University of Science, Undergraduate
+    time: September 2019 - September 2023 (expected)
+    honors:
+      - Top 1 GPA of Class 2019, Regular Program (2021 - 2022)
+    courses:
+      - Data Structure and Algorithms
+      - Introduction to OOP
+      - Computer Networking
+      - Programming for Data Science
+      - Introduction to AI
+      - Introduction to Big Data
+      - Introduction to Machine Learning
+      - Data Visualization
+      - Computational Statistics
+      - Applications of Big Data
+      - Deep Learning for Data Science
+technologies:
+  Languages: Python, TypeScript, Bash, C++
+  DS & DE: Hadoop, Spark, Airflow, Pandas, Statsmodel, ...  
+  System: Linux, Docker, Git
+  Machine learning: Scikit-learn, Keras, Pytorch, Fairseq
+  Software Engineering: Flask, Django, Express.js
+  DBMS: MongoDB, Cassandra, PosthreSQL
+  Dashboard and Visualization: Tableau, Plotly.js, Seaborn, Matplotlib
+publications:
+  - Utilizing BERT embedding in multi-lingual machine translation (2023, WIP)
+
+portfolio:
+  Data science - Machine learning:
+    - title: Anime recommender
+      img: hero-anime-recc.png
+      desc: A simple Flask application for anime recommendation using kNN algorithm, trained on MAL dataset (80M rows).
+      gh: https://github.com/hungngocphat01/MAL-Recommender-kNN
+      tags:
+        - sklearn
+        - flask
+    - title: HonoKanon
+      img: hero-honokanon.jpg
+      desc: "Simple system to classify two look-alike anime characters Shibuya Kanon and Kousaka Honoka. Base network: MobileNet v2. Accuracy on test set: 91%."
+      gh: https://github.com/hungngocphat01/Toy-Datascience-Projects/tree/honokanon
+      tags:
+        - keras
+    - title: Lyrics Alignment
+      img: hero-lyricsalign.jpg
+      desc: Align the Vietnamese audio and lyrics text of a song word-by-word using ASR and forced alignment.
+      gh: https://github.com/hungngocphat01/zac22-lyrics-alignment
+      tags:
+        - transformers
+    - title: Airflow and Spark data pipelining
+      img: hero-airflow.png
+      desc: Apply big data processing techniques to perform complex aggregation and analysis on the Japanese trade statistics dataset (100M rows).
+      gh: https://github.com/hungngocphat01/airflow-pipeline-japan-trade
+      tags:
+        - airflow
+        - spark
+        - gcp
+  Software Engineering:
+    - title: Netaholi
+      img: hero-netaholi.png
+      desc: University project, prototypical online learning platform. Teachers can create courses and upload teaching materials. Students can enroll in courses, submit exercises, ...
+      gh: https://github.com/hungngocphat01/HCMUS-IntroSoftware-Netaholi
+      tags:
+        - django
+    - title: CppSnake
+      img: hero-cppsnake.png
+      desc: A terminal snake game written in C++
+      gh: https://github.com/hungngocphat01/CppSnake
+      tags:
+        - cpp
+        - ncurses
+    - title: Quản lý lì xì
+      img: hero-qllx.jpg
+      desc: My React Native beginner project. The funtionality of this app is suggested by its name already.
+      gh: https://github.com/hungngocphat01/QuanLyLiXi-ReactNative
+      tags:
+        - react native
+        - redux
+    - title: Memories
+      img: hero-qllx.jpg
+      desc: Imgur-like site where you can upload images of places where you have been to, with support for geolocation tagging and Facebook login.
+      gh: https://github.com/hungngocphat01/Django-Memories-Web
+      tags:
+        - django
+        - oauth
+        - aws

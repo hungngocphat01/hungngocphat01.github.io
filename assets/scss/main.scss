@@ -167,6 +167,14 @@ article.selected {
     }
 }
 
+.tech-section {
+    .subheader {
+        margin-bottom: 0;
+    }
+    margin-bottom: 10px;
+}
+
+
 .b {
     font-weight: bold;
 }
@@ -185,11 +193,4 @@ article.selected {
 
 .c-cyan {
     color: colors.$cyan;
-}
-
-.tech-section {
-    .subheader {
-        margin-bottom: 0;
-    }
-    margin-bottom: 10px;
 }
