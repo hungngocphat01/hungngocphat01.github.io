@@ -17,3 +17,7 @@ function showArticle(section) {
         }
     }
 }
+
+document.querySelector("li.port").addEventListener("click", function(event) {
+    window.location.href = "portfolio.html";
+});

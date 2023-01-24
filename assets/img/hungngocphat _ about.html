@@ -71,7 +71,7 @@
 
                     <article section-name="experiences">
                         <div class="exp-list">
-                            <div class="exp-item">
+                            <div>
                                 <div class="exp-header">
                                     <div class="exp-header-title">
                                         FPT Telecom, Data Scientist Intern
@@ -96,7 +96,7 @@
                                     </ul>
                                 </div>
 
-                                <div class="exp-item">
+                                <div>
                                     <div class="exp-header">
                                         <div class="exp-header-title">
                                             NES Academic Club, VNU.HCMUS
@@ -127,7 +127,7 @@
 
                     <article section-name="education">
                         <div class="exp-list">
-                            <div class="exp-item">
+                            <div>
                                 <div class="exp-header">
                                     <div class="exp-header-title">
                                         University of Science, Undergraduate
@@ -142,28 +142,34 @@
                                     <div class="exp-subsection">
                                         <div class="subheader">Honors & Awards</div>
 
-                                        <ul>
-                                            <li>Top 1 GPA of Class 2019, Regular Program (2021 - 2022)</li>
-                                        </ul>
+                                        <div>
+                                            <ul>
+                                                <li>Top 1 GPA of Class 2019, Regular Program (2021 - 2022)</li>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <div class="exp-subsection">
                                         <div class="subheader">Related courses</div>
     
-                                        <ul class="exp-sublist">
-                                            <li>Data Structure and Algorithms</li>
-                                            <li>Introduction to OOP</li>
-                                            <li>Computer Networking</li>
-                                            <li>Programming for Data Science</li>
-                                            <li>Introduction to AI</li>
-                                            <li>Introduction to Big Data</li>
-                                            <li>Introduction to Machine Learning</li>
-                                            <li>Data Visualization</li>
-                                            <li>Computational Statistics</li>
-                                            <li>Applications of Big Data</li>
-                                            <li>Deep Learning for Data Science</li>
-                                        </ul>
+                                        <div>
+                                            <ul class="exp-sublist">
+                                                <li>Data Structure and Algorithms</li>
+                                                <li>Introduction to OOP</li>
+                                                <li>Computer Networking</li>
+                                                <li>Programming for Data Science</li>
+                                                <li>Introduction to AI</li>
+                                                <li>Introduction to Big Data</li>
+                                                <li>Introduction to Machine Learning</li>
+                                                <li>Data Visualization</li>
+                                                <li>Computational Statistics</li>
+                                                <li>Applications of Big Data</li>
+                                                <li>Deep Learning for Data Science</li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                </div>
+
                                 </div>
                             </div>
                         </div>
@@ -226,5 +232,43 @@
             </div>
 
         <script src="assets/js/index.js"></script>
+    <!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>

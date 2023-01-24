@@ -1,0 +1,10 @@
+@mixin ahover($color, $background-color) {
+    a, a:visited {
+        color: $color;
+    }
+
+    a:hover {
+        background-color: $color;
+        color: $background-color;
+    }
+}
