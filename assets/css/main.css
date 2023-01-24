@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Input Sans";
-  src: url("/assets/fonts/Input-Bold_(InputSansNarrow-Bold)");
+  src: url("/assets/fonts/Input-Regular_(InputSansNarrow-Regular).ttf");
 }
 @font-face {
   font-family: "Input Sans";
-  src: url("/assets/fonts/Input-Regular_(InputSansNarrow-Regular)");
+  src: url("/assets/fonts/Input-Bold_(InputSansNarrow-Bold).ttf");
   font-weight: bold;
 }
 body {
