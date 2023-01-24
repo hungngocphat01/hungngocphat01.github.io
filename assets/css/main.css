@@ -30,6 +30,10 @@ a {
   text-underline-offset: 3px;
 }
 
+.lh, p {
+  line-height: 1.3;
+}
+
 .container {
   margin: auto;
 }
@@ -108,14 +112,7 @@ header .page-header-contact-list ul li {
 #section-navigation ol li {
   color: #8be9fd;
 }
-#section-navigation ol li:hover {
-  background-color: #8be9fd;
-  color: #282a36;
-}
-#section-navigation a, #section-navigation a:visited {
-  color: #8be9fd;
-}
-#section-navigation a:hover {
+#section-navigation ol li:hover, #section-navigation ol .hovered {
   background-color: #8be9fd;
   color: #282a36;
 }
@@ -133,23 +130,6 @@ header .page-header-contact-list ul li {
 
 .exp-subsection {
   margin-bottom: 30px;
-}
-
-.exp-sublist {
-  column-gap: 30px;
-}
-@media screen and (min-width: 600px) {
-  .exp-sublist {
-    columns: 2;
-  }
-}
-@media screen and (max-width: 600px) {
-  .exp-sublist {
-    columns: 1;
-  }
-}
-.exp-sublist li {
-  max-width: fit-content;
 }
 
 .subheader {
@@ -190,6 +170,10 @@ article.selected {
 }
 .tech-section .subheader {
   margin-bottom: 0;
+}
+
+.cert-list a {
+  text-decoration: none;
 }
 
 .b {

@@ -3,7 +3,7 @@ contact:
   github: https://github.com/hungngocphat01
   linkedin: https://www.linkedin.com/in/hungngocphat-hcmus/
 whoami: 
-  - I am a senior CS student at <span class="b c-purple">University of Science, Vietnam National University HCM</span>,enthusiastically pursuing the career as an <span class="b c-orange">MLOps Engineer</span>
+  - I am a senior CS student at <span class="b c-purple">University of Science, Vietnam National University HCM</span>, enthusiastically pursuing the career as an <span class="b c-orange">MLOps Engineer</span>
   - My main workstation is a ThinkPad T14 (Ryzen) running <span class="b c-orange">Fedora 37</span>. In the past i used arch btw, as suggested by my friend <a class="" href="http://ashpex.eu.org/">Ashpex</a>, who dragged me into this Linux lore.
   - Watching <span class="b c-orange">anime</span> and playing the guitar are what I often do when I'm not busy with tons of deadlines from my uni. I'm quite into 2.5D musical franchises, such as Love Live!, iDOLM@STER, BanG Dream!, etc. They are something very unique to the Japanese pop culture, in which my favourite character/seiyuu pair is Shibuya Kanon/Date Sayuri from <span class="b c-orange">Love Live!</span>.
 experiences:
@@ -52,9 +52,9 @@ certificates:
     url: "#"
   - title: Machine Learning (Stanford)
     url: https://www.coursera.org/account/accomplishments/verify/DPZ3S3FGH7ML
-  - title: Applied Data Science Capstone
+  - title: Applied Data Science Capstone (IBM)
     url: https://www.coursera.org/account/accomplishments/verify/2ZXQKD6KFKZL
-  - title: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization"
+  - title: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization (DeepLearning.io)"
     url: https://www.coursera.org/account/accomplishments/verify/D3ZM5MHKSR2N
 
 portfolio:

@@ -27,6 +27,14 @@ a {
     text-underline-offset: 3px;
 }
 
+.lh {
+    line-height: 1.3;
+}
+
+p {
+    @extend .lh;
+}
+
 .container {
     margin: auto;
     @media screen and (min-width: 600px) {
@@ -98,12 +106,11 @@ header {
             color: colors.$cyan;
         }
 
-        li:hover {
+        li:hover, .hovered {
             background-color: colors.$cyan;
             color: colors.$background-color;
         }
     }
-    @include utils.ahover(colors.$cyan, colors.$background-color);
 }
 
 .exp-header {
@@ -123,21 +130,6 @@ header {
     margin-bottom: 30px;
 }
 
-.exp-sublist {
-    @media screen and (min-width: 600px) {
-        columns: 2;
-    }
-    @media screen and (max-width: 600px) {
-        columns: 1;
-    }
-    
-    column-gap: 30px;
-    li {
-        max-width: fit-content;
-    }
-    
-}
-
 .subheader {
     margin-bottom: 10px;
     text-decoration: underline;
@@ -146,7 +138,6 @@ header {
 
 article {
     display: none;
-    
 }
 article.selected {
     display: block;
@@ -172,6 +163,12 @@ article.selected {
         margin-bottom: 0;
     }
     margin-bottom: 10px;
+}
+
+.cert-list {
+    a {
+        text-decoration: none;
+    }
 }
 
 

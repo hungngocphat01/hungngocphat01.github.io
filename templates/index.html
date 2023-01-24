@@ -142,11 +142,13 @@
                     </article>
 
                     <article section-name="certs">
-                        {% for cert in certificates %}
-                            <li>
-                                <a href="{{ cert["url"] }}">{{ cert["title"] }}</a>
-                            </li>
-                        {% endfor %}
+                        <ul>
+                            {% for cert in certificates %}
+                                <li class="cert-list">
+                                    <a href="{{ cert["url"] }}">{{ cert["title"] }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </article>
                 </div>
             </div>
