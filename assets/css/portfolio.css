@@ -37,9 +37,18 @@
   flex-direction: column;
 }
 
-.project-link {
+.project-footer {
   margin-top: auto;
+  display: flex;
+  justify-content: space-between;
 }
+
+.project-tag-item {
+  width: fit-content;
+  color: #f8f8f2;
+  background-color: #44475a;
+}
+
 .project-link a {
   color: #6272a4;
 }

@@ -34,8 +34,19 @@
     flex-direction: column;
 }
 
-.project-link {
+.project-footer {
     margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-tag-item {
+    width: fit-content;
+    color: colors.$foreground;
+    background-color: colors.$secondary;
+}
+
+.project-link {
     a {
         color: colors.$comment;
     }
