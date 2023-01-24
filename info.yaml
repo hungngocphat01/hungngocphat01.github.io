@@ -47,6 +47,15 @@ technologies:
   Dashboard and Visualization: Tableau, Plotly.js, Seaborn, Matplotlib
 publications:
   - Utilizing BERT embedding in multi-lingual machine translation (2023, WIP)
+certificates:
+  - title: IELTS 7.5
+    url: "#"
+  - title: Machine Learning (Stanford)
+    url: https://www.coursera.org/account/accomplishments/verify/DPZ3S3FGH7ML
+  - title: Applied Data Science Capstone
+    url: https://www.coursera.org/account/accomplishments/verify/2ZXQKD6KFKZL
+  - title: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization"
+    url: https://www.coursera.org/account/accomplishments/verify/D3ZM5MHKSR2N
 
 portfolio:
   Data science - Machine learning:

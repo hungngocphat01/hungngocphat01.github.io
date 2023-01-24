@@ -38,6 +38,7 @@
                         <li>education</li>
                         <li>technologies</li>
                         <li>publications</li>
+                        <li>certs</li>
                     </ol>
                 </div>
 
@@ -138,6 +139,14 @@
                         <p>
                             Please click <a href="portfolio.html">here</a> if you were not redirected
                         </p>
+                    </article>
+
+                    <article section-name="certs">
+                        {% for cert in certificates %}
+                            <li>
+                                <a href="{{ cert["url"] }}">{{ cert["title"] }}</a>
+                            </li>
+                        {% endfor %}
                     </article>
                 </div>
             </div>
