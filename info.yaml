@@ -2,53 +2,62 @@ contact:
   email: hungngocphat01@gmail.com
   github: https://github.com/hungngocphat01
   linkedin: https://www.linkedin.com/in/hungngocphat-hcmus/
-whoami: 
-  - I am a bachelor from <span class="b c-purple">University of Science, Vietnam National University HCM</span>, enthusiastically pursuing the career as an <span class="b c-orange">Data/ML Engineer</span>.
-  - My main personal workstation is a <span class="b c-orange">MacBook Air M1</span>. In the past i used arch on my ThinkPad T14 btw, as suggested by my classmate <a class="" href="http://ashpex.eu.org/">Ashpex</a>, who dragged me into the Linux lore.
-  - Watching <span class="b c-orange">anime</span> and playing the guitar are what I often do when I'm not busy with tons of deadlines from my uni. I'm quite into 2.5D musical franchises, such as Love Live!, iDOLM@STER, BanG Dream!, etc. They are something very unique to the Japanese pop culture, in which my favourite character/seiyuu pair is Shibuya Kanon/Date Sayuri from <span class="b c-orange">Love Live!</span>.
-experiences:
-  - title: FPT Telecom, Data Scientist Intern
-    time: October 2022 - now
-    desc:
-      - Participate in data enrichment from social networking sources for the corporation's user data platform.
-      - Build pipelines to collect, clean, and ingest social networking data from various sources to the data lake.
-      - Build and maintain internal tools (chatbots, dashboards, etc.) to assist colleagues in managing their daily work more effectively.
 
-  - title: NES Academic Club - VNU.HCMUS, Member
-    time: October 2019 - September 2022
+whoami:
+  - Hey there. I'm a BSc grad from <span class="b c-purple">University of Science, Vietnam National University HCM</span>, currently diving into the world of <span class="b c-orange">Data/ML Engineer</span>.
+  - My personal workstation is a <span class="b c-orange">MacBook Air M1</span>. In the past i used arch on my ThinkPad T14 btw, as suggested by my classmate <a class="" href="http://ashpex.eu.org/">Ashpex</a>, who dragged me into the Linux lore.
+  - Watching <span class="b c-orange">anime</span> and playing the guitar are what I often do when I'm not busy with tons of deadlines from my uni or work. I'm quite into 2.5D musical franchises, such as Love Live!, iDOLM@STER, BanG Dream!, etc. Currently I'm simping Shibuya Kanon/Date Sayuri from <span class="b c-orange">Love Live!</span>.
+
+experiences:
+  - title: FPT Corporation, Data Scientist/DataOps Engineer
+    time: September 2023 - now
     desc:
-      - Develop Arduino firmware in C++
-      - Help first year club members get familiar with C/C++ concepts
-      - Prepare documents and/or make presentation for the "Introduction to Programming I & II" final exam preparation seminars (for CS and E/TEL students).
+      - Operate the Customer Data Platform core data pipelines
+      - Deploy batch-inferenced machine learning models to production
+      - Design and develop a solution for ML model performance, metadata and data profile tracking
+      - Maintain other adhoc crawling pipelines
+
+  - title: FPT Telecom, Data Scientist Intern
+    time: October 2022 - August 2023
+    desc:
+      - Perform data analysis and build machine learning-based time series models to predict electricity consumption (EVN-CPC)
+      - Build pipelines to collect, clean, and ingest social networking data from various sources to the data lake
+      - Build and maintain internal tools (chatbots, dashboards, etc.)
+
+  # - title: NES Academic Club - VNU.HCMUS, Member
+  #   time: October 2019 - September 2022
+  #   desc:
+  #     - Develop Arduino firmware in C++
+  #     - Help first year club members get familiar with C/C++ concepts
+  #     - Prepare documents and/or make presentation for the "Introduction to Programming I & II" final exam preparation seminars (for CS and E/TEL students).
+
 education:
   - title: University of Science, Undergraduate
-    time: September 2019 - September 2023 (expected)
+    time: September 2019 - September 2023
     honors:
       - Top 1 GPA of Class 2019, Regular Program (2021 - 2022)
     courses:
-      - Data Structure and Algorithms
-      - Introduction to OOP
-      - Computer Networking
-      - Programming for Data Science
-      - Introduction to AI
-      - Introduction to Big Data
-      - Introduction to Machine Learning
-      - Data Visualization
-      - Computational Statistics
-      - Applications of Big Data
+      - Applied Computational Statistics
+      - Applied Linear Algebra and Statistics
+      - Applied Big Data
       - Deep Learning for Data Science
+      - Data Visualization
+      - Introduction to AI
+      - Introduction to Software Engineering
+
 technologies:
-  Languages: Python, TypeScript, Bash, C++
-  DS & DE: Hadoop, Spark, Airflow, Pandas, Statsmodel, ...  
-  System: Linux, Docker, Git
-  Machine learning: Scikit-learn, Keras, Pytorch, Fairseq
-  Software Engineering: Flask, Django, Express.js
-  DBMS: MongoDB, Cassandra, PosthreSQL
-  Dashboard and Visualization: Tableau, Plotly.js, Seaborn, Matplotlib
+  Languages: python, typescript, bash
+  DS/DE: hadoop, spark, airflow, pandas
+  System: linux, docker, git
+  ML: xgb, pytorch, fairseq
+  BE: flask, sqlalchemy
+  DBMS: postgresql, mongodb
+
 publications:
-  - Utilizing BERT embedding in multi-lingual machine translation (2023, WIP)
+  - P. Hung, L. Nguyen, and D. Dinh, "Transliterating Nom Script into Vietnamese National Script Using Multilingual Neural Machine Translation," in Communications in computer and information science, Springer, Singapore, 2023, pp. 133–147. doi: <a href="https://doi.org/10.1007/978-981-99-7666-9_11">10.1007/978-981-99-7666-9_11.1</a>
+
 certificates:
-  - title: IELTS 7.5
+  - title: IELTS 8.0
     url: "#"
   - title: Machine Learning (Stanford)
     url: https://www.coursera.org/account/accomplishments/verify/DPZ3S3FGH7ML
