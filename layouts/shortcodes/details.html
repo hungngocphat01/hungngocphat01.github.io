@@ -1,0 +1,10 @@
+<details>
+    <summary style="list-style: none;" class="details admonition quote open">
+        <i class="icon fas fa-quote-right fa-fw"></i>
+        <div class="details-summary admonition-title">
+            {{ .Get "title" | default "Click to expand" | markdownify }}
+        </div>
+        <i class="details-icon fas fa-angle-right fa-fw"></i>
+    </summary>
+    <div>{{ .Inner | markdownify }}</div>
+</details>
