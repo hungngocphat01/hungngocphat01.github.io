@@ -1,5 +1,7 @@
 
-# Some of my personal projects
++++
+title = "Some of my personal projects"
++++
 
 Tentative design. Will implement as a collage later.
 

@@ -3,38 +3,35 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-    <title>Posts | hungngocphat01</title>
-
-    <meta property="og:title" content="Posts | hungngocphat01">
-
+    <title>hungngocphat01</title>
     <meta name="description" content="hungngocphat01's github page.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hungngocphat01.github.io/oldpage/posts/">
-    <meta property="og:title" content="Posts | hungngocphat01">
+    <meta property="og:url" content="https://hungngocphat01.github.io/old/">
+    <meta property="og:title" content="hungngocphat01">
     <meta property="og:description" content="hungngocphat01's github page.">
-    <meta property="og:image" content="https://hungngocphat01.github.io/oldpage/image/preview.jpg">
+    <meta property="og:image" content="https://hungngocphat01.github.io/old/image/preview.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hungngocphat01.github.io/oldpage/posts/">
-    <meta property="twitter:title" content="Posts | hungngocphat01">
+    <meta property="twitter:url" content="https://hungngocphat01.github.io/old/">
+    <meta property="twitter:title" content="hungngocphat01">
     <meta property="twitter:description" content="hungngocphat01's github page.">
-    <meta property="twitter:image" content="https://hungngocphat01.github.io/oldpage/image/preview.jpg">
+    <meta property="twitter:image" content="https://hungngocphat01.github.io/old/image/preview.jpg">
 
-    <link rel="canonical" href="https://hungngocphat01.github.io/oldpage/posts/" />
+    <link rel="canonical" href="https://hungngocphat01.github.io/old/" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="/oldpage/css/css.css">
-    <script src="/oldpage/common/navibar_credit.js"></script>
+    <link rel="stylesheet" href="/old/css/css.css">
+    <script src="/old/common/navibar_credit.js"></script>
     <script>
         $(window).on("load", function(){
-            navibarSelect("#naviPosts");
+            navibarSelect("#naviHome");
         });
     </script>
 </head>
@@ -49,22 +46,22 @@
                     <div id="navibar"></div>
                     <!--CONTENT-->
                     <div class="content" style="margin-top:20px;">
-                        <a href="/">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <img src="/oldpage/image/link.png" class="link-icon">
-                                    </td>
-                                    <td>
-                                        <h2 class="">Migrated to new homepage.</h2>
-                                    </td>
-                                <tr>
-                                    <td></td>
-                                    <td><p>Click here to be redirected. </p></td>
-                                </tr>
-                                </tr>
-                            </table>             
-                        </a>
+                        <!--INTRO-->
+                        <p>This is the original version of the site I built back in <b>2019</b>, during my freshman year. I'm not a web developer (clearly), so it's a bit rough around the edges - but after all the time I spent getting it to <i>mostly work</i>, I can't bring myself to take it down. Call it a nostalgic bug museum :)</p>
+                        </p>
+                        <!--BANNER-->
+                        <img src="/old/image/banner.jpg" class="responsive-img banner" style="margin-bottom:15px; margin-left:5px;" />
+                        <!--CONTENT-->
+                        <ul>
+                            <li><b>Nationality:</b> Vietnamese</li>
+                            <li><b>Profession:</b> Student.</li>
+                            <li><b>University:</b> HCM City, University of Science.</li>
+                            <li><b>High school:</b> Quoc Hoc Quy Nhon HS.</li>
+                            <li><b>Languages:</b> Vietnamese, English, Japanese.</li>
+                            <li><b>Languages*:</b> C++, Python, Javascript.</li>
+                            <li><b>Interests:</b> coding, anime.</li>
+                            <li><b>Waifu:</b> <a href="https://www.google.com/search?q=kousaka+honoka" style="color: #f8b400"> Kousaka Honoka</a> <small>(until now: <span id="honk-year"><small>0</small></span> years)</small>.</li>                       </li>
+                        </ul>
                     </div>
                     <hr>
                     <p id="credit" class="credit"></p>
@@ -82,7 +79,7 @@
                 var honk_year = year - 2017;
                 $("#honk-year").html("<small>" + honk_year + "</small>");
             });
-
+            /*
             $("#btnPlayQuocCa").click(function(){
                 var show = parseInt($("#quocCaPlayer").attr("showing"));
                 var audio = document.getElementById("quocCaAudio");
@@ -91,15 +88,15 @@
                     $("#quocCaPlayer").attr("style", "display:none;");
                     $("#quocCaPlayer").attr("showing", "0");
                     audio.pause();
-                    $("#btnPlayQuocCa").html("[▶]");
+                    $("#btnPlayQuocCa").html("<i class=\"fas fa-play\"></i>");
                 }
                 else{
                     $("#quocCaPlayer").attr("style", "display:block;");
                     $("#quocCaPlayer").attr("showing", "1");
                     audio.play();
-                    $("#btnPlayQuocCa").html("[❚❚]");                   
+                    $("#btnPlayQuocCa").html("<i class=\"fas fa-pause\"></i>");                   
                 }               
-            });
+            });*/
         </script>
     </body>
 </html>

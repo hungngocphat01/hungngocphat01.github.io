@@ -1,8 +1,8 @@
 var navibar = 
-`<a class="link-not-selected" id="naviHome" href="/oldpage">Homepage &nbsp;</a>
+`<a class="link-not-selected" id="naviHome" href="/old">Homepage &nbsp;</a>
 <a class="link-not-selected" id="navinewHome" href="/">New homepage &nbsp;</a>
-<a class="link-not-selected" id="naviPosts" href="/oldpage/posts/">My posts &nbsp;</a>
-<a class="link-not-selected" id="naviProducts" href="/oldpage/products/">My products &nbsp;</a>
+<a class="link-not-selected" id="naviPosts" href="/old/posts/">My posts &nbsp;</a>
+<a class="link-not-selected" id="naviProducts" href="/old/products/">My products &nbsp;</a>
 <a class="link-not-selected" id="naviUnavailable" style="display:none;" href="#">Unavailable &nbsp;</a>
 <hr>`;
 var credit=

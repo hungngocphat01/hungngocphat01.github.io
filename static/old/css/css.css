@@ -1,17 +1,17 @@
 @font-face{
     font-family: 'FiraSans';
-    src : url("/oldpage/font/FiraSans-Regular.otf");
+    src : url("/old/font/FiraSans-Regular.otf");
 }
 
 @font-face{
     font-family: 'FiraSans';
-    src : url("/oldpage/font/FiraSans-Bold.otf");
+    src : url("/old/font/FiraSans-Bold.otf");
     font-weight: bold;
 }
 
 @font-face{
     font-family: 'Iosevka';
-    src: url('/oldpage/font/iosevka-ss01-regular.ttf');
+    src: url('/old/font/iosevka-ss01-regular.ttf');
 }
 
 /* Body */

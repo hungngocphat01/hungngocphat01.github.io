@@ -1,17 +1,18 @@
 +++
 date = '2020-02-23T15:04:50+07:00'
+title = "whoami"
 +++
 
-# whoami
 
-{{< style "text-align: left; font-size: 1.5rem; margin-bottom: 1em;" >}}
+{{< style "text-align: right; font-size: 1.5rem; margin-bottom: 1em;" >}}
 A Vietnamese researcher based in Japan, from Binh Dinh
 {{< /style >}}
 
-The site is still under construction by migrating content from the old format I wrote in plain HTML/CSS.
 
 
 {{< figure src="header.gif" caption="An illustration [Mienar](https://mienar.com) that describes exactly my dream setup: <br/> A serene cityscape view, no fancy gadgets, just peace" >}}
+
+The site is still under construction by migrating content from the old format I wrote in plain HTML/CSS.
 
 ## Education
 
@@ -76,7 +77,7 @@ I don't read books because I'm lazy. Recently I have picked up the habit of read
 
 ## YouTube Channels
 
-I cannot stand having dinner without these. Also, shoutout to these channels that helped me score a 9.0 in the IELTS listening test.
+I cannot stand having dinner without these. Also, shoutout to these channels that helped me score a 9.0 in the IELTS listening test (2023).
 
 📺 **Retrotech**: [This Does Not Compute](https://www.youtube.com/@ThisDoesNotCompute), [LGR](https://www.youtube.com/@LGR), [Action Retro](https://www.youtube.com/@ActionRetro), [MichaelMJD](https://www.youtube.com/@MichaelMJD)
 
@@ -104,3 +105,7 @@ Log unfamiliar words into Anki. In addition to textbook-based decks, I keep a se
 I think I will write a dedicated post on this topic later.
 
 {{< /details >}}
+
+# Friends
+
+{{< person url="https://ashpex.net" name="Ashpex" text="Friend" picture="https://ashpex.net/images/avatar.webp" >}}

@@ -127,8 +127,8 @@ enable = true
 paginate = 6
 
 [params.social]
-GitHub = "https://github.com/hungngocphat01"
-Linkedin = "https://linkedin.com/in/hungngocphat-hcmus"
+GitHub = "hungngocphat01"
+Linkedin = "hungngocphat-hcmus"
 
 [params.page]
 [params.page.math]
@@ -168,9 +168,8 @@ url = "/projects/"
 
 [[menu.main]]
 weight = 4
-identifier = "old"
 name = "Old site"
-url = "/oldpage/"
+url = "/old/"
 
 [markup.goldmark.renderer]
 unsafe= true
