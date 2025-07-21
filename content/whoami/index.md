@@ -43,7 +43,7 @@ For professional experience and publications, refer to my [LinkedIn](https://lin
 
 While "researcher" might be the conventional label for my professional work, I've always seen myself more as a _wanderer_.
 
-{{< details >}}
+<!-- {{< details >}}
 
 
 I started out on Windows like most kids of the early Gen Z. But in late primary school, my curiosity got me installing Ubuntu in a virtual machine on a painfully slow Pentium 4 running XP, which was my home computer. It barely worked, but it was enough. 
@@ -60,7 +60,7 @@ I bricked my first Android device - an Asus Fonepad so many times that the local
 
 I've always enjoyed taking things apart, especially when I wasn't supposed to. Later, I met [ashpex](https://ashpex.net) during my college years, who nudged me toward Arch Linux, and I never really looked back to Windows. Apple's locked-down ecosystem annoyed me, until I discovered Hackintosh and got macOS running on my ThinkPad T430s. That changed my mind. Over the years I cycled through machines and systems, until I eventually it became the end of the journey: I bought my MacBook Air M1. Then it came the iPhone 13, iPad Pro M1, and the most recently an iPhone 16 Pro. I was locked in the walled apple garden (apple in lowercase).
 
-{{< /details >}}
+{{< /details >}} -->
 
 
 Despite the nature, I never saw myself as someone who could become a researcher. The word felt tied to theory-heavy work and scary math equations. But it happened anyways. I published my first paper during my undergraduate years, spent two years in industry, and then fate took another turn: I came to Japan for graduate study.
@@ -92,7 +92,7 @@ For the beginner levels, just follow _Minna no Nihongo_. For N3, just follow the
 
 {{< figure src="aku-no-meshitsukai.jpg" title="The Vocaloid MV that got me into learning hiragana in 2012, but I didn't really learn the language until 2017" >}}
 
-{{< details title="Click to expand: On immersion" >}}
+{{< details title="Click to expand: My take on immersion" >}}
 
 That said, it doesn't mean you should avoid native content altogether. I was lucky. During high school, I was completely obsessed with **Love Live!**. Its lyrics are surprisingly beginner-friendly (for the N5-N4 level) compared to most mainstream content made for native speakers. The lore behind it was that: the lyrics were supposed to be written by the characters, who were high school students, so they tended to be much simpler, definitely more approachable than something like YOASOBI. By the time I finished N4, I had already picked up a decent chunk of vocabulary that never showed up in textbooks like _Minna no Nihongo_.
 
