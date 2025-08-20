@@ -214,20 +214,35 @@ A new _virtual_ volume (as a block device) `/dev/mapper/luks-decrypted` will be 
 
 Now you can actually **format** this virtual view like any normal disk drive.
 
-#### Put a filesystem onto the decrypted volume
+#### Put a filesystem onto the decrypted view
 
 ```bash
 sudo mkfs.ext4 /dev/mapper/luks-decrypted
+sudo mkdir /data   # mount point
 ```
 
-#### Manually close the LUKS container
-
-These commands are for references. Don't execute them now.
+Then mount it.
 
 ```bash
-sudo umount /dev/mapper/luks-decrypted
-sudo cryptsetup luksClose "luks-decrypted"
+sudo mount -o noatime,nodev,nosuid /dev/mapper/luks-decrypted /data
 ```
+
+Refer to [here](https://serverfault.com/questions/547237/explanation-of-nodev-and-nosuid-in-fstab) for the explanation of `nodev,nosuid` options.
+
+```bash
+ls /data
+```
+
+On Ubuntu, you should be able to see the `lost+found` folder (created by default on ext4).
+
+#### Summarizing
+
+Now there are too many paths to keep track of. Here is a brief summarization:
+
+- `/data`: the **mount point**, where normal file operations are carried out
+- `/dev/mapper/luks-decrypted`: the virtual **binary block device** that serves as a decrypted view of your vault. This is mounted to `/data`
+- `/dev/sdaX` or `/dev/ubuntu-gs/data-lv`: the **binary block device** that represent a physical partition on disk, storing your encrypted data.
+
 ---
 
 ## 5. Setting up access control
@@ -258,23 +273,51 @@ sudo chown files /data
 sudo chmod 700 /data
 ```
 
-Refer to [here](https://serverfault.com/questions/547237/explanation-of-nodev-and-nosuid-in-fstab) for the explanation of `nodev,nosuid` options.
+For now, let's unmount and close the decrypted view.
+
+```bash
+sudo umount /dev/mapper/luks-decrypted
+sudo cryptsetup luksClose "luks-decrypted"
+```
 
 ---
 
 ## 6. Setting up automatic mount on login/connect
 
-To make the container mount automatically when you logs in over SSH/SFTP, install PAM mount:
+Now that you have successfully set up the encrypted vault. However, everytime the vault is used, you would have to manually open/mount and unmount/close it, which takes _four_ commands.
 
 ```bash
-sudo apt install libpam-mount
+sudo cryptsetup luksOpen /dev/ubuntu-vg/data-lv "luks-decrypted"
+sudo mount -o noatime,nodev,nosuid /dev/mapper/luks-decrypted /data
+
+# Use it
+
+sudo umount /data
+sudo cryptsetup luksClose "luks-decrypted"
 ```
 
-Get the logical volume's `UUID`. Note that you issue the command on the target block device, not the LUKS mapper:
+To make our life easier, let's setup the container to **mount automatically on login/connect**. This works for both normal shell login (including over SSH) and SFTP-based file transfers such as over scp, rsync. Rclone also works well.
+
+{{< admonition type=info title="Info" open=true >}}
+
+You will only need to enter your password only once during SSH authentication.
+
+The same password will be used to unlock the vault (given that you have set them up to be the same).
+
+{{< /admonition >}}
+
+
+First, get the logical volume's `UUID`. Note that you issue the command on the target block device, not the LUKS mapper:
 
 ```bash
 blkid /dev/sdaX                 # without lvm
 blkid /dev/ubuntu-vg/data-lv    # lvm
+```
+
+Then, install PAM mount:
+
+```bash
+sudo apt install libpam-mount
 ```
 
 Add the following line to `/etc/security/pam_mount.conf.xml` under `Volumes definitions`. Replace `user`, `crypto_name` with your values if applicable.
@@ -292,7 +335,20 @@ Add the following line to `/etc/security/pam_mount.conf.xml` under `Volumes defi
 Now check if it automatically mounts on login:
 
 ```bash
-su files
+$ su files
+# now you've logged in as `files`
+
+$ ls /data
+lost+found
+```
+
+Upon exit, the `/data` mount point should now be empty.
+
+```bash
+$ exit
+# now you're back to the normal account
+$ sudo ls /data
+# should be empty
 ```
 
 ---
