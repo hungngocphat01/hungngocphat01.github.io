@@ -9,10 +9,17 @@ This article is a draft.
 
 **Data-at-rest encryption** is an important but often overlooked aspect of home servers and NAS devices. In my case, the NAS is just a Mac Mini (Ubuntu) attached to a LAN/Thunderbolt cable, sitting on a shelf in my laboratory. That machine could be **physically assaulted** by anyone while I am away. For instance, an attacker could boot into a live USB and immediately gain access to all files stored in the clear.
 
+{{< admonition type=info title="Simplest definition" open=true >}}
+
+Data-at-rest encryption ensures that no one can ever read your data after the machine has been rebooted (in any case)
+
+{{< /admonition >}}
+
 Or another scenario: when I graduate, I might forget to wipe the NAS and simply leave it behind at the institute. This was the case with the _two_ previous owners of the machine from two different periods in 15 years, as their OSX user accounts were still accessible when I dug the Mac up from dust. This Mac was too old to even have iCloud protection.
 
 Even if I format the drive, without **overwriting it** with zeros or random data, it's possible for the machine to become a testing subject of some curious student researching information security living 10 years in the future.
 
+To protect against such situations, we can apply data-at-rest encryption. 
 
 {{< admonition type=info title="Info" open=true >}}
 
@@ -20,18 +27,18 @@ These are not the only scenarios where this concept comes into play. I recommend
 
 {{< /admonition >}}
 
-
-To protect against such situations, we can apply data-at-rest encryption. 
 ## 1. Preview of final setup
+
+The most general setup is to have a file vault that can be unlocked with a password.
 
 The goal is simple: **data is only readable when we *explicitly* unlock it, and remains unreadable in every other case.**
 
 The final configuration looks like this:
 
 1. A file server that serves over **SFTP**, writing to an **encrypted LUKS volume** separated from the OS volume.
-2. The LUKS container is **automatically mounted only during use**, and unmounted after the last session closes.
+2. For convenience, the vault is **automatically mounted on login/connect**, and unmounted after the last session closes, all without issuing extra commands.
    
-   Authentication is primarily through a **passphrase**. This is for both security and convenience purposes.
+   Authentication is primarily through a **passphrase**.
 3. Only the data container is encrypted; the OS volume is unencrypted.
 
     This allows for quick recovery in case of a power failure. The host system can reboot headlessly, reconnect to the network, and be immediately ready for use again without the need of attaching a monitor or keyboard.
@@ -59,7 +66,9 @@ You have probably come across "LUKS" and "LVM" many times before. At first, they
 
 ### 2.1. LUKS
 
-LUKS (Linux Unified Key Setup) is the standard for disk encryption on Linux. Under the hood, it uses the Linux kernel's [dm-crypt](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_a_non-root_file_system) (cryptographic device mapping) subsystem. LUKS supports multiple keyslots (up to 32 for LUKS2), meaning you can configure **up to 32 different "passwords"** to unlock the same encrypted container, which is useful for redundancy.
+LUKS (Linux Unified Key Setup) is the standard for disk encryption on Linux. It enables encrypting a whole volume on disk, exposing a decrypted *view* during runtime that you can *transparently* interact with.
+
+Under the hood, it uses the Linux kernel's [dm-crypt](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_a_non-root_file_system) (cryptographic device mapping) subsystem. LUKS supports multiple keyslots (up to 32 for LUKS2), meaning you can configure **up to 32 different "passwords"** to unlock the same encrypted container, which is useful for redundancy.
 
 There are two key types:
 
@@ -130,13 +139,13 @@ But if you plan to use LVM, be sure to grasp its core concepts discussed in the 
 
 {{< /admonition >}}
 
-Create a logical volume for the encrypted container, using all free space in Ubuntu's default volume group (`ubuntu-vg`). Replace `luks-lv` with any name you like.
+Create a logical volume for the encrypted container, using all free space in Ubuntu's default volume group (`ubuntu-vg`). Replace `data-lv` with any name you like.
 
 ```bash
 sudo vgdisplay  # show all volume groups
-sudo lvcreate -l 100%FREE ubuntu-vg -n luks-lv
+sudo lvcreate -l 100%FREE ubuntu-vg -n data-lv
 ```
-The corresponding block device for this logical volume would be available as `/dev/ubuntu-vg/luks-lv`.
+The corresponding block device for this logical volume would be available as `/dev/ubuntu-vg/data-lv`.
 
 ```bash
 $ sudo vgdisplay
@@ -159,8 +168,8 @@ $ sudo vgdisplay
   Block device           252:0
 
   --- Logical volume ---
-  LV Path                /dev/ubuntu-vg/luks-lv
-  LV Name                luks-lv
+  LV Path                /dev/ubuntu-vg/data-lv
+  LV Name                data-lv
   VG Name                ubuntu-vg
   LV UUID                xxx
   LV Write Access        read/write
@@ -184,32 +193,41 @@ Just use gparted to spare a normal `sdaX` partition from your disk. You don't ne
 
 #### Format as LUKS
 
-Instead of putting a regular filesystem directly on `sdaX`, the first step is to initialize it as a LUKS container. This marks the partition (called the _target_ block device) as encrypted and requires a password (passphrase) for access.
-
+Instead of putting a regular filesystem directly on `sdaX`/logical volume, the first step is to initialize it as a LUKS container. This marks the volume (called the _target_ block device) as encrypted and requires a passphrase for access.
 
 ```bash
 # This command will ask you to create a passphrase. -v enables verbose output
 sudo cryptsetup luksFormat -v /dev/sdaX                 # without lvm
-sudo cryptsetup luksFormat -v /dev/ubuntu-vg/luks-lv    # lvm
+sudo cryptsetup luksFormat -v /dev/ubuntu-vg/data-lv    # lvm
 ```
 
 #### Exposing plaintext view
 
-After formatting, the LUKS device must be opened. Data will be encrypted/decrypted on-the-fly and a new _virtual_ block device is created, which behaves exactly like an ordinary disk. Replace `luks-container` with any name you prefer.
+After formatting, the LUKS device must be opened. Replace `luks-decrypted` with any name you prefer.
 
 ```bash
-sudo cryptsetup luksOpen /dev/sdaX "luks-container"                 # without lvm
-sudo cryptsetup luksOpen /dev/ubuntu-vg/luks-lv "luks-container"    # lvm
+sudo cryptsetup luksOpen /dev/sdaX "luks-decrypted"                 # without lvm
+sudo cryptsetup luksOpen /dev/ubuntu-vg/data-lv "luks-decrypted"    # lvm
 ```
 
-A new _virtual_ block device `/dev/mapper/luks-container` will be available. Now you can actually **format** it like any normal disk drive:
+A new _virtual_ volume (as a block device) `/dev/mapper/luks-decrypted` will be available. This is the unencrypted **view** of your encrypted volume. Any operation on this decrypted view will result in data being processed on-the-fly to the actual encrypted block device.
+
+Now you can actually **format** this virtual view like any normal disk drive.
 
 #### Put a filesystem onto the decrypted volume
 
 ```bash
-sudo mkfs.ext4 /dev/mapper/luks-container
+sudo mkfs.ext4 /dev/mapper/luks-decrypted
 ```
 
+#### Manually close the LUKS container
+
+These commands are for references. Don't execute them now.
+
+```bash
+sudo umount /dev/mapper/luks-decrypted
+sudo cryptsetup luksClose "luks-decrypted"
+```
 ---
 
 ## 5. Setting up access control
@@ -235,7 +253,7 @@ sudo chsh -s /bin/bash files
 Mount the encrypted container and adjust permissions:
 
 ```bash
-sudo mount -o noatime,nodev,nosuid /dev/mapper/luks-container /data
+sudo mount -o noatime,nodev,nosuid /dev/mapper/luks-decrypted /data
 sudo chown files /data
 sudo chmod 700 /data
 ```
@@ -256,7 +274,7 @@ Get the logical volume's `UUID`. Note that you issue the command on the target b
 
 ```bash
 blkid /dev/sdaX                 # without lvm
-blkid /dev/ubuntu-vg/luks-lv    # lvm
+blkid /dev/ubuntu-vg/data-lv    # lvm
 ```
 
 Add the following line to `/etc/security/pam_mount.conf.xml` under `Volumes definitions`. Replace `user`, `crypto_name` with your values if applicable.
@@ -267,7 +285,7 @@ Add the following line to `/etc/security/pam_mount.conf.xml` under `Volumes defi
     fstype="crypt" 
     path="/dev/disk/by-uuid/xxx"
     mountpoint="/data"
-    options="crypto_name=luks-container,noatime,nodev,nosuid"
+    options="crypto_name=luks-decrypted,noatime,nodev,nosuid"
 />
 ```
 
