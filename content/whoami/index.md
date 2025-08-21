@@ -41,7 +41,41 @@ For professional experience and publications, refer to my [LinkedIn](https://lin
 
 While "researcher" might be the conventional label for my professional work, I've always seen myself more as a _wanderer_. 
 
-From tinkering with old computers, bricking and reviving Android devices during secondary school years, and [running unlikely operating systems on unsupported hardware](https://github.com/hungngocphat01/OpenCore-Thinkpad-T430s), I've carried a habit of exploring technology in slightly unconventional ways. That spirit of exploration continues to guide me, whether in research, hacking around with systems, or simply following curiosity wherever it leads.
+From tinkering with old computers, bricking and reviving Android devices during secondary school years, and [running unlikely operating systems on unsupported hardware](https://github.com/hungngocphat01/OpenCore-Thinkpad-T430s), I've carried a habit of exploring technology in slightly unconventional ways. None of my phone ran the original OS they originally came with (Apple devices are exceptions). That spirit of exploration continues to guide me, whether in research, hacking around with systems, or simply following curiosity wherever it leads.
+
+### Current toys
+
+- **Main workstation:** MacBook Air M1 (16/256)
+- **Secondary workstation:** Surface Pro 8 (8/256; allocated by the institute)
+- **Toy NAS:** Mac Mini Mid-2011 (4/512; Ubuntu)
+- **Handheld console:** Anbernic RG35XXSP
+- **Camera:** Canon PowerShot G7X
+- **Boring things:** iPad Pro M1, iPhone 16 Pro
+
+### Retired toys
+
+
+{{< details title="Click to expand: PC" >}}
+
+- ThinkPad T14s (R5 4650U; 16/512; dualboot Arch Linux--Windows)
+- ThinkPad T430s (i5-3230M; 8/256; tri-boot macOS/Hackintosh--Arch Linux--Windows)
+- Potato i3-2100 PC (4/320)
+- Potato Pentium 4 PC (2/80)
+- Potato Pentium III PC
+
+{{< /details >}}
+
+{{< details title="Click to expand: Gadgets" >}}
+
+- **Symbian phones**: Nokia 2700c (2011), Nokia X2-01 ('13), Nokia Asha 303 ('14)
+- **Smartphones**: Galaxy GT-S5300s ('15), Zenfone 2 ('15), Redmi 5 Plus ('17), Redmi Note 9s ('20), iPhone 13 ('23)
+- **Tablets**: FonePad 7 ('13), MatePad 10.4 ('22)
+- **Camera**: PowerShot SX-400HS, PowerShot 〇〇 (don't remember)
+
+
+{{< /details >}}
+
+
 
 <!-- {{< details >}}
 
