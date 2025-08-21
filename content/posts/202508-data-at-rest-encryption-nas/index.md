@@ -383,8 +383,13 @@ The file will be copied even if the vault silently fails to mount. Try `ls` it y
 2. Simplifying the setup: enter the passphrase manually once on system startup and share the drive over another protocol.
 
     This still ensures data is safe at-rest, but the container does not automatically lock after use.
-
 {{< /admonition >}}
+
+
+To use it on the native file browser, check out [osxfuse/sshfs](https://github.com/osxfuse/sshfs) for macOS and [winfsp/sshfs-win](https://github.com/winfsp/sshfs-win) for Windows.
+
+{{< figure src="win-sshfs.jpg" width=50 caption="Look at that. A remote LUKS volume identified as a local disk on Windows" >}}
+
 
 ## 8. Further reading
 
