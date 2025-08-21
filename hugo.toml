@@ -24,7 +24,7 @@ dateFormat = "2006-01-02"
 title = "~/hiraki"
 # website description for RSS, SEO, Open Graph and Twitter Cards
 # 网站描述, 用于 RSS, SEO, Open Graph 和 Twitter Cards
-description = "hiraki's homepage"
+description = "hiraki's blog"
 # website images for Open Graph and Twitter Cards
 # 网站图片, 用于 Open Graph 和 Twitter Cards
 images = []
@@ -134,6 +134,23 @@ Linkedin = "hungngocphat-hcmus"
 [params.page.math]
 enable = true
 
+[params.page.seo]
+# image URL
+images = []
+[params.page.seo.publisher]
+name = "hiraki"
+logoUrl = "img/hcmus-logo-white.png"
+
+[params.seo]
+image = "img/hcmus-logo-white.png"
+
+[params.analytics]
+enable = true
+# Google Analytics
+[params.analytics.google]
+id = "G-B4947G4B6F"
+anonymizeIP = true
+
 [markup]
 [markup.highlight]
 style = "github"
@@ -172,7 +189,7 @@ name = "Old site"
 url = "/old/"
 
 [markup.goldmark.renderer]
-unsafe= true
+unsafe = true
 
 [caches]
 [caches.images]
