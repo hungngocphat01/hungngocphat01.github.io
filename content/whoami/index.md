@@ -5,14 +5,12 @@ title = "whoami"
 
 
 {{< style "text-align: right; font-size: 1.5rem; margin-bottom: 1em;" >}}
-A Vietnamese researcher based in Japan, from Binh Dinh
+A researcher based in Japan, from Binh Dinh
 {{< /style >}}
 
 
 
-{{< figure src="header.gif" caption="An illustration [Mienar](https://mienar.com) that describes exactly my dream setup: <br/> A serene cityscape view, no fancy gadgets, just peace" >}}
-
-The site is still under construction by migrating content from the old format I wrote in plain HTML/CSS.
+{{< figure src="header.gif" caption="Illustration: [Mienar](https://mienar.com)" >}}
 
 ## Education
 
@@ -41,7 +39,9 @@ For professional experience and publications, refer to my [LinkedIn](https://lin
 
 {{< figure src="elaina.jpg" caption="Elaina - The Wandering Witch" >}}
 
-While "researcher" might be the conventional label for my professional work, I've always seen myself more as a _wanderer_.
+While "researcher" might be the conventional label for my professional work, I've always seen myself more as a _wanderer_. 
+
+From tinkering with old computers, bricking and reviving Android devices during secondary school years, and [running unlikely operating systems on unsupported hardware](https://github.com/hungngocphat01/OpenCore-Thinkpad-T430s), I've carried a habit of exploring technology in slightly unconventional ways. That spirit of exploration continues to guide me, whether in research, hacking around with systems, or simply following curiosity wherever it leads.
 
 <!-- {{< details >}}
 
@@ -63,9 +63,9 @@ I've always enjoyed taking things apart, especially when I wasn't supposed to. L
 {{< /details >}} -->
 
 
-Despite the nature, I never saw myself as someone who could become a researcher. The word felt tied to theory-heavy work and scary math equations. But it happened anyways. I published my first paper during my undergraduate years, spent two years in industry, and then fate took another turn: I came to Japan for graduate study.
+<!-- Despite the nature, I never saw myself as someone who could become a researcher. The word felt tied to theory-heavy work and scary math equations. But it happened anyways. I published my first paper during my undergraduate years, spent two years in industry, and then fate took another turn: I came to Japan for graduate study. -->
 
-I don't know when the next turn will come, or where it'll lead. But for now, I'm just a [未熟DREAMER](https://love-live.fandom.com/wiki/Mijuku_DREAMER#Kanji).
+<!-- I don't know when the next turn will come, or where it'll lead. But for now, I'm just a [未熟DREAMER](https://love-live.fandom.com/wiki/Mijuku_DREAMER#Kanji). -->
 
 ## What's 'hiraki'?
 
@@ -90,7 +90,7 @@ I don't really follow any Japanese learning YouTube channels except [Kaname Nait
 
 For the beginner levels, just follow _Minna no Nihongo_. For N3, just follow the _Mimikara Oboeru_ for vocabulary and _Shinkanzen Master_ for everything else.
 
-{{< figure src="aku-no-meshitsukai.jpg" title="The Vocaloid MV that got me into learning hiragana in 2012, but I didn't really learn the language until 2017" >}}
+<!-- {{< figure src="aku-no-meshitsukai.jpg" title="The Vocaloid MV that got me into learning hiragana in 2012, but I didn't really learn the language until 2017" >}} -->
 
 {{< details title="Click to expand: My take on immersion" >}}
 
