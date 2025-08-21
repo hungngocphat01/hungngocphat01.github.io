@@ -5,13 +5,11 @@ tags = ['project']
 featuredImage = "cover.jpeg"
 +++
 
-This article is a draft.
-
 **Data-at-rest encryption** is an important but often overlooked aspect of home servers and NAS devices. In my case, the NAS is just a Mac Mini (Ubuntu) attached to a LAN/Thunderbolt cable, sitting on a shelf in my laboratory. That machine could be **physically assaulted** by anyone while I am away. For instance, an attacker could boot into a live USB and immediately gain access to all files stored in the clear.
 
 {{< admonition type=info title="Simplest definition" open=true >}}
 
-Data-at-rest encryption ensures that no one can ever read your data after the machine has been rebooted (in any case)
+Data-at-rest encryption ensures that no one can ever read your data after the machine has been rebooted (in any case) without a password
 
 {{< /admonition >}}
 
@@ -41,9 +39,7 @@ The final configuration looks like this:
    Authentication is primarily through a **passphrase**.
 3. Only the data container is encrypted; the OS volume is unencrypted.
 
-    This allows for quick recovery in case of a power failure. The host system can reboot headlessly, reconnect to the network, and be immediately ready for use again without the need of attaching a monitor or keyboard.
-
-{{< admonition type=danger title="Important" open=true >}}
+{{< admonition type=warning title="Warning" open=true >}}
 
 Since the OS volume is not encrypted, while your **data is safe at-rest**, it is **not hardened** against deliberate professional attacks. 
 
@@ -62,8 +58,6 @@ This setup is generally safe over _casual attacks_. However, if the NAS stores c
 
 ## 2. LUKS and LVM
 
-You have probably come across "LUKS" and "LVM" many times before. At first, they may look like intimidating Linux acronyms you would never actually use, but in practice they are very useful. A brief explanation is given below; for details, consult the corresponding ArchWiki articles.
-
 ### 2.1. LUKS
 
 LUKS (Linux Unified Key Setup) is the standard for disk encryption on Linux. It enables encrypting a whole volume on disk, exposing a decrypted *view* during runtime that you can *transparently* interact with.
@@ -79,18 +73,15 @@ In this setup, you will need to set up at least one passphrase. Later, we will c
 
 A block-device encryption method like LUKS works with very little overhead (translating to faster write speed) compared to overlay filesystem methods such as `gocryptfs`. This is helpful if you're working with a spinning hard drive.
 
-Most interaction with the LUKS subsystem would be through the `cryptsetup` command.
-
 ### 2.2. LVM
 
 [LVM (Logical Volume Manager)](https://wiki.archlinux.org/title/LVM) is an abstraction layer on top of physical storage. It allows you to create, resize, and manage storage volumes more flexibly than working directly with raw partitions. **For this NAS setup, LVM is optional**. You can complete everything without it. You can skim through the core concepts of LVM in the [Appendix](#appendix-lvm-shenanigans).
 
-LVM differs from Btrfs and APFS, where volumes are tied to a single filesystem type. An LVM volume group can contain multiple logical volumes, each formatted with different filesystems (e.g. ext4, Btrfs, NTFS).
-
+LVM differs from Btrfs and APFS in that an LVM volume group can contain multiple logical volumes, each formatted with different filesystems (e.g. ext4, Btrfs, NTFS).
 
 ## 3. Setting up networking
 
-If you are running a headless machine like I am, it is more convenient to perform all setup steps remotely over SSH. Note that these steps are specific to **Ubuntu** as of 24.03 LTS.
+It is more convenient to perform all setup steps remotely over SSH. Note that these steps are specific to **Ubuntu** as of 24.03 LTS.
 
 ### 3.1. Enabling firewall
 
@@ -130,14 +121,6 @@ sudo netplan apply
 ### 4.1. Creating a new volume
 
 #### With LVM
-
-{{< admonition type=info title="LVM is optional" open=true >}}
-
-The commands for creating a LUKS volume without LVM are also available.
-
-But if you plan to use LVM, be sure to grasp its core concepts discussed in the [Appendix](#appendix-lvm-shenanigans) before executing `lvcreate`.
-
-{{< /admonition >}}
 
 Create a logical volume for the encrypted container, using all free space in Ubuntu's default volume group (`ubuntu-vg`). Replace `data-lv` with any name you like.
 
@@ -210,7 +193,7 @@ sudo cryptsetup luksOpen /dev/sdaX "luks-decrypted"                 # without lv
 sudo cryptsetup luksOpen /dev/ubuntu-vg/data-lv "luks-decrypted"    # lvm
 ```
 
-A new _virtual_ volume (as a block device) `/dev/mapper/luks-decrypted` will be available. This is the unencrypted **view** of your encrypted volume. Any operation on this decrypted view will result in data being processed on-the-fly to the actual encrypted block device.
+A new _virtual_ volume (as a block device) `/dev/mapper/luks-decrypted` will be available. This is the unencrypted **view** of your encrypted volume. Any operation on this decrypted view will result in data being processed on-the-fly to the actual encrypted block device. This whole process happens inside the kernel.
 
 Now you can actually **format** this virtual view like any normal disk drive.
 
@@ -239,7 +222,7 @@ On Ubuntu, you should be able to see the `lost+found` folder (created by default
 
 Now there are too many paths to keep track of. Here is a brief summarization:
 
-- `/data`: the **mount point**, where normal file operations are carried out
+- `/data`: the **mount point**
 - `/dev/mapper/luks-decrypted`: the virtual **binary block device** that serves as a decrypted view of your vault. This is mounted to `/data`
 - `/dev/sdaX` or `/dev/ubuntu-gs/data-lv`: the **binary block device** that represent a physical partition on disk, storing your encrypted data.
 
@@ -251,7 +234,7 @@ Create a dedicated user (e.g. `files`) to own the encrypted data. Idealistically
 
 {{< admonition type=warning title="Password usage" open=true >}}
 
-Use the same password as your LUKS passphrase for this user.
+Use the same password as your LUKS passphrase for this user to setup automatic unlock later
 
 {{< /admonition >}}
 
@@ -276,27 +259,27 @@ sudo chmod 700 /data
 For now, let's unmount and close the decrypted view.
 
 ```bash
-sudo umount /dev/mapper/luks-decrypted
+sudo umount /data
 sudo cryptsetup luksClose "luks-decrypted"
 ```
 
 ---
 
-## 6. Setting up automatic mount on login/connect
+## 6. Setting up automatic decryption on login/connect
 
-Now that you have successfully set up the encrypted vault. However, everytime the vault is used, you would have to manually open/mount and unmount/close it, which takes _four_ commands.
+Now you have successfully set up the encrypted vault. However, everytime the vault is used, you would have to manually open/mount and unmount/close it, which takes _four_ commands.
 
 ```bash
 sudo cryptsetup luksOpen /dev/ubuntu-vg/data-lv "luks-decrypted"
 sudo mount -o noatime,nodev,nosuid /dev/mapper/luks-decrypted /data
 
-# Use it
+# Do something
 
 sudo umount /data
 sudo cryptsetup luksClose "luks-decrypted"
 ```
 
-To make our life easier, let's setup the container to **mount automatically on login/connect**. This works for both normal shell login (including over SSH) and SFTP-based file transfers such as over scp, rsync. Rclone also works well.
+To make our life easier, let's setup the container to **decrypt and mount automatically on login/connect**, and automatically dispose itself afterwards. This works for both normal shell login (including over SSH) and SFTP-based file transfers such as over scp, rsync. Rclone also works well.
 
 {{< admonition type=info title="Info" open=true >}}
 
@@ -314,13 +297,13 @@ blkid /dev/sdaX                 # without lvm
 blkid /dev/ubuntu-vg/data-lv    # lvm
 ```
 
-Then, install PAM mount:
+### Setting up pam_mount
 
 ```bash
 sudo apt install libpam-mount
 ```
 
-Add the following line to `/etc/security/pam_mount.conf.xml` under `Volumes definitions`. Replace `user`, `crypto_name` with your values if applicable.
+Add the following line to `/etc/security/pam_mount.conf.xml` under _Volumes definitions_. Replace _user_, _crypto_name_ with your values if applicable.
 
 ```xml
 <volume
@@ -332,6 +315,8 @@ Add the following line to `/etc/security/pam_mount.conf.xml` under `Volumes defi
 />
 ```
 
+### Check the results
+
 Now check if it automatically mounts on login:
 
 ```bash
@@ -340,6 +325,10 @@ $ su files
 
 $ ls /data
 lost+found
+
+$ echo "encrypted text" | tee /data/test.txt
+$ ls /data
+lost+found  test.txt
 ```
 
 Upon exit, the `/data` mount point should now be empty.
@@ -351,13 +340,96 @@ $ sudo ls /data
 # should be empty
 ```
 
+{{< admonition type=warning title="Warning" open=true >}}
+
+It is important to be aware that once the encrypted volume has been mounted by a user with a legit passphrase, it can be read by anyone with enough privileges (i.e., root).
+
+{{< /admonition >}}
+
 ---
 
-## 7. Client-side software
+## 7. Client-side connection
 
-scp, rsync, rclone (write later).
+Now fire up a terminal from a remote machine and try:
+
+```bash
+ssh files@IP-ADDR
+ls /data
+```
+
+You should see the container being automatically decrypted over **ssh**.
+
+It also works for **rsync** or **scp**.
+
+```bash
+rsync -av --progress archlinux-2025.08.01-x86_64.iso files@IP-ADDR:/data
+```
+
+And also **rclone** with an SFTP target.
+
+```bash
+rclone copy -P archlinux-2025.08.01-x86_64.iso CONFIG-NAME:/data
+```
+
+{{< admonition type=warning title="Warning" open=true >}}
+
+The file will be copied even if the vault silently fails to mount. Try `ls` it yourself in SSH to ensure your pam_mount setup works.
+
+{{< /admonition >}}
+
+{{< admonition type=info title="Support for other protocols (SMB, etc.)" open=true >}}
+
+1. Messing around with pam and pam_mount to see if it can interop authentication with your protocol
+2. Simplifying the setup: enter the passphrase manually once on system startup and share the drive over another protocol.
+
+    This still ensures data is safe at-rest, but the container does not automatically lock after use.
+
+{{< /admonition >}}
+
+## 8. Further reading
+
+- [Adding or removing LUKS keyslots](https://askubuntu.com/questions/1319688/luks-how-can-i-add-more-password-slots-or-remove-change-a-password)
+
+---
 
 ## A. Appendix
+
+
+### Appendix: Comparison vs. gocryptfs
+
+**Gocryptfs** is a userspace tool that also works by exposing a transparent decrypted view of an _encrypted folder_ (not a _disk_) using FUSE. It also works with pam_mount, and I actually tried it before switching to LUKS. 
+
+The drawback is that _write performance_ to the encrypted folder is significantly reduced after the container grows to a certain size (for my particular hardware it is just 15 GB), making the method impractical for transferring large amounts of data. Read performance is acceptable. You may or may not encounter this on more modern hardware.
+
+While the practical write speed of the 2.5" HDD on the local filesystem is over 70 MB/s, the local write speed to the gocryptfs container just hovers at around 10 MB/s-30 MB/s, let alone network transfer. CPU does not seem to be the bottleneck here. But let's try it anyway:
+
+1. First, let's try copying to the **plaintext home directory**.
+    ```bash
+    $ rclone copy -P ~/Downloads/archlinux-2025.08.01-x86_64.iso CONFIG-NAME:
+    Transferred:   	  875.188 MiB / 1.284 GiB, 67%, 60.899 MiB/s, ETA 7s
+    Transferred:            0 / 1, 0%
+    Elapsed time:        14.4s
+    Transferring:
+    *               archlinux-2025.08.01-x86_64.iso: 66% /1.284Gi, 60.899Mi/s, 7s
+    ```
+2. Next, to the **LUKS container**
+    ```bash
+    $ rclone copy -P ~/Downloads/archlinux-2025.08.01-x86_64.iso CONFIG-NAME:/data/test.iso
+    Transferred:   	    1.143 GiB / 1.284 GiB, 89%, 51.558 MiB/s, ETA 2s
+    Transferred:            0 / 1, 0%
+    Elapsed time:        22.4s
+    Transferring:
+    *               archlinux-2025.08.01-x86_64.iso: 89% /1.284Gi, 51.580Mi/s, 2s
+    ```
+3. Finally, to the **gocryptfs container**
+    ```bash
+    $ rclone copy -P ~/Downloads/archlinux-2025.08.01-x86_64.iso files-macmini:plaintext
+    Transferred:   	  885.250 MiB / 1.284 GiB, 67%, 29.040 MiB/s, ETA 14s
+    Transferred:            0 / 1, 0%
+    Elapsed time:        31.4s
+    Transferring:
+    *               archlinux-2025.08.01-x86_64.iso: 67% /1.284Gi, 29.044Mi/s, 14s
+    ```
 
 ### Appendix: LVM shenanigans
 
@@ -475,9 +547,3 @@ $ sudo mkfs.ext4 /dev/ubuntu-vg/ubuntu-lv
 ```
 
 You can add more logical volumes into the volume group `ubuntu-vg` as described in [4.1. Creating a new volume](#41-creating-a-new-volume).
-
-### Appendix: Impirical experiments against gocryptfs
-
-The main advantage of this LUKS approach over gocryptfs is the **low overhead**.
-
-(write later)
