@@ -140,6 +140,6 @@ I think I will write a dedicated post on this topic later.
 
 {{< /details >}}
 
-# Friends
+<!--# Friends
 
-{{< person url="https://ashpex.net" name="Ashpex" text="Friend" picture="https://ashpex.net/images/avatar.webp" >}}
+{{< person url="https://ashpex.net" name="Ashpex" text="Friend" picture="https://ashpex.net/images/avatar.webp" >}} -->
