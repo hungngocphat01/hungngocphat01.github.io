@@ -265,3 +265,7 @@ The official implementation for the paper could be found [here](https://muratsen
 ## References
 
 [1] Murat Sensoy, Lance Kaplan, and Melih Kandemir. 2018. Evidential deep learning to quantify classification uncertainty. In Proceedings of the 32nd International Conference on Neural Information Processing Systems (NIPS'18). Curran Associates Inc., Red Hook, NY, USA, 3183–3193.
+
+**Acknowledgement**
+
+This post represents my interpretation of the concept and may not be entirely correct. Some parts were cross-checked with the original material using ChatGPT and Gemini Pro.
