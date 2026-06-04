@@ -94,4 +94,6 @@ The Canonet uses shutter-priority auto exposure. You set the film speed (ISO, ca
 
 {{< figure src="imgs/canonet-autoexp.jpg" caption="The aperture ring on the Canonet. Setting it to `A` puts it into shutter speed priority mode, where it automatically chooses the correct aperture for the given shutter speed. Setting into any other location puts it into manual mode" >}}
 
+{{< figure src="imgs/canonet-rangefinder.jpeg" caption="Inside the rangefinder of the Canonet. The needle on the right moves as you point the camera to different lighting conditions. Currently it is choosing f/8. In manual mode the needle stays at the top." >}}
+
 {{< figure src="imgs/canonet-usbc-flash.jpg" caption="A USB-C charged electronic flash on a Canonet QL19 GIII from the 70s. This setup works." >}}
