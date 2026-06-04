@@ -1,8 +1,8 @@
 +++
 date = '2026-06-04T14:44:32+09:00'
-title = 'The story of a novice film photographer'
+title = 'Analog photography'
 tags = ['project']
-featuredImage = "cover.jpeg"
+featuredImage = "imgs/disposable-kodak.jpg"
 +++
 
 ## 1. How I got into photography
@@ -85,8 +85,6 @@ On the Canonet QL19 GIII, the light meter is a battery-powered CdS cell coupled 
 The Canonet uses shutter-priority auto exposure. You set the film speed (ISO) and shutter speed, put the aperture ring on `A`, and the camera chooses the aperture based on the meter reading. The viewfinder shows a needle against an aperture scale, with overexposure and underexposure warnings. If the meter is still accurate, this is enough to use the camera almost like a point-and-shoot camera. All within a 100% mechanical body. My copy still fires properly in manual mode, but the meter is no longer reliable.
 
 {{< figure src="imgs/canonet-autoexp.jpg" caption="The aperture ring on the Canonet. Setting it to `A` puts it into shutter speed priority mode, where it'd choose an appropriate aperture for the given shutter speed. Setting into any other location puts it into manual mode" >}}
-
-Another funny thing is that these cameras still have a hot shoe for mounting a flash. So I can attach a modern electronic flash, charge the flash with USB-C, and use it on a camera body from the 70s. The camera is old enough to feel like a mechanical artifact, but the flash sitting on top of it is charged like a phone accessory.
 
 {{< figure src="imgs/canonet-usbc-flash.jpg" caption="A USB-C charged electronic flash on a Canonet QL19 GIII from the 70s." >}}
 
