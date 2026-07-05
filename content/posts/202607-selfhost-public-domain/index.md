@@ -243,7 +243,7 @@ sudo ufw status verbose
 
 The setup above keeps everything inside the Tailnet/VPN. There are cases, though, where you want to publish an application to the public internet. For example, I want to publish [immich-public-proxy](https://github.com/alangrainger/immich-public-proxy). This is a small application that publishes Immich's image sharing endpoint through a different path without exposing your original Immich instance. The "real" Immich still lives at `immich.serv.example.com` behind the VPN, while this application will now live at `immich.example.com` on the public internet. Note that this bypasses Caddy and you don't need edit any of Caddy's configuration.
 
-{{< figure src="imgs/cloudflare-tunnel.png" >}}
+{{< figure src="imgs/publish-services.png" >}}
 
 After setting up the application that you want to publish, head to Cloudflare Dashboard and open `Networking > Tunnels`.
 
