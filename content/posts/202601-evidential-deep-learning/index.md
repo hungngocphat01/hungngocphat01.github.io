@@ -3,6 +3,7 @@ date = '2026-02-03T14:46:50+09:00'
 title = 'Introduction to Evidential Deep Learning'
 tags = ['machine learning']
 featuredImage = "cover.png"
+draft = true
 +++
 
 

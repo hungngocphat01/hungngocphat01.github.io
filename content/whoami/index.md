@@ -9,8 +9,7 @@ A researcher based in Japan, from Binh Dinh
 {{< /style >}}
 
 
-
-{{< figure src="header.gif" caption="Illustration: [Mienar](https://mienar.com)" >}}
+{{< figure src="header.jpg" caption="The scenery from my lab, on Kodak 800 color film" >}}
 
 ## Education
 
@@ -21,7 +20,8 @@ Masters:
   Institute: "Japan Advanced Institute of Science and Technology"
   Major: "Knowledge Science"
   ResearchTopics:
-    - Knowledge Graphs
+    - Evidential Deep Learning
+    - Knowledge Graph
     - Explainable Machine Learning
 
 Bachelors:
@@ -34,26 +34,29 @@ Bachelors:
 
 For professional experience and publications, refer to my [LinkedIn](https://linkedin.com/in/hungngocphat-hcmus).
 
-
 ## A Wanderer
 
 {{< figure src="elaina.jpg" caption="Elaina - The Wandering Witch" >}}
 
-While "researcher" might be the conventional label for my professional work, I've always seen myself more as a _wanderer_. 
+While "engineer" or "researcher" might be the conventional label for my professional work, I've always gravitated to being a _wanderer_.
 
-From tinkering with old computers, bricking and reviving Android devices during secondary school years, and [running unlikely operating systems on unsupported hardware](https://github.com/hungngocphat01/OpenCore-Thinkpad-T430s), I've carried a habit of exploring technology in slightly unconventional ways. None of my phone ran the original OS they originally came with (Apple devices are exceptions). That spirit of exploration continues to guide me, whether in research, hacking around with systems, or simply following curiosity wherever it leads.
+From tinkering with old computers, bricking and reviving Android devices during secondary school, and [running unlikely operating systems on unsupported hardware](https://github.com/hungngocphat01/OpenCore-Thinkpad-T430s), I've often found myself exploring technology in slightly unconventional ways. With the exception of Apple devices, none of my phones have stayed on the operating system they originally shipped with.
+
+That tendency has carried over into my research, hacking around with systems, and following curiosity wherever it happens to lead.
+
+**Current interests**: analog photography, selfhosting.
 
 ### Current toys
 
-- **Main workstation:** MacBook Air M1 (16/256)
-- **Secondary workstation:** Surface Pro 8 (8/256; allocated by the institute)
-- **Toy NAS:** Mac Mini Mid-2011 (4/512; Ubuntu)
+- **Main workstation:** MacBook Air M4
+- **Secondary workstation:** MacBook Air M1
+- **Toy NAS:** Mac Mini Mid-2011 (4GB/1TB; Ubuntu)
 - **Handheld console:** Anbernic RG35XXSP
-- **Camera:** Canon PowerShot G7X
+- **Camera:** Lumix G100D, with a limited collection of lenses
+- **Film camera:** Olympus Pen D1, Canonet QL19Giii
 - **Boring things:** iPad Pro M1, iPhone 16 Pro
 
 ### Retired toys
-
 
 {{< details title="Click to expand: PC" >}}
 
@@ -70,11 +73,10 @@ From tinkering with old computers, bricking and reviving Android devices during 
 - **Symbian phones**: Nokia 2700c (2011), Nokia X2-01 ('13), Nokia Asha 303 ('14)
 - **Smartphones**: Galaxy GT-S5300s ('15), Zenfone 2 ('15), Redmi 5 Plus ('17), Redmi Note 9s ('20), iPhone 13 ('23)
 - **Tablets**: FonePad 7 ('13), MatePad 10.4 ('22)
-- **Camera**: PowerShot SX-400HS, PowerShot 〇〇 (don't remember)
+- **Camera**: Canon PowerShot G7X, PowerShot SX-400HS, PowerShot A490
 
 
 {{< /details >}}
-
 
 
 <!-- {{< details >}}
@@ -103,7 +105,7 @@ I've always enjoyed taking things apart, especially when I wasn't supposed to. L
 
 ## What's 'hiraki'?
 
-It's the _kunyomi_ reading of my name 發 in kanji. A linguistically correct Japanese alias.
+It's the _kunyomi_ reading of my name in kanji. A linguistically correct Japanese alias.
 
 # Recommended content
 
@@ -115,17 +117,19 @@ I cannot stand having dinner without these. Also, shoutout to these channels tha
 
 📺 **Retrotech**: [This Does Not Compute](https://www.youtube.com/@ThisDoesNotCompute), [LGR](https://www.youtube.com/@LGR), [Action Retro](https://www.youtube.com/@ActionRetro), [MichaelMJD](https://www.youtube.com/@MichaelMJD)
 
+📚 **Knowledge**: [Asianometry](https://www.youtube.com/@Asianometry), [ColdFusion](https://www.youtube.com/coldfusion)
 
-📚 **Knowledge**: [Asianometry](https://www.youtube.com/@Asianometry), [ColdFusion](https://www.youtube.com/coldfusion), [Johnny Harris](https://www.youtube.com/@johnnyharris) (only for old videos)
+📚 **Japanese**: [Kaname Naito](https://www.youtube.com/@kanamenaito) (for casual learning), [出口日語](https://www.youtube.com/@deguchi) (for JLPT)
 
-## Japanese learning materials
+
+<!-- ## Japanese learning materials
 
 I don't really follow any Japanese learning YouTube channels except [Kaname Naito](https://www.youtube.com/@kanamenaito). I've always believed in learning the "right" way, by working through all the boring textbook stuff first. Once you're solid enough to score around 150/180 on the JLPT N3 mock tests, that's when real context-based learning starts to pay off. 
 
-For the beginner levels, just follow _Minna no Nihongo_. For N3, just follow the _Mimikara Oboeru_ for vocabulary and _Shinkanzen Master_ for everything else.
+For the beginner levels, just follow _Minna no Nihongo_. For N3, just follow the _Mimikara Oboeru_ for vocabulary and _Shinkanzen Master_ for everything else. -->
 
 <!-- {{< figure src="aku-no-meshitsukai.jpg" title="The Vocaloid MV that got me into learning hiragana in 2012, but I didn't really learn the language until 2017" >}} -->
-
+<!-- 
 {{< details title="Click to expand: My take on immersion" >}}
 
 That said, it doesn't mean you should avoid native content altogether. I was lucky. During high school, I was completely obsessed with **Love Live!**. Its lyrics are surprisingly beginner-friendly (for the N5-N4 level) compared to most mainstream content made for native speakers. The lore behind it was that: the lyrics were supposed to be written by the characters, who were high school students, so they tended to be much simpler, definitely more approachable than something like YOASOBI. By the time I finished N4, I had already picked up a decent chunk of vocabulary that never showed up in textbooks like _Minna no Nihongo_.
@@ -138,7 +142,7 @@ Log unfamiliar words into Anki. In addition to textbook-based decks, I keep a se
 
 I think I will write a dedicated post on this topic later.
 
-{{< /details >}}
+{{< /details >}} -->
 
 <!--# Friends
 

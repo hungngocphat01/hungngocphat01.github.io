@@ -3,6 +3,7 @@ date = '2026-06-04T14:44:32+09:00'
 title = 'Analog photography'
 tags = ['project']
 featuredImage = "imgs/disposable-kodak.jpg"
+draft = true
 +++
 
 My story with film photography actually starts before I ever touched film. It began with an old Canon G7X I had at home. The camera had been damaged by moisture for a long time. The naive me brought it to Japan, hoping it would get fixed here. But after I arrived, it just magically came back from the dead and kept going for about six months before dying on me again. During that short period, I took over a thousand photos with it, and that's how I got into photography.
